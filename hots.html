@@ -1,0 +1,318 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Highlight features within a bounding box</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css' rel='stylesheet' />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+type="text/css"
+/>
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
+</style>
+</head>
+<body>
+<script>
+// Add the CSS
+var css = document.createElement('link');
+css.rel = 'stylesheet';
+css.href = 'https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css'
+document.head.appendChild(css);
+</script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+
+var mapA = new mapboxgl.Map({
+  container: createContainer(),
+  style: 'mapbox://styles/smithl1/ckc5z1j140si71ipinyxfixqj',
+  center: [-2.193463, 53.495381],
+  zoom: 11
+});
+
+var mapB = new mapboxgl.Map({
+  container: createContainer({ height: 400 }),
+  style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
+  center: [-2.193463, 53.495381],
+  zoom: 11
+});
+mapA.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
+  mapA.addSource('earthquakes', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/6046a6c80c48905bb402264bb9235c04/raw/f54ffcb0d4b12ec258104a0e2ffd65482b5ec9d0/19hots.geojson',
+    'cluster': true,
+    'clusterRadius': 40,
+'clusterMaxZoom': 17
+  });
+mapA.addLayer({
+id: "clusters",
+type: "circle",
+source: "earthquakes",
+filter: ["has", "point_count"],
+paint: {
+// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+// with three steps to implement three types of circles:
+//   * Blue, 20px circles when point count is less than 100
+//   * Yellow, 30px circles when point count is between 100 and 750
+//   * Pink, 40px circles when point count is greater than or equal to 750
+"circle-color": [
+"step",
+["get", "point_count"],
+"#66ccff",
+5,
+"#c0d6e4",
+25,
+"#6897bb",
+50,
+"#ff952c"
+],
+"circle-radius": [
+"step",
+["get", "point_count"],
+5,
+25,
+8,
+50,
+12
+]
+}
+});
+ 
+mapA.addLayer({
+id: "cluster-count",
+type: "symbol",
+source: "earthquakes",
+filter: ["has", "point_count"],
+layout: {
+"text-field": "{point_count_abbreviated}",
+"text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+"text-size": 12
+}
+});
+ 
+mapA.addLayer({
+id: "unclustered-point",
+type: "circle",
+source: "earthquakes",
+filter: ["!", ["has", "point_count"]],
+paint: {
+"circle-color": "#11b4da",
+"circle-radius": 4,
+"circle-stroke-width": 1,
+"circle-stroke-color": "#fff"
+}
+});
+ 
+// inspect a cluster on click
+mapA.on('click', 'clusters', function (e) {
+var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+var clusterId = features[0].properties.cluster_id;
+map.getSource('earthquakes').getClusterExpansionZoom(clusterId, function (err, zoom) {
+if (err)
+return;
+ 
+mapA.easeTo({
+center: features[0].geometry.coordinates,
+zoom: zoom
+});
+});
+});
+ 
+mapA.on('mouseenter', 'clusters', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+mapA.on('mouseleave', 'clusters', function () {
+map.getCanvas().style.cursor = '';
+});
+});
+mapB.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
+  mapB.addSource('earthquakes', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/4af983b7133b3ba7f6cf706cd6cdcf22/raw/7805750028b2febea347f5f93504bf232bc7ef7b/worker2.geojson',
+    'cluster': true,
+    'clusterRadius': 40,
+'clusterMaxZoom': 17
+  });
+mapB.addLayer({
+id: "clusters",
+type: "circle",
+source: "earthquakes",
+filter: ["has", "point_count"],
+paint: {
+// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+// with three steps to implement three types of circles:
+//   * Blue, 20px circles when point count is less than 100
+//   * Yellow, 30px circles when point count is between 100 and 750
+//   * Pink, 40px circles when point count is greater than or equal to 750
+"circle-color": [
+"step",
+["get", "point_count"],
+"#51bbd6",
+5,
+"#f1f075",
+25,
+"#f28cb1",
+50,
+"#cc081c"
+],
+"circle-radius": [
+"step",
+["get", "point_count"],
+5,
+25,
+8,
+50,
+12
+]
+}
+});
+ 
+mapB.addLayer({
+id: "cluster-count",
+type: "symbol",
+source: "earthquakes",
+filter: ["has", "point_count"],
+layout: {
+"text-field": "{point_count_abbreviated}",
+"text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+"text-size": 12
+}
+});
+ 
+mapB.addLayer({
+id: "unclustered-point",
+type: "circle",
+source: "earthquakes",
+filter: ["!", ["has", "point_count"]],
+paint: {
+"circle-color": "#11b4da",
+"circle-radius": 4,
+"circle-stroke-width": 1,
+"circle-stroke-color": "#fff"
+}
+});
+ 
+// inspect a cluster on click
+mapB.on('click', 'clusters', function (e) {
+var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+var clusterId = features[0].properties.cluster_id;
+map.getSource('earthquakes').getClusterExpansionZoom(clusterId, function (err, zoom) {
+if (err)
+return;
+ 
+mapB.easeTo({
+center: features[0].geometry.coordinates,
+zoom: zoom
+});
+});
+});
+ 
+mapB.on('mouseenter', 'clusters', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+mapB.on('mouseleave', 'clusters', function () {
+map.getCanvas().style.cursor = '';
+});
+});
+mapA.addControl(new mapboxgl.NavigationControl());
+mapB.addControl(new mapboxgl.NavigationControl());
+
+syncMaps(mapA, mapB);
+
+function createContainer(options) {
+  var container = document.createElement('div');
+  if (!options || options.mapStyle !== false) {
+    container.style.float = 'left';
+    container.style.width = '50%';
+    container.style.height = '800px';
+
+  }
+  document.body.appendChild(container);
+  return container;
+}
+
+function moveToMapPosition (master, slaves) {
+  var center = master.getCenter();
+  var zoom = master.getZoom();
+  var bearing = master.getBearing();
+  var pitch = master.getPitch();
+
+  slaves.forEach(slave => {
+    slave.jumpTo({
+      center,
+      zoom,
+      bearing,
+      pitch
+    });
+  });
+}
+
+// Sync movements of two maps.
+//
+// All interactions that result in movement end up firing
+// a "move" event. The trick here, though, is to
+// ensure that movements don't cycle from one map
+// to the other and back again, because such a cycle
+// - could cause an infinite loop
+// - prematurely halts prolonged movements like
+//   double-click zooming, box-zooming, and flying
+function syncMaps () {
+  var maps;
+  var argLen = arguments.length;
+  if (argLen === 1) {
+    maps = arguments[0];
+  } else {
+    maps = Array(argLen);
+    for (i = 0; i < argLen; i++) {
+      maps[i] = arguments[i];
+    }
+  }
+
+  // Create all the movement functions, because if they're created every time
+  // they wouldn't be the same and couldn't be removed.
+  var fns = [];
+  maps.forEach((map, index) => {
+    fns[index] = sync.bind(null, map, maps.filter((o, i) => i !== index));
+  });
+
+  function on () {
+    maps.forEach((map, index) => {
+      map.on('move', fns[index]);
+    });
+  }
+
+  function off () {
+    maps.forEach((map, index) => {
+      map.off('move', fns[index]);
+    });
+  }
+
+  // When one map moves, we turn off the movement listeners
+  // on all the maps, move it, then turn the listeners on again
+  function sync (master, slaves) {
+    off();
+    moveToMapPosition(master, slaves);
+    on();
+  }
+
+  on();
+};
+mapA.addControl(
+new MapboxGeocoder({
+accessToken: mapboxgl.accessToken,
+mapboxgl: mapboxgl,
+}),'top-left'
+);
+</script>
+</body>
+</html>
