@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>d3.js learning</title>
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script
+h1 { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Arial; font-size: 10px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
+<style type="text/css">
+ 
+
+<style>
+
+svg {
+    font-family: "Arial", Arial, Sans-serif;
+    font: 10px;
+    shape-rendering: crispEdges;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+  }
+ 
+  path.domain {
+    stroke: none;
+  }
+ 
+  .y .tick line {
+    stroke: #ddd;
+  }
+  
+  // Setup svg using Bostock's margin convention
+
+</style>
+<body>
+<script>
+
+var margin = {top: 20, right: 280, bottom: 180, left: 60};
+
+var width = 900 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
+
+var svg = d3.select("body")
+  .append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+/* Data in strings like it would be if imported from a csv */
+var data = [
+  { ward: "Harpurhey", Complete: "1725", Complete_compliance: "35", Complete_additional: "172", Failed_unable_to_find: "225" },
+  { ward: "Clayton & Openshaw", Complete: "1482", Complete_compliance: "29", Complete_additional: "55", Failed_unable_to_find: "226" },
+  { ward: "Cheetham", Complete: "1382", Complete_compliance: "18", Complete_additional: "72", Failed_unable_to_find: "232" },
+  { ward: "Levenshulme", Complete: "1353", Complete_compliance: "26", Complete_additional: "18", Failed_unable_to_find: "222" },
+  { ward: "Gorton & Abbey Hey", Complete: "1296", Complete_compliance: "16", Complete_additional: "37", Failed_unable_to_find: "164" },  
+  { ward: "Moston", Complete: "1163", Complete_compliance: "17", Complete_additional: "30", Failed_unable_to_find: "150" },
+  { ward: "Miles Platting & N'Heath", Complete: "1051", Complete_compliance: "16", Complete_additional: "39", Failed_unable_to_find: "149" },
+   { ward: "Whalley Range", Complete: "937", Complete_compliance: "32", Complete_additional: "20", Failed_unable_to_find: "261" },
+   { ward: "Longsight", Complete: "847", Complete_compliance: "14", Complete_additional: "28", Failed_unable_to_find: "83" },
+  { ward: "Crumpsall", Complete: "791", Complete_compliance: "7", Complete_additional: "36", Failed_unable_to_find: "117" }, 
+  
+  
+  
+];
+
+
+// Transpose the data into layers
+var dataset = d3.layout.stack()(["Complete","Complete_compliance", "Complete_additional", "Failed_unable_to_find"].map(function(fruit) {
+  return data.map(function(d) {
+    return {x: (d.ward), y: +d[fruit]};
+  });
+}));
+
+
+// Set x, y and colors
+var x = d3.scale.ordinal()
+  .domain(dataset[0].map(function(d) { return d.x; }))
+  .rangeRoundBands([10, width-10], 0.02);
+
+var y = d3.scale.linear()
+  .domain([0, d3.max(dataset, function(d) {  return d3.max(d, function(d) { return d.y0 + d.y; });  })])
+  .range([height, 0]);
+
+var colors = ["#DE8F6E", "#88AB75", "#2D93AD", "#7D7C84"];
+
+
+// Define and draw axes
+var yAxis = d3.svg.axis()
+  .scale(y)
+  .orient("left")
+  .ticks(5)
+  .tickSize(-width, 0, 0)
+  .tickFormat( function(d) { return d } );
+
+var xAxis = d3.svg.axis()
+  .scale(x)
+  .orient("bottom")
+  .tickFormat(d3.x);
+
+svg.append("g")
+  .attr("class", "y axis")
+  .call(yAxis);
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+    .selectAll("text")  
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", "rotate(-65)");
+
+// Create groups for each series, rects for each segment 
+var groups = svg.selectAll("g.cost")
+  .data(dataset)
+  .enter().append("g")
+  .attr("class", "cost")
+  .style("fill", function(d, i) { return colors[i]; });
+
+var rect = groups.selectAll("rect")
+  .data(function(d) { return d; })
+  .enter()
+  .append("rect")
+  .attr("x", function(d) { return x(d.x); })
+  .attr("y", function(d) { return y(d.y0 + d.y); })
+  .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
+  .attr("width", x.rangeBand())
+  .on("mouseover", function() { tooltip.style("display", null); })
+  .on("mouseout", function() { tooltip.style("display", "none"); })
+  .on("mousemove", function(d) {
+    var xPosition = d3.mouse(this)[0] - 15;
+    var yPosition = d3.mouse(this)[1] - 25;
+    tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+    tooltip.select("text").text(d.y);
+  });
+
+
+// Draw legend
+var legend = svg.selectAll(".legend")
+  .data(colors)
+  .enter().append("g")
+  .attr("class", "legend")
+  .attr("transform", function(d, i) { return "translate(30," + i * 19 + ")"; });
+ 
+legend.append("rect")
+  .attr("x", width - 18)
+  .attr("width", 18)
+  .attr("height", 18)
+  .style("fill", function(d, i) {return colors.slice().reverse()[i];});
+ 
+legend.append("text")
+  .attr("x", width + 5)
+  .attr("y", 9)
+  .attr("dy", ".35em")
+  .style("text-anchor", "start")
+  .text(function(d, i) { 
+    switch (i) {
+      case 0: return "Unable to locate";
+      case 1: return "Complete - +capacity required";
+      case 2: return "Complete - compliance";
+      case 3: return "Complete";
+    }
+  });
+
+
+// Prep the tooltip bits, initial display is hidden
+var tooltip = svg.append("g")
+  .attr("class", "tooltip")
+  .style("display", "none");
+    
+tooltip.append("rect")
+  .attr("width", 30)
+  .attr("height", 20)
+  .attr("fill", "white")
+  .style("opacity", 0.5);
+
+tooltip.append("text")
+  .attr("x", 15)
+  .attr("dy", "1.2em")
+  .style("text-anchor", "middle")
+  .attr("font-size", "12px")
+  .attr("font-weight", "bold");
+
+</script>
+
+</body>
+
+</html>
