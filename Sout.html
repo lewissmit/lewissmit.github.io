@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Highlight features within a bounding box</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+ 
+<style>
+.map-overlay .legend .bar {
+height: 10px;
+width: 100%;
+background: linear-gradient(to right, #FCA107, #7F3121);
+}
+ 
+.map-overlay input {
+background-color: transparent;
+display: inline-block;
+width: 100%;
+position: relative;
+margin: 0;
+cursor: ew-resize;
+}
+
+.legend {
+background-color: #fff;
+border-radius: 3px;
+bottom: 30px;
+box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+padding: 10px;
+position: absolute;
+right: 10px;
+z-index: 1;
+}
+ 
+.legend h4 {
+margin: 0 0 10px;
+}
+ 
+.legend div span {
+border-radius: 50%;
+display: inline-block;
+height: 10px;
+margin-right: 5px;
+width: 10px;
+};
+</style>
+ <nav id="menu"></nav>
+<div id="map"></div>
+<div id='state-legend' class='legend'>
+<h4>Biffa outcome reported</h4>
+<div><span style='background-color: #f52e2e'></span>Completed - additional capacity required</div>
+<div><span style='background-color: #ecab83'></span>Completed - compliance activity required</div>
+<div><span style='background-color: #0a33eb'></span>Failed - unable to find waste</div>
+<div><span style='background-color: #7eda52'></span>Failed for other reasons</div>
+</div> 
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
+center: [-2.236508,53.408829],
+minZoom: 0,
+zoom:12.2
+
+});
+map.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
+  map.addSource('biffa', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/13fa0ff5ac9bd5a1678799086aab0e65/raw/54651706439f0e4b7d54924fa9945df5e8ea136c/five49.geojson'
+  });
+map.addLayer({
+id: "points",
+type: "circle",
+source: "biffa",
+paint: {'circle-radius': {
+'base': 2,
+'stops': [
+[12, 4],
+[22, 6]
+]
+}, 
+'circle-color': [
+'match',
+['get', 'Outcome'],
+'Failed - as unable to locate',
+'#0a33eb',
+'Failed - MCC not responsible',
+'#7eda52',
+'Failed - no access',
+'#7eda52',
+'Failed - private land',
+'#7eda52',
+'Failed - rubble construction works ongoing',
+'#7eda52',
+'Completed - compliance investigation required',
+'#ecab83',
+/* other */ '#f52e2e'
+]
+}
+});
+});
+
+</script>
+ 
+</body>
+</html>
