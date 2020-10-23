@@ -22,7 +22,7 @@
 
         $.getJSON("https://gist.githubusercontent.com/lewissmit/b09e9cf11c9b912044e92d9a715de4bf/raw/3cc75085502904a7638082fc507f15139d6da39a/newl.json", function(mps) {
             $("#output").pivotUI(mps, {
-                rows: ["Ward"], cols: ["Status"],
+                rows: ["Ward"], cols: ["Outcome"],
                 aggregators: {
                     "Requests for service":      function() { return tpl.count()() },
                 },
