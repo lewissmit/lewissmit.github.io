@@ -1,0 +1,34 @@
+<html>
+
+<head>
+        <title>Pivot Demo</title>
+        <!-- external libs from cdnjs -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://pivottable.js.org/dist/pivot.css">
+        <script type="text/javascript" src="https://pivottable.js.org/dist/pivot.js"></script>
+        <style>
+            body {font-family: Verdana;}
+        </style>
+<div id="output"></div>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/color-brewer.min.css"><link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"></head>
+    
+ <script>
+    // This example shows custom aggregators and sorters using
+    // the "Canadian Parliament 2012" dataset.
+
+    $(function(){
+        var tpl = $.pivotUtilities.aggregatorTemplates;
+
+        $.getJSON("https://gist.githubusercontent.com/lewissmit/b09e9cf11c9b912044e92d9a715de4bf/raw/3cc75085502904a7638082fc507f15139d6da39a/newl.json", function(mps) {
+            $("#output").pivotUI(mps, {
+                rows: ["Ward"], cols: ["Status"],
+                aggregators: {
+                    "Requests for service":      function() { return tpl.count()() },
+                },
+                
+            });
+        });
+     });
+     </script>
+     </html>
