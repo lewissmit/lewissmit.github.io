@@ -1,0 +1,241 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Highlight features within a bounding box</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<style>
+.map-overlay .legend .bar {
+height: 10px;
+width: 100%;
+background: linear-gradient(to right, #FCA107, #7F3121);
+}
+ 
+.map-overlay input {
+background-color: transparent;
+display: inline-block;
+width: 100%;
+position: relative;
+margin: 0;
+cursor: ew-resize;
+}
+
+.legend {
+background-color: #fff;
+border-radius: 3px;
+bottom: 30px;
+box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+padding: 10px;
+position: absolute;
+right: 10px;
+z-index: 1;
+}
+ 
+.legend h4 {
+margin: 0 0 10px;
+}
+ 
+.legend div span {
+border-radius: 50%;
+display: inline-block;
+height: 10px;
+margin-right: 5px;
+width: 10px;
+};
+</style>
+ <nav id="menu"></nav>
+<div id="map"></div>
+<div id='state-legend' class='legend'>
+<h4>Biffa outcome reported</h4>
+<div><span style='background-color: #32a852'></span>Completed</div>
+<div><span style='background-color: #223b53'></span>Completed - additional fly tip required</div>
+<div><span style='background-color: #e55e5e'></span>Completed - compliance activity required</div>
+<div><span style='background-color: #3bb2d0'></span>Completed - customer issue resolved</div>
+<script>
+// Add the CSS
+var css = document.createElement('link');
+css.rel = 'stylesheet';
+css.href = 'https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css'
+document.head.appendChild(css);
+</script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+
+var mapA = new mapboxgl.Map({
+  container: createContainer(),
+  style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
+  center: [-2.26035,53.45256],
+  zoom: 14
+});
+
+var mapB = new mapboxgl.Map({
+  container: createContainer({ height: 400 }),
+  style: 'mapbox://styles/smithl1/ckdednb7x1s271iob3byfu9t9',
+  center: [-2.26035,53.45256],
+  zoom: 14
+});
+
+
+mapA.addControl(new mapboxgl.NavigationControl());
+mapB.addControl(new mapboxgl.NavigationControl());
+
+syncMaps(mapA, mapB);
+
+function createContainer(options) {
+  var container = document.createElement('div');
+  if (!options || options.mapStyle !== false) {
+    container.style.float = 'left';
+    container.style.width = '50%';
+    container.style.height = '800px';
+
+  }
+  document.body.appendChild(container);
+  return container;
+}
+
+function moveToMapPosition (master, slaves) {
+  var center = master.getCenter();
+  var zoom = master.getZoom();
+  var bearing = master.getBearing();
+  var pitch = master.getPitch();
+
+  slaves.forEach(slave => {
+    slave.jumpTo({
+      center,
+      zoom,
+      bearing,
+      pitch
+    });
+  });
+}
+
+// Sync movements of two maps.
+//
+// All interactions that result in movement end up firing
+// a "move" event. The trick here, though, is to
+// ensure that movements don't cycle from one map
+// to the other and back again, because such a cycle
+// - could cause an infinite loop
+// - prematurely halts prolonged movements like
+//   double-click zooming, box-zooming, and flying
+function syncMaps () {
+  var maps;
+  var argLen = arguments.length;
+  if (argLen === 1) {
+    maps = arguments[0];
+  } else {
+    maps = Array(argLen);
+    for (i = 0; i < argLen; i++) {
+      maps[i] = arguments[i];
+    }
+  }
+
+  // Create all the movement functions, because if they're created every time
+  // they wouldn't be the same and couldn't be removed.
+  var fns = [];
+  maps.forEach((map, index) => {
+    fns[index] = sync.bind(null, map, maps.filter((o, i) => i !== index));
+  });
+
+  function on () {
+    maps.forEach((map, index) => {
+      map.on('move', fns[index]);
+    });
+  }
+
+  function off () {
+    maps.forEach((map, index) => {
+      map.off('move', fns[index]);
+    });
+  }
+
+  // When one map moves, we turn off the movement listeners
+  // on all the maps, move it, then turn the listeners on again
+  function sync (master, slaves) {
+    off();
+    moveToMapPosition(master, slaves);
+    on();
+  }
+
+  on();
+};
+mapB.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
+  mapB.addSource('biffa', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/6c1c6a2ee1b359f51f5b161f6b3d2412/raw/da934325590ca676562b788ab401a6e22eddcf21/one48.geojson'
+  });
+mapB.addLayer({
+id: "points",
+type: "circle",
+source: "biffa",
+paint: {'circle-radius': {
+'base': 2,
+'stops': [
+[12, 3],
+[22, 5]
+]
+}, 
+'circle-color': [
+'match',
+['get', 'Outcome'],
+'Completed',
+'#32a852',
+'Completed partially - additional fly tip required',
+'#223b53',
+'Completed - compliance investigation required',
+'#e55e5e',
+'Completed - customer issue resolved',
+'#3bb2d0',
+/* other */ '#32a852'
+]
+}
+});
+});
+mapA.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
+  mapA.addSource('biffa', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/2e1d31d0d8a6122437ac62a519c3cff2/raw/4e6f9c3522b2b2cabb180710089a50bb3cc5d7c9/10s.geojson'
+  });
+mapA.addLayer({
+id: "points",
+type: "circle",
+source: "biffa",
+paint: {'circle-radius': {
+'base': 2,
+'stops': [
+[12, 3],
+[22, 5]
+]
+}, 
+'circle-color': [
+'match',
+['get', 'Outcome'],
+'Completed',
+'#32a852',
+'Completed partially - additional fly tip required',
+'#223b53',
+'Completed - compliance investigation required',
+'#e55e5e',
+'Completed - customer issue resolved',
+'#3bb2d0',
+/* other */ '#32a852'
+]
+}
+});
+});
+</script>
+</body>
+</html>
