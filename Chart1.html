@@ -110,7 +110,14 @@
 2897
 ],
   name: 'Number of BAU staff on site',
-  type: 'bar'
+  type: 'bar',
+  marker: {
+    color: 'rgba(108,180,225,5)',
+    line: {
+      color: 'rgb(8,48,107)',
+      width: 0.01
+    }
+  }
 };
 
 var trace2 = {
@@ -211,7 +218,14 @@ var trace2 = {
 3844
 ],
   name: 'Number of staff working from home',
-  type: 'bar'
+  type: 'bar',
+  marker: {
+    color: 'rgba(58,290,205,5)',
+    line: {
+      color: 'rgb(8,48,107)',
+      width: 0.01
+    }
+  }
 };
 var trace3 = {
   x: ['25/03/2020',
@@ -307,7 +321,15 @@ var trace3 = {
 78
 ],
   name: 'Number of staff redeployed (on site or working from home)',
-  type: 'bar'
+  type: 'bar',
+   marker: {
+    color: 'rgba(58,200,225,55)',
+    line: {
+      color: 'rgb(8,48,107)',
+      width: 0.01
+    }
+  }
+   
 };
 var data = [trace1, trace2, trace3];
 
