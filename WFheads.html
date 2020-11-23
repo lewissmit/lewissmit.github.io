@@ -1,0 +1,39 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+<script>
+
+var values = [
+      ['Total Headcount recorded', 'Percentage of staff absent due to sickness - unrelated to COVID-19', 'Percentage of staff with COVID-19 symptoms', 'Percentage of staff working from home'],
+      [7352, '3.22%', '1.39%', '39.4%']]
+
+var data = [{
+  type: 'table',
+  header: {
+    values: [["<b><i>Workforce headlines</i></b>"], ["<b>18th November</b>"]],
+    align: "left",
+    line: {width: 1, color: 'black'},
+    fill: {color: "black"},
+    font: {family: "Arial", size: 16, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "left",
+    height: 40,
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 12, color: ["black"]}
+  }
+}]
+
+Plotly.newPlot('myDiv', data);
+
+
+
+</script>
+</html>
