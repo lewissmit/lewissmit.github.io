@@ -1,0 +1,39 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+<script>
+
+var values = [
+      ['Number of positive tests for COVID-19 for Manchester residents', 'Rate per 100,000 population'],
+      [1458,263.7]]
+
+var data = [{
+  type: 'table',
+  header: {
+    values: [["<b><i>Weekly summary - 7 days to 20th November 2020</i></b>"], ["<b></b>"]],
+    align: "left",
+    line: {width: 1, color: 'black'},
+    fill: {color: "black"},
+    font: {family: "Arial", size: 16, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "left",
+    height: 40,
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 12, color: ["black"]}
+  }
+}]
+
+Plotly.newPlot('myDiv', data);
+
+
+
+</script>
+</html>
