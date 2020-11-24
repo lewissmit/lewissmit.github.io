@@ -1,0 +1,64 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/3934c97e13e2f9c1e9a0a9093d4a4400/raw/ecc31861d157651a6b9a8f91a7ed3e7ef425a0b7/mort.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+  var headerNames = Plotly.d3.keys(rows[0]);
+
+  var headerValues = [];
+  var cellValues = [];
+  for (i = 0; i < headerNames.length; i++) {
+    headerValue = [headerNames[i]];
+    headerValues[i] = headerValue;
+    cellValue = unpack(rows, headerNames[i]);
+    cellValues[i] = cellValue;
+  }
+
+  // clean date
+  for (i = 0; i < cellValues[1].length; i++) {
+  var dateValue = cellValues[1][i].split(' ')[0]
+  cellValues[1][i] = dateValue
+  }
+
+
+var data = [{
+  type: 'table',
+  roworder: 'bottom to top',
+  columnwidth: [800,600,800,900,600,500,1000,1000,1000],
+  columnorder: [0,1,2,3,4,5,6,7,8,9],
+  
+  header: {
+    values: headerValues,
+    align: "center",
+    line: {width: 1, color: 'rgb(0,0,0)'},
+    fill: {color: ['rgb(0,0,0)']},
+    font: {family: "Arial", size: 8, color: "white"}
+  },
+  cells: {
+    values: cellValues,
+    align: ["center", "center"],
+    line: {color: "black", width: 1},
+    fill: {color: ['rgb(255,255,255)','rgb(255, 255, 255)']},
+    font: {family: "Arial", size: 9, color: ["black"]}
+  }
+}]
+
+var layout = {
+}
+
+Plotly.newPlot('myDiv', data, layout);
+});
+
+</script>
+</html>
