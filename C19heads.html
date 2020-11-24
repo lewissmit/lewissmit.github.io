@@ -1,0 +1,39 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+<script>
+
+var values = [
+      ['Total number of confirmed COVID-19 cases for Manchester residents', 'Manchester rate (all rates quoted are per 100,000 population)', 'North West region rate', 'England rate'],
+      [29997, 5425.8, 4013.6, 2336.0]]
+
+var data = [{
+  type: 'table',
+  header: {
+    values: [["<b><i>COVID-19 & Manchester population headlines</i></b>"], ["<b>Position as at 22nd November 2020</b>"]],
+    align: "left",
+    line: {width: 1, color: 'black'},
+    fill: {color: "black"},
+    font: {family: "Arial", size: 16, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "left",
+    height: 40,
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 12, color: ["black"]}
+  }
+}]
+
+Plotly.newPlot('myDiv', data);
+
+
+
+</script>
+</html>
