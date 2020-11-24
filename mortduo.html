@@ -1,0 +1,143 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV -->
+</div>
+
+
+<script>
+
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/3934c97e13e2f9c1e9a0a9093d4a4400/raw/f467624cb545e2055acaaea5fd4d8ce869c1b846/mort.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+  // header values
+  var headerNames = Plotly.d3.keys(rows[0]);
+  var headerValues = [headerNames[1],headerNames[2],
+                      headerNames[3],headerNames[4],headerNames[5]];
+
+  // cell values
+  var cellValues = [];
+  for (i = 0; i < headerValues.length; i++) {
+    cellValue = unpack(rows, headerValues[i]);
+    cellValues[i] = cellValue;
+  }
+
+  // clean date
+  for (i = 0; i < cellValues[0].length; i++) {
+  var dateValue = cellValues[0][i].split(' ')[0]
+  cellValues[0][i] = dateValue
+  }
+
+  // create table
+  var table = {
+    type: 'table',
+    columnwidth: [180,200,200,200,150],
+    columnorder: [0,1,2,3,4],
+    header: {
+      values: headerValues,
+      align: "center",
+      line: {width: 1, color: 'rgb(50, 50, 50)'},
+      fill: {color: ['rgb(0, 0, 0)']},
+      font: {family: "Arial", size: 11, color: "white"}
+    },
+    cells: {
+      values: cellValues,
+      align: ["center", "center"],
+      line: {color: "black", width: 1},
+      fill: {color: ['rgb(255, 255, 255)', 'rgba(228, 222, 249, 0.65)']},
+      font: {family: "Arial", size: 10, color: ["black"]}
+    },
+    xaxis: 'x',
+    yaxis: 'y',
+    domain: {x: [0,0.45], y: [0,1]}
+  }
+
+  // create 1st plot
+  var trace1 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'Hospital'),
+    xaxis: 'x1',
+    yaxis: 'y1',
+    mode: 'lines',
+    line: {width: 2, color: '#9748a1'},
+    name: 'C19 hospital deaths'
+  }
+  // create 2nd plot
+  var trace2 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'Elsewhere'),
+    xaxis: 'x2',
+    yaxis: 'y2',
+    mode: 'lines',
+    line: {width: 2, color: '#b04553'},
+    name: 'C19_deaths_elsewhere'
+  }
+
+  // create 3rd plot
+  var trace3 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'AllC19'),
+    xaxis: 'x3',
+    yaxis: 'y3',
+    mode: 'lines',
+    line: {width: 2, color: '#af7bbd'},
+    name: 'Total C19 deaths'
+  }
+var trace4 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'Allcause'),
+    xaxis: 'x4',
+    yaxis: 'y4',
+    mode: 'lines',
+    line: {width: 2, color: '#af7bbd'},
+    name: 'Total deaths'
+  }
+  var data = [table,trace1,trace2,trace3,trace4]
+
+  // define subplot axes
+  var axis = {
+    showline: true,
+    zeroline: false,
+    showgrid: true,
+    mirror:true,
+    ticklen: 4,
+    gridcolor: '#ffffff',
+    tickfont: {size: 10},
+  }
+
+  var axis1 = {domain: [0.5, 1], anchor: 'y1', showticklabels: false}
+  var axis2 = {domain: [0.5, 1], anchor: 'y2', showticklabels: false}
+  var axis3 = {domain: [0.5, 1], anchor: 'y3', showticklabels: false}
+  var axis4 = {domain: [0.5, 1], anchor: 'y4', hoverformat: '.2f', showticklabels: true}
+  var axis5 = {domain: [0.75, 0.98], anchor: 'x1', tickprefix: '', hoverformat: '.2f'}
+  var axis6 = {domain: [0.5, 0.72], anchor: 'x2', tickprefix: '', hoverformat: '.2f'}
+  var axis7 = {domain: [0.25, 0.46], anchor: 'x3', tickprefix: '', hoverformat: '.2f'}
+  var axis8 = {domain: [0.001, 0.22], anchor: 'x4', tickprefix: '', hoverformat: '.2f'}
+  // define layout
+  var layout = {
+    title: "COVID-19 mortality",
+    plot_bgcolor: 'rgba(228, 222, 249, 0.65)',
+    showlegend: false,
+    xaxis1: Object.assign(axis1,axis),
+    xaxis2: Object.assign(axis2,axis),
+    xaxis3: Object.assign(axis3,axis),
+    xaxis4: Object.assign(axis4,axis),
+    yaxis1: Object.assign(axis5,axis),
+    yaxis2: Object.assign(axis6,axis),
+    yaxis3: Object.assign(axis7,axis),
+    yaxis4: Object.assign(axis8,axis),
+  }
+
+  Plotly.newPlot('myDiv', data, layout);
+
+});
+
+
+
+</script>
+</html>
