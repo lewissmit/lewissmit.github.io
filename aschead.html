@@ -1,0 +1,39 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+<script>
+
+var values = [
+      ['% of care home residents confirmed as being COVID-19 positive', '% of care homes with at least one resident confirmed as being COVID-19 positive'],
+      ['6.03%','28.4%']]
+
+var data = [{
+  type: 'table',
+  header: {
+    values: [["<b><i>Position as at 8th November 2020</i></b>"], ["<b></b>"]],
+    align: "left",
+    line: {width: 1, color: 'black'},
+    fill: {color: "black"},
+    font: {family: "Arial", size: 16, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "left",
+    height: 40,
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 14, color: ["black"]}
+  }
+}]
+
+Plotly.newPlot('myDiv', data);
+
+
+
+</script>
+</html>
