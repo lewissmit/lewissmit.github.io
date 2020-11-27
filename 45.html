@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/e932b9e621d338a5799050bc24a35456/raw/2e89cde0f12c1252c36cfb3fe719dfb1c847b4ef/45.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/e932b9e621d338a5799050bc24a35456/raw/d5803c15deeab6c560ad8a08c3a6b8ca40d71766/45.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -21,8 +21,8 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Discharge'),
   marker: {color: 'rgb(25, 42, 69)'},
-  name: 'Number of households in B&Bs',
-  type: 'scatter'
+  name: 'Discharge from hospital/prison/other institution',
+  type: 'lines'
   
 };
 
@@ -30,8 +30,8 @@ trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Dom'),
   marker: {color: 'rgb(80, 82, 87)'},
-  name: 'Number of households in MCC Temporary Accommodation',
-  type: 'scatter'
+  name: 'Domestic abuse',
+  type: 'lines'
   
 };
 
@@ -39,47 +39,51 @@ trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'End'),
   marker: {color: 'rgb(0, 74, 20)'},
-  name: 'Number of households in Dispersed Accommodation (Private Rented Sector)',
-  type: 'scatter'
+  name: 'End of private tenancy',
+  type: 'lines'
   
 };
 trace4 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Endsoc'),
-  marker: {color: 'rgb(0, 74, 20)'},
-  name: 'Number of households in Dispersed Accommodation (Private Rented Sector)',
-  type: 'scatter'
+  marker: {color: 'rgb(78, 89, 8)'},
+  name: 'End of social tenancy / supported housing',
+  type: 'lines'
   
 };
 trace5 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Fam'),
-  marker: {color: 'rgb(0, 74, 20)'},
-  name: 'Number of households in Dispersed Accommodation (Private Rented Sector)',
-  type: 'scatter'
+  marker: {color: 'rgb(43, 138, 240)'},
+  name: 'Family/friends no longer able/willing to accommodate',
+  type: 'lines'
   
 };
-trace4 = {
+trace6 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Other'),
-  marker: {color: 'rgb(0, 74, 20)'},
-  name: 'Number of households in Dispersed Accommodation (Private Rented Sector)',
-  type: 'scatter'
+  marker: {color: 'rgb(235, 64, 52)'},
+  name: 'Other',
+  type: 'lines'
   
 };
-data = [trace1,trace2,trace3,trace4,trace5];
+data = [trace1,trace2,trace3,trace4,trace5,trace6];
 
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
-  
+  showlegend: true,
+		 legend: {
+    x: 1.2,
+    y: 1.25
+  },
   xaxis: {
     title: ''
   },
   yaxis: {
-    range: [0, 3000],
+    range: [0, 130],
     title: 'Number of presentations',
-    type: 'bar'
+    type: 'lines'
   },
   
 };
