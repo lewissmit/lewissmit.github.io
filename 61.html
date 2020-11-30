@@ -21,7 +21,7 @@ trace1 = {
   y: unpack(rows, 'Date'),
   x: unpack(rows, 'C19'),
   marker: {color: 'rgb(25, 42, 69)'},
-  name: 'C-19 related calls resulting in a response',
+  name: 'C-19 related calls resulting in a response by the Neighbourhood Teams',
   type: 'bar',
   orientation: 'h',
   
@@ -44,12 +44,14 @@ layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
   barmode: 'stack',
+  showlegend: true,
+		legend: {"orientation": "h"},
   yaxis: {
     title: '',
   },
   xaxis: {
     range: [0, 2500],
-    title: 'Number of calls',
+    title: '',
     type: 'bar',
   },
   
