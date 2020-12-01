@@ -1,0 +1,99 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:100%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/4cc5ce43facc2c09d7a32c9a21c59809/raw/9b716ddb4f9049580c56ca3ed945763576569388/112.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'retail_and_recreation_percent_change_from_baseline'),
+  marker: {color: 'rgb(68, 68, 68)'},
+  name: 'Retail & recreation',
+  type: 'lines',
+  
+};
+trace2 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'grocery_and_pharmacy_percent_change_from_baseline'),
+  marker: {color: 'rgb(168, 68, 68)'},
+  name: 'Grocery & Pharmacy',
+ 
+  type: 'lines',
+  
+};
+trace3 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'parks_percent_change_from_baseline'),
+  marker: {color: 'rgb(83, 38, 68)'},
+  name: 'Parks',
+  
+  type: 'lines',
+  
+};
+
+trace4 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'transit_stations_percent_change_from_baseline'),
+  marker: {color: 'rgb(56, 14, 48)'},
+  name: 'Transit stations',
+  
+  type: 'lines',
+  
+};
+trace5 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'workplaces_percent_change_from_baseline'),
+  marker: {color: 'rgb(3, 36,252)'},
+  name: 'Workplaces',
+  
+  type: 'lines',
+  
+};
+trace6 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'residential_percent_change_from_baseline'),
+  marker: {color: 'rgb(252, 186, 3)'},
+  name: 'Residential',
+  
+  type: 'lines',
+  
+};
+
+data = [trace1,trace2,trace3,trace4,trace5,trace6];
+
+layout = {
+
+  paper_bgcolor: 'rgb(240, 240, 240)',
+  plot_bgcolor: 'rgb(240, 240, 240)',
+  title: '',
+  xaxis: {
+    title: ''
+  },
+  yaxis: {
+    range: [-100, 100],
+    title: '% variation',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
