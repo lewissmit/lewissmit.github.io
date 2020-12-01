@@ -18,11 +18,12 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/472f7e75c85495217c6c
       }
 
 trace1 = {
-  x: unpack(rows, 'Indicator'),
-  y: unpack(rows, 'Number'),
+  y: unpack(rows, 'Indicator'),
+  x: unpack(rows, 'Number'),
   marker: {color: 'rgb(25, 42, 69)'},
   name: 'COVID support calls',
-  type: 'bar'
+  type: 'bar',
+  orientation: 'h'
   
 };
 
@@ -31,13 +32,22 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
-  barmode: 'stack',
-  automargin: true,
-  xaxis: {
+  autosize: false,
+  width: 900,
+  height: 500,
+  margin: {
+    l: 350,
+    r: 0,
+    b: 100,
+    t: 100,
+    pad: 1
+  },
+  orientation: 'h',
+  yaxis: {
     title: '',
 
   },
-  yaxis: {
+  xaxis: {
     range: [0, 23000],
     title: 'Number of calls',
     type: 'bar',
