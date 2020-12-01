@@ -1,0 +1,62 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/ec20af9fc3f2818f3e7ebfbd70fede33/raw/b67fb831cea6046597c2eb0495817a7e7ca86be1/6768.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Bens'),
+  marker: {color: 'rgb(68, 68, 68)'},
+  name: 'Benefits / Universal Credit',
+  type: 'lines',
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Emp'),
+  marker: {color: 'rgb(168, 68, 68)'},
+  name: 'Employment',
+  type: 'lines',
+  
+};
+
+
+data = [trace1,trace2];
+
+layout = {
+  paper_bgcolor: 'rgb(240, 240, 240)',
+  plot_bgcolor: 'rgb(240, 240, 240)',
+  title: '',
+  xaxis: {
+    title: ''
+  },
+  yaxis: {
+    range: [0, 240],
+    title: 'Number of enqueiries to Citizens Advice',
+    type: 'lines'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
