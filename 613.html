@@ -1,0 +1,40 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+<script>
+
+var values = [
+      ['Food poverty & distribution', 'Advice and protection services', 'Mental health & wellbeing in isolation', 'Positive engagement with CYP', "Misc","Total"],
+      [132,44,60,50,7,293],["£427,657","£145,334","£178,655","£185,752","12,394","£949,792"]]
+
+var data = [{
+  type: 'table',
+  columnwidth: [150,100,100],
+  header: {
+    values: [["<b>Application type</b>"], ["<b>Number</b>"], ["<b>Collective Value</b>"]],
+    align: "left",
+    line: {width: 1, color: 'black'},
+    fill: {color: "black"},
+    font: {family: "Arial", size: 16, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "left",
+    height: 30,
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 12, color: ["black"]}
+  }
+}]
+
+Plotly.newPlot('myDiv', data);
+
+
+
+</script>
+</html>
