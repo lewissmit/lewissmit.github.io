@@ -1,0 +1,76 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/549eaeefa202e8c251d3de76cab4beaf/raw/71798a10f5c248ffc993c71a0f1b808330a40efa/61.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  y: unpack(rows, 'Date'),
+  x: unpack(rows, 'C19'),
+  marker: {color: 'rgb(25, 42, 69)'},
+  name: 'C-19 related calls resulting in a response by the Neighbourhood Teams',
+  type: 'bar',
+  orientation: 'h',
+  
+};
+
+trace2 = {
+  y: unpack(rows, 'Date'),
+  x: unpack(rows, 'Other'),
+  marker: {color: 'rgb(80, 82, 87)'},
+  name: 'Other issues',
+  type: 'bar',
+  orientation: 'h',
+  
+};
+
+
+data = [trace1,trace2];
+
+layout = {
+  paper_bgcolor: 'rgb(240, 240, 240)',
+  plot_bgcolor: 'rgb(240, 240, 240)',
+	autosize: false,
+  width: 500,
+  height: 600,
+  margin: {
+    l: 200,
+    r: 50,
+    b: 10,
+    t: 10,
+    pad: 4},
+  barmode: 'stack',
+  showlegend: true,
+		legend: {"orientation": "h"},
+  yaxis: {
+    title: '',
+  },
+  xaxis: {
+    range: [0, 2500],
+    title: '',
+    type: 'bar',
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
+
