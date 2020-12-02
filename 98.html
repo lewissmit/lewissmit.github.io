@@ -1,0 +1,171 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:120%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bc4fbedd8c0b353df36e46b5b042be65/raw/dbb6e2b410ac51ff70e5f69fbb44ea94624a1862/98.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Landing Page Coronavirus'),
+  marker: {color: 'rgb(168, 68, 68)'},
+  name: 'C19 landing page',
+  type: 'bar',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Bin, Rubbish and Recycling'),
+  marker: {color: 'rgb(68, 68, 68)'},
+  name: 'Waste / recycling',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Business Rates'),
+  marker: {color: 'rgb(68, 68, 200)'},
+  name: 'Business Rates',
+  type: 'bar',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Grants for Businesses'),
+  marker: {color: 'rgb(77, 68, 200)'},
+  name: 'Business grants',
+  type: 'bar',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Benefits and Money'),
+  marker: {color: 'rgb(68, 168, 200)'},
+  name: 'Benefits & money',
+  type: 'bar',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Business Rates Relief'),
+  marker: {color: 'rgb(77, 8, 200)'},
+  name: 'Business rates relief',
+  type: 'bar',
+  
+};
+trace7 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Businesses and Employers'),
+  marker: {color: 'rgb(77, 8, 20)'},
+  name: 'Businesses & employers',
+  type: 'bar',
+  
+};
+trace8 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Help with Food Costs while schools are closed'),
+  marker: {color: 'rgb(9, 190, 200)'},
+  name: 'Help with food costs',
+  type: 'bar',
+  
+};
+trace9= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Contacting the Council'),
+  marker: {color: 'rgb(9, 190, 200)'},
+  name: 'Contacting the council',
+  type: 'bar',
+  
+};
+trace10= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Registrars, Funerals and Cemeteries'),
+  marker: {color: 'rgb(28, 26, 28)'},
+  name: 'Registrars, funerals & cemeteries',
+  type: 'bar',
+  
+};
+trace11= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Manchester Community Response'),
+  marker: {color: 'rgb(112, 84, 108)'},
+  name: 'Manchester Community Response',
+  type: 'bar',
+  
+};
+trace12= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Libraries'),
+  marker: {color: 'rgb(50, 158, 43)'},
+  name: 'Libraries',
+  type: 'bar',
+  
+};
+trace13= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Council Tax recovery'),
+  marker: {color: 'rgb(158, 110, 43)'},
+  name: 'Council tax recovery',
+  type: 'bar',
+  
+};
+trace14= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Top up Grant for businesses not eligible for other grants'),
+  marker: {color: 'rgb(157, 213, 227)'},
+  name: 'Business top up grants',
+  type: 'bar',
+  
+};
+trace15= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Parks'),
+  marker: {color: 'rgb(173, 227, 157)'},
+  name: 'Parks',
+  type: 'bar',
+  
+};
+trace16= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'What we know about current levels'),
+  marker: {color: 'rgb(168, 50, 123)'},
+  name: 'Current C19 levels',
+  type: 'bar',
+  
+};
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11,trace12,trace13,trace14,trace15,trace16];
+
+layout = {
+  paper_bgcolor: 'rgb(240, 240, 240)',
+  plot_bgcolor: 'rgb(240, 240, 240)',
+  barmode: 'stack',
+  title: '',
+  xaxis: {
+    title: ''
+  },
+  yaxis: {
+    range: [0,35000],
+    title: 'Number'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
