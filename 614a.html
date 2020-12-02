@@ -1,0 +1,42 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+	<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+</body>
+<script>
+
+var values = [
+      ['Applications received', 'Items requested', 'Applications processed', 'Applications approved'],
+      ['488','1,094','485','292'],
+      ['1,381','2,742','1,369','509']
+      ]
+
+var data = [{
+  type: 'table',
+  columnwidth: [150,100,100],
+  header: {
+    values: [["<b>Indicator</b>"], ["<b>Carers scheme</b>"], ["<b>COVID-19 support</b>"]],
+    align: "left",
+    line: {width: 1, color: 'black'},
+    fill: {color: "black"},
+    font: {family: "Arial", size: 16, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "left",
+    height: 30,
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 12, color: ["black"]}
+  }
+}]
+
+Plotly.newPlot('myDiv', data);
+
+
+
+</script>
+</html>
