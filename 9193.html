@@ -1,0 +1,66 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9922ad9dcd66d0b25be5b03f54399d0f/raw/f0d1486cfba775e9467680d934616f506ecdcba2/9193.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Fly tipping'),
+  marker: {color: 'rgb(168, 68, 68)'},
+  name: 'Fly tipping',
+  type: 'lines',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Street cleansing'),
+  marker: {color: 'rgb(68, 68, 200)'},
+  name: 'Fly tipping',
+  type: 'lines',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Missed bins'),
+  marker: {color: 'rgb(68, 68, 68)'},
+  name: 'Fly tipping',
+  type: 'lines',
+  
+};
+
+data = [trace1,trace2,trace3];
+
+layout = {
+  paper_bgcolor: 'rgb(240, 240, 240)',
+  plot_bgcolor: 'rgb(240, 240, 240)',
+  title: '',
+  xaxis: {
+    title: ''
+  },
+  yaxis: {
+    range: [-30,90]
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
