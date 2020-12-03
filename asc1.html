@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/6c2d5351c00fddc372fac4b3c11298aa/raw/da2a6be716cf13286fdf2e1afbdc104999fe9d88/ASC1.CSV", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/6c2d5351c00fddc372fac4b3c11298aa/raw/152fa3d041d8bdef75b799fcbd04151a238bb0fb/ASC1.CSV", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Number'),
+  y: unpack(rows, '3_1'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'date',
   type: 'bar',
@@ -31,12 +31,21 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 500,
+  height: 500,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 100,
+    t: 30,
+    pad: 4},
   title: '',
   xaxis: {
     title: ''
   },
   yaxis: {
-    range: [0, 150],
+    range: [0, 200],
     title: 'Cases',
     type: 'bar'
   },
