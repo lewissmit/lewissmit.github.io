@@ -12,15 +12,15 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/6118b0f41761ba18a48fee31ff59dca2/raw/c94765c51913ddb74fea54e0cf2653a90de78266/34.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/a3eb78d6f3ffb9c3c22f8cef8acd913f/raw/4185336ac9eca0ecbb3007e258b46eb560360fbd/3_3.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Percent'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  y: unpack(rows, '3_4'),
+  marker: {color: 'rgb(168, 68, 68)'},
   name: 'date',
   type: 'bar',
   
@@ -31,12 +31,21 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 900,
+  height: 550,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 100,
+    t: 30,
+    pad: 4},
   title: '',
   xaxis: {
     title: ''
   },
   yaxis: {
-    range: [0, 30],
+    range: [0,40],
     title: '% of care homes',
     type: 'bar'
   },
@@ -50,3 +59,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
