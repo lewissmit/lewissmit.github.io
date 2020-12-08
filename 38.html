@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/eb016968e429f9d1cbd097febdb83a88/raw/fc6e62a618e19e91cae0653f0efaf60df78256b0/gistfile1.txt", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/eb016968e429f9d1cbd097febdb83a88/raw/f600f73d66b35cca664c52861deee9d95ddb2655/38.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -20,7 +20,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/eb016968e429f9d1cbd0
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Calls'),
-  marker: {color: 'rgb(25, 42, 69)'},
+  marker: {color: 'rgb(141, 158, 204)'},
   name: 'COVID support calls',
   type: 'bar'
   
@@ -29,7 +29,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Safe'),
-  marker: {color: 'rgb(80, 82, 87)'},
+  marker: {color: 'rgb(35, 76, 186)'},
   name: 'Safeguarding calls',
   type: 'bar'
   
@@ -46,8 +46,8 @@ trace3 = {
 
 trace4 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Safe'),
-  marker: {color: 'rgb(64, 36, 2)'},
+  y: unpack(rows, 'Carer'),
+  marker: {color: 'rgb(64, 133, 2)'},
   name: 'Carer calls',
   type: 'bar'
   
@@ -64,7 +64,7 @@ layout = {
   margin: {
     l: 60,
     r: 50,
-    b: 100,
+    b: 50,
     t: 30,
     pad: 4},
   barmode: 'stack',
@@ -73,7 +73,7 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [0, 1000],
+    range: [0, 800],
     title: 'Number of calls',
     type: 'bar'
   },
