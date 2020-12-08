@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/f903226785884f2d7824bef3d60e9289/raw/f4ecbbb6d4a76c02ea9a9f8434ef6df460173c36/gistfile1.txt", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/f903226785884f2d7824bef3d60e9289/raw/b29ec2555549bbeda2f17a3fd8bcf54683281862/35.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -69,7 +69,8 @@ layout = {
   title: '',
   barmode: 'stack',
   xaxis: {
-    title: ''
+    title: '',
+    tickangle: 320
   },
   yaxis: {
     range: [0, 300],
