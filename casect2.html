@@ -12,17 +12,31 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/09961a583aa6d8e79956c075bbf7aad3/raw/c79485674c42f0e8ea58b77058c25fb81ef5e96f/mor2.csv", function(err, rows){
+Plotly.d3.csv("<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bf7ecc114ea4a7c3c2c30fea422f18b0/raw/80bc1d29e3b192c968068e1ea4cff54e57402bd7/mor2.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'New cases'),
+  x: unpack(rows, 'Row Labels'),
+  y: unpack(rows, 'Sum of Manchester Hospitals mortuary capacity'),
   marker: {color: 'rgb(168, 68, 68)'},
   name: 'date',
-  type: 'bar',
+  type: 'Lines',
   
 };
 
