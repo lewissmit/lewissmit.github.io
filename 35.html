@@ -28,7 +28,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Amber'),
-  marker: {color: 'rgb(98, 68, 68)'},
+  marker: {color: 'rgb(249, 145, 5)'},
   name: 'Amber status',
   type: 'bar',
   
@@ -56,6 +56,16 @@ data = [trace1,trace2, trace3, trace4];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 90,
+    r: 40,
+    b: 80,
+    t: 10,
+    pad: 4
+  },
   title: '',
   barmode: 'stack',
   xaxis: {
