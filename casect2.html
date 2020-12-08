@@ -12,17 +12,17 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bf7ecc114ea4a7c3c2c30fea422f18b0/raw/6958a87fb792d25031a3e41b1c9646ef6f53f15b/mor2.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/09961a583aa6d8e79956c075bbf7aad3/raw/c79485674c42f0e8ea58b77058c25fb81ef5e96f/cases.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Row Labels'),
-  y: unpack(rows, 'Sum of Manchester Hospitals mortuary capacity'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'New cases'),
+  marker: {color: 'rgb(168, 68, 68)'},
   name: 'date',
-  type: 'line',
+  type: 'bar',
   
 };
 
@@ -31,14 +31,24 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 90,
+    r: 40,
+    b: 80,
+    t: 10,
+    pad: 4
+  },
   title: '',
   xaxis: {
     title: '',
     tickangle: 320
   },
   yaxis: {
-    range: [0, 100],
-    title: '% mortuary capacity',
+    range: [0, 1000],
+    title: 'Number of cases',
     type: 'bar'
   },
   
