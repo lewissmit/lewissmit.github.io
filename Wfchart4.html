@@ -19,7 +19,7 @@ TESTER=document.getElementById('tester');
     x: [39, 28, 80, 42, 102],
   y: ['Neighbourhoods', 'Growth & development', 'Corporate Core', 'Childrens & Education','Adults'],
 
-  name: 'Working from home',
+  name: 'Shielding - working from home',
   orientation: 'h',
   type: 'bar',
    marker: {
@@ -49,7 +49,18 @@ x: [41, 12, 0, 12, 26],
 
 var data = [trace1, trace2];
 
-var layout = {xaxis: {tickfont: {
+var layout = {paper_bgcolor: 'rgb(240, 240, 240)',
+  plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 600,
+  height: 300,
+  margin: {
+    l: 90,
+    r: 150,
+    b: 120,
+    t: 50,
+    pad: 1},
+	      xaxis: {tickfont: {
       size: 12,
       color: 'rgb(107, 107, 107)'
     }},
@@ -79,3 +90,4 @@ Plotly.newPlot('tester', data, layout);
 </script>
 </body>
 </html>
+
