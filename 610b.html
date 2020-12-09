@@ -21,8 +21,9 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Claim'),
   marker: {color: 'rgb(68, 68, 68)'},
+  line: {color: 'rgb(168,68,68)'},
   name: 'Number of claimants',
-  type: 'lines',
+  mode: 'lines+markers',
   
 };
 
@@ -31,14 +32,24 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 80,
+    r: 80,
+    b: 100,
+    t: 10,
+    pad: 4},
   title: '',
   xaxis: {
-    title: ''
+    title: '',
+    tickangle:320
   },
   yaxis: {
     range: [0, 3000],
     title: 'Number of claimants',
-    type: 'bar'
+    type: 'lines+markers'
   },
   
 };
@@ -50,3 +61,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
