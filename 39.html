@@ -21,7 +21,7 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Number'),
   marker: {color: 'rgb(25, 42, 69)'},
-  name: 'Number of assessments <28 days',
+  name: 'Number <28 days',
   type: 'bar'
   
 };
@@ -40,8 +40,8 @@ trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Percent'),
   yaxis: 'y2',
-  marker: {color: 'rgb(64, 36, 2)'},
-  name: 'Percent completed within 28 days',
+  marker: {color: 'rgb(54, 209, 96)'},
+  name: 'Percent within 28 days',
   type: 'lines'
   
 };
@@ -51,21 +51,32 @@ data = [trace1,trace2,trace3];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
-  
+	autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 80,
+    t: 40,
+    pad: 4
+  },
 		showlegend: true,
-		legend: {"orientation": "h"},
+		legend: {
+    x:0.5,
+    y:1.53},
   xaxis: {
     title: '',
     showticklabels: true,
-    tickangle: 45,
+    tickangle: 320,
     tickfont: {
       family: 'Arial, sans-serif',
-      size: 8,
+      size: 12,
       color: 'black'
     },
   },
   yaxis: {
-    range: [0, 150],
+    range: [0, 100],
     title: 'Number of calls',
     type: 'bar'
   },
