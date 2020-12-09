@@ -47,6 +47,9 @@ data = [trace1,trace2,trace3];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  legend: {orientation:'h',
+  x: 0.4,
+  y: 1},
   autosize: false,
   width: 900,
   height: 350,
@@ -62,7 +65,8 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [-30,90]
+    range: [-30,90],
+    title: '%'
   },
   
 };
