@@ -21,8 +21,9 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Number'),
   marker: {color: 'rgb(68, 68, 68)'},
+  line: {color: 'rgb(168,68,68)'},
   name: 'Number of people',
-  type: 'lines+markers',
+  mode: 'lines+markers',
   
 };
 
@@ -48,8 +49,8 @@ layout = {
   },
   yaxis: {
     range: [0, 5000],
-    title: 'Number',
-    type: 'lines+markers'
+    title: 'Number of volunteers',
+    mode: 'lines+markers'
   },
   
 };
