@@ -31,10 +31,20 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 50,
+    t: 10,
+    pad: 4},
   barmode: 'stack',
   title: '',
   xaxis: {
-    title: ''
+    title: '',
+    tickangle:320
   },
   yaxis: {
     range: [0,5],
