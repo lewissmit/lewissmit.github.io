@@ -37,7 +37,7 @@ trace3 = {
   x: unpack(rows, 'Status'),
   y: unpack(rows, 'Comb'),
   marker: {color: 'rgb(168, 168, 50)'},
-  name: 'Latest (no split)',
+  name: 'No employment split<br>available for latest data',
   type: 'bar',
   
 };
@@ -47,10 +47,20 @@ data = [trace1,trace2,trace3];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 80,
+    r: 80,
+    b: 100,
+    t: 10,
+    pad: 4},
   barmode: 'stack',
   title: '',
   xaxis: {
-    title: ''
+    title: '',
+    tickangle:320
   },
   yaxis: {
     range: [0, 80000],
@@ -67,4 +77,5 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
 
