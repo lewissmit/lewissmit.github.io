@@ -18,22 +18,22 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/549eaeefa202e8c251d3
       }
 
 trace1 = {
-  y: unpack(rows, 'Date'),
-  x: unpack(rows, 'C19'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'C19'),
   marker: {color: 'rgb(25, 42, 69)'},
   name: 'C-19 related calls resulting in a response by the Neighbourhood Teams',
   type: 'bar',
-  orientation: 'h',
+  orientation: 'v',
   
 };
 
 trace2 = {
-  y: unpack(rows, 'Date'),
-  x: unpack(rows, 'Other'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Other'),
   marker: {color: 'rgb(80, 82, 87)'},
   name: 'Other issues',
   type: 'bar',
-  orientation: 'h',
+  orientation: 'v',
   
 };
 
@@ -44,22 +44,25 @@ layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
 	autosize: false,
-  width: 500,
-  height: 600,
+  width: 900,
+  height: 300,
   margin: {
-    l: 200,
+    l: 80,
     r: 50,
-    b: 10,
+    b: 80,
     t: 10,
     pad: 4},
   barmode: 'stack',
   showlegend: true,
-		legend: {"orientation": "h"},
-  yaxis: {
-    title: '',
-  },
+		legend: {
+    x:0.3,
+    y:1.53},
   xaxis: {
-    range: [0, 2500],
+    title: '',
+    tickangle: 320
+  },
+  yaxis: {
+    range: [0, 3000],
     title: '',
     type: 'bar',
   },
