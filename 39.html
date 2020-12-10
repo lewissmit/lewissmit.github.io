@@ -20,7 +20,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/037be1788ed115ea8633
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Number'),
-  marker: {color: 'rgb(25, 42, 69)'},
+  marker: {color: 'rgb(34,43,53)'},
   name: 'Number <28 days',
   type: 'bar'
   
@@ -29,7 +29,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Total'),
-  marker: {color: 'rgb(80, 82, 87)'},
+  marker: {color: 'rgb(0,51,102)'},
   name: 'Total assessments',
   type: 'bar'
   
@@ -40,7 +40,7 @@ trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Percent'),
   yaxis: 'y2',
-  marker: {color: 'rgb(54, 209, 96)'},
+  marker: {color: 'rgb(0,102,102)'},
   name: 'Percent within 28 days',
   type: 'lines'
   
