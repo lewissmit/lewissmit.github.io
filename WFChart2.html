@@ -13,7 +13,7 @@
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
 
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/48b8e5c855e805ecc19103d09033a3a8/raw/719ca620071c5c69d1c31ea6cc42ceb606114ae8/WFill.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/48b8e5c855e805ecc19103d09033a3a8/raw/5f38fbe754110d21471c3045e9f5ec9096872f7a/WFill.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -21,7 +21,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/48b8e5c855e805ecc191
 trace1 = {
   x: unpack(rows, 'Indicator Definition'),
   y: unpack(rows, 'Number of staff absent due to sickness - unrelated to COVID-19'),
-  marker: {color: 'rgb(68, 44, 208)'},
+  marker: {color: 'rgb(155, 194, 230)'},
   name: 'Unrelated to COVID-19',
   type: 'bar',
   
@@ -30,7 +30,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Indicator Definition'),
   y: unpack(rows, 'Number of staff with COVID-19 symptoms'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(34, 43, 53)'},
   name: 'With COVID-19 symptoms',
   type: 'bar',
   
@@ -38,7 +38,7 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Indicator Definition'),
   y: unpack(rows, 'Number of staff not in work but unable to work from home for different reasons'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'Not in work',
   type: 'bar',
   
