@@ -13,7 +13,7 @@
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
 
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/facb77115b7ac6b77384a737b7394a25/raw/e8a7ed073699b12e6f6f5211cbe173801c936f0c/1to3.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/facb77115b7ac6b77384a737b7394a25/raw/156c87b40857e218a61494577077ba0077f00f1b/1to3.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -21,7 +21,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/facb77115b7ac6b77384
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'BAU'),
-  marker: {color: 'rgb(68, 44, 208)'},
+  marker: {color: 'rgb(34,43,53)'},
   name: 'On site',
   type: 'bar',
   
@@ -30,7 +30,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Work'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(155,194,230)'},
   name: 'Working from home',
   type: 'bar',
   
@@ -38,7 +38,7 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Red'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  marker: {color: 'rgb(0,102,102)'},
   name: 'Redeployed',
   type: 'bar',
   
