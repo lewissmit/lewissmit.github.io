@@ -21,7 +21,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/facb77115b7ac6b77384
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'BAU'),
-  marker: {color: 'rgb(34,43,53)'},
+  marker: {color: 'rgb(0,102,102)'},
   name: 'On site',
   type: 'bar',
   
@@ -30,7 +30,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Work'),
-  marker: {color: 'rgb(155,194,230)'},
+  marker: {color: 'rgb(34,42,53)'},
   name: 'Working from home',
   type: 'bar',
   
@@ -38,7 +38,7 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Red'),
-  marker: {color: 'rgb(0,102,102)'},
+  marker: {color: 'rgb(157,195,230)'},
   name: 'Redeployed',
   type: 'bar',
   
