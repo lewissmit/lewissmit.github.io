@@ -20,8 +20,8 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bb1cbb22b9cd15745727
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'B&B'),
-  marker: {color: 'rgb(25, 42, 69)'},
-  name: 'In B&Bs',
+  marker: {color: 'rgb(155, 194, 230)'},
+  name: 'In B&B accommodation',
   type: 'bar'
   
 };
@@ -29,8 +29,8 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Temp'),
-  marker: {color: 'rgb(80, 82, 87)'},
-  name: 'MCC temp',
+  marker: {color: 'rgb(34, 43, 53)'},
+  name: 'MCC temporary accommodation',
   type: 'bar'
   
 };
@@ -38,8 +38,8 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Disp'),
-  marker: {color: 'rgb(0, 74, 20)'},
-  name: 'Dispersed',
+  marker: {color: 'rgb(0, 102, 102)'},
+  name: 'Dispersed (private rented sector) accommodation',
   type: 'bar'
   
 };
@@ -49,11 +49,15 @@ data = [trace1,trace2,trace3];
 layout = {
   paper_bgcolor: 'rgb(240, 240, 240)',
   plot_bgcolor: 'rgb(240, 240, 240)',
+  showlegend: true,
+		legend: {
+    x:0.5,
+    y:1.53},
   autosize: false,
   width: 900,
   height: 350,
   margin: {
-    l: 50,
+    l: 80,
     r: 50,
     b: 80,
     t: 40,
