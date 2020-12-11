@@ -1,0 +1,122 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/ed5fd3784ae625419133646d8cd56bf3/raw/d2727a979bca57ecc6c3c981b3f819270f9cb535/Cheetham.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+  // header values
+  var headerNames = Plotly.d3.keys(rows[0]);
+  var headerValues = [headerNames[0],headerNames[1],headerNames[3]
+                      ];
+
+  // cell values
+  var cellValues = [];
+  for (i = 0; i < headerValues.length; i++) {
+    cellValue = unpack(rows, headerValues[i]);
+    cellValues[i] = cellValue;
+  }
+
+  // clean date
+  for (i = 0; i < cellValues[0].length; i++) {
+  var dateValue = cellValues[0][i].split(' ')[0]
+  cellValues[0][i] = dateValue
+  }
+
+  // create table
+  var table = {
+    type: 'table',
+    columnwidth: [150,200,200,200],
+    columnorder: [3,2,1],
+    header: {
+      values: headerValues,
+      align: "center",
+      line: {width: 1, color: 'rgb(68,68,68)'},
+      fill: {color: ['rgb(0,0,0)']},
+      font: {family: "Arial", size: 11, color: "white"}
+    },
+    cells: {
+      values: cellValues,
+      align: ["center", "center"],
+      line: {color: "black", width: 1},
+      fill: {color: ['rgb(255,255,255)']},
+      font: {family: "Arial", size: 10, color: ["black"]}
+    },
+    xaxis: 'x',
+    yaxis: 'y',
+    domain: {x: [0,0.4], y: [0,1]}
+  }
+
+  // create 1st plot
+  var trace1 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, '2019'),
+    xaxis: 'x1',
+    yaxis: 'y1',
+    mode: 'lines',
+    line: {width: 2, color: '#a221b0'},
+    name: '2019 footfall'
+  }
+  // create 2nd plot
+  var trace2 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, '2020'),
+    xaxis: 'x2',
+    yaxis: 'y2',
+    mode: 'lines',
+    line: {width: 2, color: '#06995e'},
+    name: '2020 footfall'
+  }
+
+  var data = [table,trace1,trace2]
+
+  // define subplot axes
+  var axis = {
+    showline: true,
+    zeroline: false,
+    showgrid: true,
+    mirror:true,
+    ticklen: 4,
+    gridcolor: '#ffffff',
+    tickfont: {size: 10},
+  }
+
+  var axis1 = {domain: [0.5, 1], anchor: 'y1', showticklabels: false}
+  var axis2 = {domain: [0.5, 1], anchor: 'y2', showticklabels: false}
+  var axis3 = {domain: [0.5, 1], anchor: 'y3'}
+  var axis4 = {domain: [0.66, 0.98], anchor: 'x1', hoverformat: '.2f'}
+  var axis5 = {domain: [0.34, 0.64], anchor: 'x2', hoverformat: '.2f'}
+  var axis6 = {domain: [0.0, 0.32], anchor: 'x3', tickprefix: '\u20BF', hoverformat: '.2f'}
+
+  // define layout
+  var layout = {
+    title: "Cheetham footfall",
+    plot_bgcolor: 'rgb(225, 225, 225)',
+    showlegend: false,
+    xaxis1: Object.assign(axis1,axis),
+    xaxis2: Object.assign(axis2,axis),
+    xaxis3: Object.assign(axis3,axis),
+    yaxis1: Object.assign(axis4,axis),
+    yaxis2: Object.assign(axis5,axis),
+    yaxis3: Object.assign(axis6,axis)
+  }
+
+  Plotly.newPlot('myDiv', data, layout);
+
+});
+</script>
+</body>
+</html>
