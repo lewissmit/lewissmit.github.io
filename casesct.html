@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://raw.githubusercontent.com/lewissmit/lewissmit.github.io/lewissmit-patch-1/CASES.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/09961a583aa6d8e79956c075bbf7aad3/raw/5325296a7e8ea8f83cf01522264af1deb5c9a09f/cases.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
