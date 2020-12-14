@@ -20,46 +20,102 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8aa2ca09976845f59e89
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Mcr'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'Manchester',
-  type: 'lines',
+  type: 'marker'
   
 };
 
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Uk'),
-  marker: {color: 'rgb(168, 68, 68)'},
-  name: 'United Kingdom',
-  type: 'lines',
+  marker: {color: 'rgb(0, 51, 102)'},
+  name: 'UK',
+  type: 'marker'
   
 };
-
 
 data = [trace1,trace2];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
-  width: 500,
-  height: 350,
+  width: 900,
+  height: 400,
   margin: {
-    l: 90,
-    r: 150,
-    b: 90,
-    t: 10,
+    l: 60,
+    r: 50,
+    b: 80,
+    t: 30,
     pad: 4},
   title: '',
   xaxis: {
-    title: '',
-    tickangle: 320
+    title: 'Week number',
+    tickangle:320
   },
   yaxis: {
-    range: [-100,10],
+    range: [-100, 0],
     title: '% variation',
-    type: 'lines'
+    type: 'marker'
   },
+  annotations: [
+    {
+      x: '22-Mar',
+      y: -100,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start UK lockdown 23/03/20',
+      showarrow: true,
+      arrowhead: 1,
+      ax: 0,
+      ay: -15
+    },
+    {
+      x: '14-Jun',
+      y:-40,
+      xref: 'x',
+      yref: 'y',
+      text: 'Non essential shops<br>reopen 15/06/20',
+      showarrow: true,
+      arrowhead: 1,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '28-Jun',
+      y: -20,
+      xref: 'x',
+      yref: 'y',
+      text: 'Pubs & restaurants<br>reopen 04/07/20',
+      showarrow: true,
+      arrowhead: 1,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '01-Nov',
+      y: -20,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start 2nd national<br>lockdown 05/11/20',
+      showarrow: true,
+      arrowhead: 1,
+      ax: 0,
+      ay: -40
+    },
+  {
+      x: '29-Nov',
+      y: -40,
+      xref: 'x',
+      yref: 'y',
+      text: 'End 2nd national<br>lockdown 02/12/20',
+      showarrow: true,
+      arrowhead: 1,
+      ax: 0,
+      ay: -40
+    }
+  ]
   
 };
 
