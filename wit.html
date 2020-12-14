@@ -1,0 +1,128 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/1128dd680ab01f3961d48dbfdf61a1fe/raw/bca395629e9d584d0b9dbe4b3263ddf02faa0da4/Foots.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'W2019'),
+  marker: {color: 'rgb(222, 219, 211)'},
+  name: '2019 footfall',
+  type: 'bar'
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'W2020'),
+  marker: {color: 'rgb(0, 51, 102)'},
+  name: '2020 footfall',
+  type: 'marker'
+  
+};
+
+data = [trace1,trace2];
+
+layout = {
+  paper_bgcolor: 'rgb(240, 240, 240)',
+  plot_bgcolor: 'rgb(240, 240, 240)',
+  autosize: false,
+  width: 900,
+  height: 400,
+  margin: {
+    l: 60,
+    r: 50,
+    b: 50,
+    t: 30,
+    pad: 4},
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 30000],
+    title: 'Footfall',
+    type: 'bar'
+  },
+  annotations: [
+    {
+      x: 13,
+      y: 23000,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start UK lockdown 23/03/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: 25,
+      y:23000,
+      xref: 'x',
+      yref: 'y',
+      text: 'Non essential shops<br>reopen 15/06/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: 27,
+      y: 5000,
+      xref: 'x',
+      yref: 'y',
+      text: 'Pubs & restaurants<br>reopen 04/07/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: 45,
+      y: 23000,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start 2nd national<br>lockdown 05/11/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+  {
+      x: 49,
+      y: 5000,
+      xref: 'x',
+      yref: 'y',
+      text: 'End 2nd national<br>lockdown 02/12/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    }
+  ]
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
