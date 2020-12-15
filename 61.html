@@ -20,7 +20,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/549eaeefa202e8c251d3
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'C19'),
-  marker: {color: 'rgb(25, 42, 69)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'C-19 related calls resulting in a response by the Neighbourhood Teams',
   type: 'bar',
   orientation: 'v',
@@ -41,8 +41,8 @@ trace2 = {
 data = [trace1,trace2];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
 	autosize: false,
   width: 900,
   height: 300,
