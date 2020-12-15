@@ -29,7 +29,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Emp'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: '6.8 Enquiries relating<br>to employment',
   type: 'lines',
   
@@ -39,8 +39,8 @@ trace2 = {
 data = [trace1,trace2];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
   height: 450,
@@ -56,11 +56,69 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [0, 240],
+    range: [0, 300],
     title: '',
     type: 'lines'
   },
+  annotations: [
+    {
+      x: '24-Mar',
+      y: 200,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start UK lockdown 23/03/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '22-Jun',
+      y:250,
+      xref: 'x',
+      yref: 'y',
+      text: 'Non essential shops<br>reopen 15/06/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '8-Jul',
+      y: 165,
+      xref: 'x',
+      yref: 'y',
+      text: 'Pubs & restaurants<br>reopen 04/07/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '10-Nov',
+      y: 170,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start 2nd national<br>lockdown 05/11/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+  {
+      x: '30-Nov',
+      y: 240,
+      xref: 'x',
+      yref: 'y',
+      text: 'End 2nd national<br>lockdown 02/12/20',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    }
+  ]
   
+
 };
 
 Plotly.newPlot('myDiv', data, layout);
@@ -70,3 +128,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
