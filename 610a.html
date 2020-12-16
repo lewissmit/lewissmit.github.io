@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/c9d39c40be847b5edecb14a35744a9b0/raw/64b4dbe399c0a98740c94db34e0d18992631f2e8/610a.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/c9d39c40be847b5edecb14a35744a9b0/raw/00c632b354d659368fabc3290fcb7da9039506df/610a.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -28,7 +28,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Status'),
   y: unpack(rows, 'In'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'In employment',
   type: 'bar',
   
