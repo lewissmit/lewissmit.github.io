@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/08cf1dc211663bddd36ffff4cf7dc569/raw/8452b44ef4947767e2ed4356cc7e074f17e9da0e/113.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/08cf1dc211663bddd36ffff4cf7dc569/raw/473cbe721f0f750e5bc3576fde8ed2c7d8d98536/113.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -28,7 +28,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Week'),
   y: unpack(rows, '% average 2019'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: '2019 % congestion (weekly average)',
  
   type: 'lines',
@@ -40,8 +40,8 @@ data = [trace1,trace2];
 
 layout = {
 
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
   height: 350,
