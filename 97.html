@@ -13,7 +13,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9a0d9ad5d86b4e79826c9f48c6cf4d05/raw/35dc59897d0663593b7a4159acae427a5415ed75/97.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9a0d9ad5d86b4e79826c9f48c6cf4d05/raw/48142c853f45e352c40bf32588e61316ed5099d6/97.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -21,7 +21,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9a0d9ad5d86b4e79826c
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2020'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'Total visits 2020',
   type: 'lines',
   
@@ -39,8 +39,8 @@ trace2 = {
 data = [trace1,trace2];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
   height: 350,
