@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:120%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8d903cc354f3f2ec3711fe1add4e47e3/raw/ccc3f92f6670a51ae901ef4bdde04bc33b036ee5/101.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8d903cc354f3f2ec3711fe1add4e47e3/raw/04d120a3d2541714c77b62512c7eadc58f60606b/101.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -20,7 +20,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8d903cc354f3f2ec3711
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Number'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'Number of FOI',
   type: 'bar',
   
@@ -29,8 +29,8 @@ trace1 = {
 data = [trace1];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
   height: 350,
