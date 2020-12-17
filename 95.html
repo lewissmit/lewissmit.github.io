@@ -20,7 +20,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/144f27c7dc1495815986
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'C19'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(68, 68, 68)'},
   name: 'COVID-19 related incident',
   type: 'bar',
   
@@ -28,7 +28,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Enf'),
-  marker: {color: 'rgb(68, 68, 200)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'COVID-19 enforcement action',
   type: 'bar',
   
@@ -38,8 +38,8 @@ trace2 = {
 data = [trace1,trace2];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
   height: 350,
