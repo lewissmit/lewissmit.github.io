@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bb1cbb22b9cd15745727f8dc33bc5a4c/raw/d917e9a3d7279c8c44d34541f6f29ba9e205ce43/44.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bb1cbb22b9cd15745727f8dc33bc5a4c/raw/c4de0e0f7cf8769c4326ff4a408d47fa9856dafe/44.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -47,8 +47,8 @@ trace3 = {
 data = [trace1,trace2,trace3];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   showlegend: true,
 		legend: {
     x:0.5,
