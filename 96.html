@@ -20,7 +20,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/342220bd8e576b4d303f
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Number'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: 'Number',
   type: 'bar',
   
@@ -31,8 +31,8 @@ trace1 = {
 data = [trace1];
 
 layout = {
-  paper_bgcolor: 'rgb(240, 240, 240)',
-  plot_bgcolor: 'rgb(240, 240, 240)',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
   height: 350,
