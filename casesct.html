@@ -20,11 +20,12 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/09961a583aa6d8e79956
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'New cases'),
-  marker: {color: 'rgb(0, 51, 102)'},
-  name: 'date',
-  type: 'bar',
+  marker: {color: 'rgb(204, 183, 108)'},
+  name: 'Total deaths 2020',
+  type: 'bar'
   
 };
+
 
 data = [trace1];
 
@@ -33,23 +34,80 @@ layout = {
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
-  height: 350,
+  height: 400,
   margin: {
-    l: 50,
-    r: 50,
-    b: 50,
-    t: 30,
+    l: 60,
+    r: 150,
+    b: 90,
+    t: 90,
     pad: 4},
   title: '',
   xaxis: {
-    title: '',
-    tickangle: 320
+    title: 'Date',
+    tickangle:320
   },
   yaxis: {
-    range: [0, 1000],
+    range:[0, 1000],
     title: 'Number of cases',
-    type: 'bar'
+    type: 'marker'
   },
+  annotations: [
+    {
+      x: '23-Mar',
+      y: 480,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start UK lockdown 23/03/20',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '15-Jun',
+      y:600,
+      xref: 'x',
+      yref: 'y',
+      text: 'Non essential shops<br>reopen 15/06/20',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '04-Jul',
+      y: 880,
+      xref: 'x',
+      yref: 'y',
+      text: 'Pubs & restaurants<br>reopen 04/07/20',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '05-Nov',
+      y: 900,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start 2nd national<br>lockdown 05/11/20',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    },
+  {
+      x: '02-Dec',
+      y: 450,
+      xref: 'x',
+      yref: 'y',
+      text: 'End 2nd national<br>lockdown 02/12/20',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    }
+  ]
   
 };
 
