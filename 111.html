@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/3819b0a3da79623ba41d4ef98fc668a6/raw/5aac3f7a0c2c1de7b7e3758a72183f587bcd1575/111.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/3819b0a3da79623ba41d4ef98fc668a6/raw/5121654533a0b71cf0baa95ce8e7ad9876e2c1aa/111.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -71,11 +71,11 @@ layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
-  width: 900,
+  width: 950,
   height: 450,
   margin: {
     l: 90,
-    r: 150,
+    r: 90,
     b: 90,
     t: 10,
     pad: 4},
