@@ -20,56 +20,71 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/4cc5ce43facc2c09d7a3
 trace1 = {
   x: unpack(rows, 'date'),
   y: unpack(rows, 'retail_and_recreation_percent_change_from_baseline'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  marker: {color: 'rgb(102, 205, 170)'},
   name: 'Retail & recreation',
-  type: 'lines',
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
   
 };
 trace2 = {
   x: unpack(rows, 'date'),
   y: unpack(rows, 'grocery_and_pharmacy_percent_change_from_baseline'),
-  marker: {color: 'rgb(168, 68, 68)'},
+  marker: {color: 'rgb(255, 165, 0)'},
   name: 'Grocery & Pharmacy',
- 
-  type: 'lines',
+ mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
   
 };
 trace3 = {
   x: unpack(rows, 'date'),
   y: unpack(rows, 'parks_percent_change_from_baseline'),
-  marker: {color: 'rgb(83, 38, 68)'},
+  marker: {color: 'rgb(55, 55, 0)'},
   name: 'Parks',
-  
-  type: 'lines',
-  
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
 };
 
 trace4 = {
   x: unpack(rows, 'date'),
   y: unpack(rows, 'transit_stations_percent_change_from_baseline'),
-  marker: {color: 'rgb(56, 14, 48)'},
+  marker: {color: 'rgb(0, 0, 255)'},
   name: 'Transit stations',
-  
-  type: 'lines',
-  
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
 };
 trace5 = {
   x: unpack(rows, 'date'),
   y: unpack(rows, 'workplaces_percent_change_from_baseline'),
-  marker: {color: 'rgb(3, 36,252)'},
+  marker: {color: 'rgb(30, 144,255)'},
   name: 'Workplaces',
-  
-  type: 'lines',
-  
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
 };
 trace6 = {
   x: unpack(rows, 'date'),
   y: unpack(rows, 'residential_percent_change_from_baseline'),
-  marker: {color: 'rgb(252, 186, 3)'},
+  marker: {color: 'rgb(255, 20, 147)'},
   name: 'Residential',
-  
-  type: 'lines',
-  
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
 };
 
 data = [trace1,trace2,trace3,trace4,trace5,trace6];
@@ -80,7 +95,7 @@ layout = {
   plot_bgcolor: 'rgb(255, 255, 255)',
    autosize: false,
   width: 900,
-  height: 700,
+  height: 450,
   margin: {
     l: 90,
     r:90,
