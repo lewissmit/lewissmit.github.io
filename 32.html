@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/6c2d5351c00fddc372fac4b3c11298aa/raw/eeffcd2cb4ce8240d9d1421657681461a611c035/31.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/6c2d5351c00fddc372fac4b3c11298aa/raw/59eff0b428730a331724382ddcda8c3a95b5e228/31.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -50,6 +50,34 @@ layout = {
     title: '% of residents',
     type: 'bar'
   },
+  annotations: [
+    {
+      x: '27-Apr',
+      y: 10,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '02-Jan',
+      y: 10,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
   
 };
 
