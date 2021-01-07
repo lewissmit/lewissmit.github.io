@@ -29,6 +29,8 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'CIN'),
+  xaxis: 'x2',
+  yaxis: 'y2',
   marker: {color: 'rgb(80, 82, 87)'},
   name: '5.7 Number of Children In Need',
   type: 'bar'
@@ -38,6 +40,7 @@ trace2 = {
 data = [trace1,trace2];
 
 layout = {
+grid: {rows:1, columns:2, pattern: 'independent'},
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
@@ -52,6 +55,10 @@ layout = {
   },
 
   xaxis: {
+    title: '',
+    tickangle:320
+  },
+  xaxis2: {
     title: '',
     tickangle:320
   },
