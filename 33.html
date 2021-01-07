@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/a3eb78d6f3ffb9c3c22f8cef8acd913f/raw/97e4f285d61b6d1f00d8b631dccd2e2dde9b5adb/3_3.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/a3eb78d6f3ffb9c3c22f8cef8acd913f/raw/b600907d7e2b9d884c638c607ef3af70f29f4a0f/3_3.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -50,6 +50,34 @@ layout = {
     title: 'Number of care homes',
     type: 'bar'
   },
+  annotations: [
+    {
+      x: '27-Apr',
+      y: 30,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '02-Jan',
+      y: 30,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
   
 };
 
