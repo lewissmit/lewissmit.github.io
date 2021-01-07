@@ -1,0 +1,104 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/cc77755d21886d84e3e22b273c15ab8a/raw/3a6687e1ae87d20c2dbf7ccbc3db1297a192d614/52.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Look'),
+  marker: {color: 'rgb(165, 42, 6)'},
+  name: '5.8 Children Looked After                                                         ',
+  type: 'bar'
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'CPP'),
+  xaxis: 'x2',
+  yaxis: 'y2',
+  marker: {color: 'rgb(80, 82, 87)'},
+  name: '5.9 Child Protection Plans',
+  type: 'bar'
+  
+};
+
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Ref'),
+  xaxis: 'x3',
+  yaxis: 'y3',
+  marker: {color: 'rgb(78, 144, 8)'},
+  name: '5.10 Referrals per month',
+  type: 'bar'
+  
+};
+data = [trace4];
+
+layout = {
+grid: {rows:1, columns:1, pattern: 'independent'},
+		showlegend: true,
+		legend: {"orientation": "h",
+    x: 0,
+    y: 1.15},
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 500,
+  margin: {
+    l: 90,
+    r: 50,
+    b: 80,
+    t: 90,
+    pad: 5
+  },
+
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  xaxis2: {
+    title: '',
+    tickangle:320
+  },
+  
+  yaxis: {
+    range: [0, 1500],
+    title: 'Number of children<br>looked after',
+    type: 'bar'
+  },
+  
+yaxis2: {
+    range: [0, 1500],
+    title: 'Number on CPP',
+    type: 'bar'
+  },
+  yaxis3: {
+    range: [0, 1000],
+    title: 'Number of referrals',
+    type: 'bar'
+  },
+  
+};
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
