@@ -21,7 +21,7 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Look'),
   marker: {color: 'rgb(165, 42, 6)'},
-  name: '5.8 Number of Children Looked After',
+  name: '5.8 Children Looked After',
   type: 'bar'
   
 };
@@ -29,8 +29,10 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'CPP'),
+  xaxis: 'x2',
+  yaxis: 'y2',
   marker: {color: 'rgb(80, 82, 87)'},
-  name: '5.9 Number of Children on Child<br>Protection Plans',
+  name: '5.9 Child Protection Plans',
   type: 'bar'
   
 };
@@ -38,39 +40,59 @@ trace2 = {
 trace4 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Ref'),
+  xaxis: 'x3',
+  yaxis: 'y3',
   marker: {color: 'rgb(78, 144, 8)'},
-  name: '5.10 Number of Referrals per month',
+  name: '5.10 Referrals per month',
   type: 'bar'
   
 };
 data = [trace1,trace2,trace4];
 
 layout = {
+grid: {rows:2, columns:2, pattern: 'independent'},
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
-  height: 350,
+  height: 500,
   margin: {
-    l: 55,
-    r: 50,
+    l: 100,
+    r: 0,
     b: 80,
     t: 40,
-    pad: 4
+    pad: 5
   },
 
   xaxis: {
     title: '',
     tickangle:320
   },
+  xaxis2: {
+    title: '',
+    tickangle:320
+  },
+  xaxis3: {
+    title: '',
+    tickangle:320
+  },
   yaxis: {
     range: [0, 1500],
-    title: 'Number of children',
+    title: 'Number of children<br>looked after',
     type: 'bar'
   },
   
+yaxis2: {
+    range: [0, 1500],
+    title: 'Number on CPP',
+    type: 'bar'
+  },
+  yaxis3: {
+    range: [0, 1500],
+    title: 'Number of referrals',
+    type: 'bar'
+  },
 };
-
 Plotly.newPlot('myDiv', data, layout);
 
 });
