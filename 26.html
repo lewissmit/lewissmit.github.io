@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/0db7247c26f3f86d0135c10c27c9e6c2/raw/f5cd3b47c05c95fdeefa1f410b8ee697d2f96596/26.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/0db7247c26f3f86d0135c10c27c9e6c2/raw/0505c82055cfd8d0b332ab2f346cb5c3d23d84c2/26.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -57,7 +57,34 @@ layout = {
     title: 'Number of deaths',
     type: 'lines+markers'
   },
-  
+  annotations: [
+    {
+      x: '27-Apr',
+      y: 2000,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '02-Jan',
+      y: 2000,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
