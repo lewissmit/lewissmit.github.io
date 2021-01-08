@@ -16,7 +16,7 @@ Plotly.d3.csv("<html>
 <head>
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
+
 
 <!-- Plots go in blank <div> elements. 
     You can size them in the plot layout,
@@ -65,7 +65,34 @@ layout = {
     title: '% mortuary capacity',
     type: 'bar'
   },
-  
+  annotations: [
+    {
+      x: '23-Apr',
+      y: 100,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '04-Jan',
+      y: 100,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
@@ -75,3 +102,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
