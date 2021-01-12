@@ -1,0 +1,102 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/43da1523306d087844751381249f66c8/raw/847b7482a5943e5a662fe37af3cf07886ec7830f/WasteChart2.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'No outcome'),
+  marker: {color: 'rgb(155, 194, 230)'},
+  name: 'No outcome',
+  type: 'bar'
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Complete'),
+  marker: {color: 'rgb(34, 43, 53)'},
+  name: 'Complete',
+  type: 'bar'
+  
+};
+
+trace3 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Completed partially - additional fly tip required'),
+  marker: {color: 'rgb(34, 99, 53)'},
+  name: 'Completed partially - additional fly tip required',
+  type: 'bar'
+  
+};
+
+trace4 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Failed'),
+  marker: {color: 'rgb(255, 77, 102)'},
+  name: 'Failed',
+  type: 'bar'
+  
+};
+trace5 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Rejected'),
+  marker: {color: 'rgb(0, 222, 102)'},
+  name: 'Rejected by depot admin',
+  type: 'bar'
+  
+};
+
+data = [trace1,trace2,trace3,trace4,trace5];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: true,
+		legend: {
+    x:0.5,
+    y:1.53},
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 80,
+    r: 50,
+    b: 80,
+    t: 100,
+    pad: 4
+  },
+  barmode: 'stack',
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 100],
+    title: '% of jobs received in the month',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
