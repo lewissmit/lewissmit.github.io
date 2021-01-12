@@ -1,0 +1,102 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/cc38957d5d7b38bef6a1bb6efa025292/raw/d84575afe8f456f45a38db812ee040a90fb3ae5d/WasteChart1.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Comp'),
+  marker: {color: 'rgb(155, 194, 230)'},
+  name: 'Completed',
+  type: 'bar'
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'CUR'),
+  marker: {color: 'rgb(34, 43, 53)'},
+  name: 'Complete - customer issue resolved',
+  type: 'bar'
+  
+};
+
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'NWR'),
+  marker: {color: 'rgb(0, 102, 102)'},
+  name: 'Complete - new worksheet raised',
+  type: 'bar'
+  
+};
+
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'CI'),
+  marker: {color: 'rgb(55, 102, 102)'},
+  name: 'Complete - compliance investigation',
+  type: 'bar'
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'ADD'),
+  marker: {color: 'rgb(0, 222, 102)'},
+  name: 'Complete - additional fly tip required',
+  type: 'bar'
+  
+};
+
+data = [trace1,trace2,trace3,trace4,trace5];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: true,
+		legend: {
+    x:0.5,
+    y:1.53},
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 80,
+    r: 50,
+    b: 80,
+    t: 40,
+    pad: 4
+  },
+  barmode: 'stack',
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 3000],
+    title: 'Number of households',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
