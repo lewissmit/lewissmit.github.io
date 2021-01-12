@@ -20,7 +20,7 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/cc38957d5d7b38bef6a1
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Comp'),
-  marker: {color: 'rgb(155, 194, 230)'},
+  marker: {color: 'rgb(64, 128, 0)'},
   name: 'Completed',
   type: 'bar'
   
@@ -29,7 +29,7 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'CUR'),
-  marker: {color: 'rgb(34, 43, 53)'},
+  marker: {color: 'rgb(89, 179, 0)'},
   name: 'Complete - customer issue resolved',
   type: 'bar'
   
@@ -38,7 +38,7 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'NWR'),
-  marker: {color: 'rgb(0, 102, 102)'},
+  marker: {color: 'rgb(38, 77, 0)'},
   name: 'Complete - new worksheet raised',
   type: 'bar'
   
@@ -47,7 +47,7 @@ trace3 = {
 trace4 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'CI'),
-  marker: {color: 'rgb(55, 102, 102)'},
+  marker: {color: 'rgb(179, 89, 0)'},
   name: 'Complete - compliance investigation',
   type: 'bar'
   
@@ -55,7 +55,7 @@ trace4 = {
 trace5 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'ADD'),
-  marker: {color: 'rgb(0, 222, 102)'},
+  marker: {color: 'rgb(179, 36, 0)'},
   name: 'Complete - additional fly tip required',
   type: 'bar'
   
