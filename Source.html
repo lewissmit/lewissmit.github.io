@@ -153,7 +153,7 @@ map.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   map.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/a892f678a9369a7f578fe1430c83dff4/raw/895608e204e12ee7a1e3ee59381b9bf264df98f4/three49.geojson'
+    'data': 'https://gist.githubusercontent.com/lewissmit/7bc4f7286a2931d3ff3476d823a9b5b5/raw/0f87b9dbd6ae27e8fbf009cf34f412bb21273ea4/Source2020.csv'
   });
 map.addLayer({
 id: "points",
@@ -168,7 +168,7 @@ paint: {'circle-radius': {
 }, 
 'circle-color': [
 'match',
-['get', 'Final source (1)'],
+['get', 'Final source'],
 'Assumed Resident',
 '#f52e2e',
 'Anonymous',
