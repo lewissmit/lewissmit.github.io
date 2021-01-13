@@ -1,0 +1,264 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/4f3dd931cfa284f2c489b0e67a3b168a/raw/db13cbd49e05984f1d763d575a73fa81562f94f0/WasteChart3.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Animal Carcass'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 102, 102)',
+    size: 8
+  },
+  name: 'Animal carcass',
+  type: 'lines+markers',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Asbestos'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 200, 102)',
+    size: 8
+  },
+  name: 'Asbestos',
+  type: 'lines+markers',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Black bags commerical (XX)'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0,0,0)',
+    size: 8
+  },
+  name: 'Black bags - commercial',
+  type: 'lines+markers',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Black bags household (WW)'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(64, 64, 64)',
+    size: 8
+  },
+  name: 'Black bags - household',
+  type: 'lines+markers',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'"Chemical drum, oil"'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(179, 0, 34)',
+    size: 8
+  },
+  name: 'Chemical drum / oil',
+  type: 'lines+markers',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Clinical'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 153, 204)',
+    size: 8
+  },
+  name: 'Clinical',
+  type: 'lines+markers',
+  
+};
+trace7 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Green (garden waste)'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 230, 77)',
+    size: 8
+  },
+  name: 'Green / garden waste',
+  type: 'lines+markers',
+  
+};
+trace8 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Other (unidentified)'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(230, 230, 0)',
+    size: 8
+  },
+  name: 'Other - unidentified',
+  type: 'lines+markers',
+  
+};
+trace9 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Other commercial waste (YY)'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(204, 51, 0)',
+    size: 8
+  },
+  name: 'Other commercial waste',
+  type: 'lines+markers',
+  
+};
+trace10 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Other electrical'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 0, 255)',
+    size: 8
+  },
+  name: 'Other electrical',
+  type: 'lines+markers',
+  
+};
+trace11 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Other household waste (ZZ)'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(255, 51, 51)',
+    size: 8
+  },
+  name: 'Other household waste',
+  type: 'lines+markers',
+  
+};
+trace12 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Rubble (construction/excavation)'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(128, 85, 0)',
+    size: 8
+  },
+  name: 'Rubble (construction/excavation)',
+  type: 'lines+markers', 
+};
+trace14 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Tyres'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(255,179,255',
+    size: 8
+  },
+  name: 'Tyres',
+  type: 'lines+markers',
+  
+};
+trace15 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'Vehicle parts'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(128, 0, 128)',
+    size: 8
+  },
+  name: 'Vehicle parts',
+  type: 'lines+markers',
+  
+};
+trace16 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows,'White goods'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(191,191,191)',
+    size: 8
+  },
+  name: 'White goods',
+  type: 'lines+markers',
+  
+};
+
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11,trace12,trace14,trace15,trace16];
+
+layout = {
+  paper_bgcolor: 'rgb(256, 256, 256)',
+  plot_bgcolor: 'rgb(256, 256, 256)',
+  autosize: false,
+  width: 900,
+  height: 550,
+  margin: {
+    l: 70,
+    r: 50,
+    b: 80,
+    t: 40,
+    pad: 4
+  },
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 1500],
+    title: 'Number of reports',
+    type: 'lines+markers'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
