@@ -1,0 +1,113 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8e3e83c3e75cf181548d91ac1fcf548e/raw/3d7fae179cd8770b3a8a766a75ed18a8ad855bf7/WasteChart4.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Car boot load'),
+  marker: {color: 'rgb(0,102,102)'},
+  name: 'Car boot load',
+  type: 'bar',
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Other single item'),
+  marker: {color: 'rgb(34,99,53)'},
+  name: 'Other single item',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Significant/multiple loads'),
+  marker: {color: 'rgb(157,195,230)'},
+  name: 'Significant / multiple loads',
+  type: 'bar',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Single black bag'),
+  marker: {color: 'rgb(0,0,0)'},
+  name: 'Single black bag',
+  type: 'bar',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Small van load'),
+  marker: {color: 'rgb(152,153,0)'},
+  name: 'Small van load',
+  type: 'bar',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Tipper lorry load'),
+  marker: {color: 'rgb(255,119,51)'},
+  name: 'Tipper lorry load',
+  type: 'bar',
+  
+};
+trace7 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Transit van load'),
+  marker: {color: 'rgb(0,138,230)'},
+  name: 'Transit van load',
+  type: 'bar',
+  
+};
+var data =[trace1, trace2,trace3,trace4,trace5,trace6,trace7],
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 90,
+    r: 150,
+    b: 80,
+    t: 50,
+    pad: 4},
+  showlegend: true,
+  barmode: 'stack',
+  xaxis: {
+    title: '', 
+    tickangle: 320
+  },
+  yaxis: {
+    range: [0,4000],
+    title: 'Number of CRM requests',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
