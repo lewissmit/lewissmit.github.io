@@ -87,7 +87,7 @@ layout = {
     },
     {
       x: '05-Nov',
-      y: 900,
+      y: 850,
       xref: 'x',
       yref: 'y',
       text: 'Start 2nd national<br>lockdown 05/11/20',
@@ -118,8 +118,58 @@ layout = {
       ax: 0,
       ay: -40
     }
-  ]
-  
+  ],
+  shapes: [
+        // 1st highlight during Feb 4 - Feb 6
+        {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '05-Nov',
+            y0: 0,
+            x1: '02-Dec',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+        {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '23-Mar',
+            y0: 0,
+            x1: '15-Jun',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+         {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '05-Jan',
+            y0: 0,
+            x1: '12-Jan',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        }
+        ]
 };
 
 Plotly.newPlot('myDiv', data, layout);
