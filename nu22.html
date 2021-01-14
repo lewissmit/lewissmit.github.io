@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/66d5c929564e89f4c20373775da86840/raw/ec291d40ccf5f8e8be97af8aed351b47bd461385/nu22.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/66d5c929564e89f4c20373775da86840/raw/1f7b162817a0544eaa9cee69da1129fd70bb0e33/nu22.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'date'),
-  y: unpack(rows, 'newCasesBySpecimenDate-60+'),
+  y: unpack(rows, 'Sum of cases'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'date',
   type: 'bar',
