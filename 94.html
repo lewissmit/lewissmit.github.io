@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9fb575236d64b8d54962f6c7d9974208/raw/a323f87cf769107da366175468871d5d5443ddfc/94.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9fb575236d64b8d54962f6c7d9974208/raw/f346e2729157564480f97315a1cad01912628923/94.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -42,7 +42,7 @@ trace3 = {
   
 };
 
-data = [trace1,trace2];
+data = [trace2,trace3];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
@@ -74,3 +74,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
