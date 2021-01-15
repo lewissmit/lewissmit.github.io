@@ -12,64 +12,65 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9922ad9dcd66d0b25be5b03f54399d0f/raw/99924d6ad0cd2520c301d45400580b147f24e59c/9193.csv", function(err, rows){
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/62f651159a7c56232a38b8f72e1b5f85/raw/f4b294905d42bbd4c9c17bd7bc2e1ac274e2592b/91nu.csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
-trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Fly tipping'),
-  marker: {color: 'rgb(168, 68, 68)'},
-  name: 'Fly tipping',
-  type: 'lines',
-  
-};
-trace2 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Street cleansing'),
-  marker: {color: 'rgb(68, 68, 200)'},
-  name: 'Street cleansing',
-  type: 'lines',
-  
-};
-trace3 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Missed bins'),
-  marker: {color: 'rgb(68, 68, 68)'},
-  name: 'Missed bins',
-  type: 'lines',
-  
-};
 
-data = [trace1,trace2,trace3];
+var trace1 = {
+  type: "scatter",
+  mode: "lines",
+  name: '2020',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020'),
+  line: {color: '#17BECF'}
+}
 
-layout = {
-  paper_bgcolor: 'rgb(255, 255, 255)',
-  plot_bgcolor: 'rgb(255, 255, 255)',
-  legend: {orientation:'h',
-  x: 0.4,
-  y: 1},
-  autosize: false,
-  width: 900,
-  height: 450,
-  margin: {
-    l: 50,
-    r: 50,
-    b: 50,
-    t: 10,
-    pad: 4},
-  title: '',
+var trace2 = {
+  type: "scatter",
+  mode: "bar",
+  name: '2021',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2021'),
+  line: {color: '#7F7F7F'}
+}
+
+var trace3 = {
+  type: "scatter",
+  mode: "lines",
+  name: '2019',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2019'),
+  line: {color: '#7F7G7G'}
+}
+
+var data = [trace1,trace2,trace3];
+
+var layout = {
   xaxis: {
-    title: '',
-    tickangle:320
+    autorange: true,
+    range: ['2021-01-01', '2021-12-31'],
+    rangeselector: {buttons: [
+        {
+          count: 1,
+          label: '1m',
+          step: 'month',
+          
+        },
+        
+        {step: 'all'}
+      ]},
+    rangeslider: {range: ['2021-01-01', '2021-12-31']},
+    type: 'date'
   },
   yaxis: {
-    range: [-30,90],
-    title: '% variation between 2019 and 2020'
-  },
-  
+    autorange: true,
+    range: [0,30000],
+    type: 'linear'
+  }
 };
+
 
 Plotly.newPlot('myDiv', data, layout);
 
