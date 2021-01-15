@@ -1,0 +1,70 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/75d6e8c1390c5ffd63482f28bee28fc1/raw/9092d291787d87b7a85cd92a8e0b34a1b9c97e75/93.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020'),
+  marker: {color: 'rgb(0, 102, 102)'},
+  name: '2020 number of reports',
+  type: 'lines',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2021'),
+  marker: {color: 'rgb(0, 153, 0)'},
+  name: '2021',
+  type: 'lines',
+  
+};
+
+
+data = [trace1,trace2];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 100,
+    t: 10,
+    pad: 4},
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle: 320
+  },
+  yaxis: {
+    range: [0,2000],
+    title: 'Number of reports'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
