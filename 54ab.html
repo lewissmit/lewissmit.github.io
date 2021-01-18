@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/83cb0fc39ac270b196f219e58cc78b02/raw/8dbf5427cd42d098950aeda9b66279e8568295ed/5nu34.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=855438307&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Indicator Definition'),
-  y: unpack(rows, 'Triage'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(165, 42, 6)'},
   name: 'Early Help triage',
   type: 'bar'
@@ -27,8 +27,8 @@ trace1 = {
 };
 
 trace2 = {
-  x: unpack(rows, 'Indicator Definition'),
-  y: unpack(rows, 'Intervent'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(80, 82, 87)'},
   name: 'Early Help intervention',
   type: 'bar'
@@ -56,11 +56,14 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [0, 500],
+    range: [0, 400],
     title: 'Number of cases',
     type: 'bar'
   },
-  
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
 };
 
 Plotly.newPlot('myDiv', data, layout);
