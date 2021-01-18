@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/09961a583aa6d8e79956c075bbf7aad3/raw/8ef53e52d631ed171212d230d9c4046b9208d405/cases.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2081249993&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'New cases'),
+  y: unpack(rows, 'Value'),
   marker: {color: 'rgb(204, 183, 108)'},
   name: 'Total deaths 2020',
   type: 'bar'
@@ -75,7 +75,7 @@ layout = {
       ay: -40
     },
     {
-      x: '04-Jul',
+      x: '4-Jul',
       y: 880,
       xref: 'x',
       yref: 'y',
@@ -86,7 +86,7 @@ layout = {
       ay: -40
     },
     {
-      x: '05-Nov',
+      x: '5-Nov',
       y: 850,
       xref: 'x',
       yref: 'y',
@@ -97,7 +97,7 @@ layout = {
       ay: -40
     },
   {
-      x: '02-Dec',
+      x: '2-Dec',
       y: 450,
       xref: 'x',
       yref: 'y',
@@ -108,7 +108,7 @@ layout = {
       ay: -40
     },
     {
-      x: '05-Jan',
+      x: '5-Jan',
       y: 900,
       xref: 'x',
       yref: 'y',
@@ -127,9 +127,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '05-Nov',
+            x0: '5-Nov',
             y0: 0,
-            x1: '02-Dec',
+            x1: '2-Dec',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
@@ -159,9 +159,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '05-Jan',
+            x0: '5-Jan',
             y0: 0,
-            x1: '12-Jan',
+            x1: '16-Jan',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
