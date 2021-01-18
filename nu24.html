@@ -1,4 +1,4 @@
-<html>
+<<html>
 <head>
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -31,7 +31,8 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
-	autosize: false,
+	title: 'Number of confirmed COVID-19 patients occupying beds',
+  autosize: false,
   width: 900,
   height: 350,
   margin: {
@@ -41,11 +42,7 @@ layout = {
     t: 40,
     pad: 4
   },
-  showlegend: true,
-		 legend: {
-    x: 0.90,
-    y: 1.03
-  },
+  showlegend: false,
   xaxis: {
     title: '',
 tickangle:320
