@@ -26,17 +26,17 @@ Plotly.d3.csv("<html>
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bf7ecc114ea4a7c3c2c30fea422f18b0/raw/faa3be0ce232f0bda39c11cd78774ddc6ad7e12d/mor2.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=726682514&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Row Labels'),
-  y: unpack(rows, 'Sum of Manchester Hospitals mortuary capacity'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value'),
   marker: {color: 'rgb(58, 56, 56)'},
   name: 'date',
-  type: 'Lines',
+  type: 'lines',
   
 };
 
@@ -80,7 +80,7 @@ layout = {
       
     },
     {
-      x: '04-Jan',
+      x: '4-Jan',
       y: 100,
       xref: 'x',
       yref: 'y',
@@ -102,4 +102,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
