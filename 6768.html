@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/ec20af9fc3f2818f3e7ebfbd70fede33/raw/7ae0505ea9a0612e48fd186ab496fc64f731331e/6768.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1808657836&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Bens'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: '6.7 Enquiries relating to<br>benefits / Universal Credit',
   type: 'lines',
@@ -28,7 +28,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Emp'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: '6.8 Enquiries relating<br>to employment',
   type: 'lines',
@@ -60,6 +60,10 @@ layout = {
     title: '',
     type: 'lines'
   },
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true },
   annotations: [
     {
       x: '24-Mar',
@@ -128,4 +132,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
