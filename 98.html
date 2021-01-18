@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bc4fbedd8c0b353df36e46b5b042be65/raw/3fb0e73d5dee6cf8abb83add86b32b9be1c2d261/98.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1118254097&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Landing Page Coronavirus'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(168, 68, 68)'},
   name: 'C19 landing page',
   type: 'bar',
@@ -27,7 +27,7 @@ trace1 = {
 };
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Bin, Rubbish and Recycling'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Waste / recycling',
   type: 'bar',
@@ -35,7 +35,7 @@ trace2 = {
 };
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Business Rates'),
+  y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(68, 68, 200)'},
   name: 'Business Rates',
   type: 'bar',
@@ -43,7 +43,7 @@ trace3 = {
 };
 trace4 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Grants for Businesses'),
+  y: unpack(rows, 'Value4'),
   marker: {color: 'rgb(77, 68, 200)'},
   name: 'Business grants',
   type: 'bar',
@@ -51,7 +51,7 @@ trace4 = {
 };
 trace5 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Benefits and Money'),
+  y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(68, 168, 200)'},
   name: 'Benefits & money',
   type: 'bar',
@@ -59,7 +59,7 @@ trace5 = {
 };
 trace6 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Business Rates Relief'),
+  y: unpack(rows, 'Value6'),
   marker: {color: 'rgb(77, 8, 200)'},
   name: 'Business rates relief',
   type: 'bar',
@@ -67,7 +67,7 @@ trace6 = {
 };
 trace7 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Businesses and Employers'),
+  y: unpack(rows, 'Value7'),
   marker: {color: 'rgb(77, 8, 20)'},
   name: 'Businesses & employers',
   type: 'bar',
@@ -75,7 +75,7 @@ trace7 = {
 };
 trace8 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Help with Food Costs while schools are closed'),
+  y: unpack(rows, 'Value8'),
   marker: {color: 'rgb(9, 190, 200)'},
   name: 'Help with food costs',
   type: 'bar',
@@ -83,7 +83,7 @@ trace8 = {
 };
 trace9= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Contacting the Council'),
+  y: unpack(rows, 'Value9'),
   marker: {color: 'rgb(9, 190, 200)'},
   name: 'Contacting the council',
   type: 'bar',
@@ -91,7 +91,7 @@ trace9= {
 };
 trace10= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Registrars, Funerals and Cemeteries'),
+  y: unpack(rows, 'Value10'),
   marker: {color: 'rgb(28, 26, 28)'},
   name: 'Registrars, funerals & cemeteries',
   type: 'bar',
@@ -99,7 +99,7 @@ trace10= {
 };
 trace11= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Manchester Community Response'),
+  y: unpack(rows, 'Value11'),
   marker: {color: 'rgb(112, 84, 108)'},
   name: 'Manchester Community Response',
   type: 'bar',
@@ -107,7 +107,7 @@ trace11= {
 };
 trace12= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Libraries'),
+  y: unpack(rows, 'Value12'),
   marker: {color: 'rgb(50, 158, 43)'},
   name: 'Libraries',
   type: 'bar',
@@ -115,7 +115,7 @@ trace12= {
 };
 trace13= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Council Tax recovery'),
+  y: unpack(rows, 'Value13'),
   marker: {color: 'rgb(158, 110, 43)'},
   name: 'Council tax recovery',
   type: 'bar',
@@ -123,7 +123,7 @@ trace13= {
 };
 trace14= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Top up Grant for businesses not eligible for other grants'),
+  y: unpack(rows, 'Value14'),
   marker: {color: 'rgb(157, 213, 227)'},
   name: 'Business top up grants',
   type: 'bar',
@@ -131,7 +131,7 @@ trace14= {
 };
 trace15= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Parks'),
+  y: unpack(rows, 'Value15'),
   marker: {color: 'rgb(173, 227, 157)'},
   name: 'Parks',
   type: 'bar',
@@ -139,27 +139,96 @@ trace15= {
 };
 trace16= {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'What we know about current levels'),
+  y: unpack(rows, 'Value16'),
   marker: {color: 'rgb(168, 50, 123)'},
   name: 'Current C19 levels',
   type: 'bar',
   
 };
-data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11,trace12,trace13,trace14,trace15,trace16];
+trace17= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value17'),
+  marker: {color: 'rgb(170,66,245)'},
+  name: 'Test and Trace Support Payments',
+  type: 'bar',
+  
+};
+trace18= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value18'),
+  marker: {color: 'rgb(150,207,134)'},
+  name: 'Health Advice',
+  type: 'bar',
+  
+};
+trace19= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value19'),
+  marker: {color: 'rgb(207,141,134)'},
+  name: 'Covid-19 Government Restrictions',
+  type: 'bar',
+  
+};
+trace20= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value20'),
+  marker: {color: 'rgb(134,207,197)'},
+  name: 'Business and Employer Safety',
+  type: 'bar',
+  
+};
+trace21= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value21'),
+  marker: {color: 'rgb(207,134,188)'},
+  name: 'Help with Finances affected by Covid-19',
+  type: 'bar',
+  
+};
+trace22= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value22'),
+  marker: {color: 'rgb(61,3,4)'},
+  name: 'Self Employment Income Support Scheme',
+  type: 'bar',
+  
+};
+trace23= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value23'),
+  marker: {color: 'rgb(122, 115, 115)'},
+  name: 'Half term free school meals',
+  type: 'bar',
+  
+};
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11,trace12,trace13,trace14,trace15,trace16,trace17,trace18,trace19,trace20,trace21,trace22,trace23];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 1200,
+  height: 550,
+  margin: {
+    l: 50,
+    r: 90,
+    b: 40,
+    t: 30,
+    pad: 4},
+  
   barmode: 'stack',
+  legend: {orientation: 'h', y: -0.7},
   title: '',
   xaxis: {
     title: ''
   },
   yaxis: {
-    range: [0,30000],
+    range: [0,32000],
     title: 'Number'
   },
-  
+  hovermode: "",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
 };
 
 Plotly.newPlot('myDiv', data, layout);
@@ -169,4 +238,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
