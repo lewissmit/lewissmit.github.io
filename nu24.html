@@ -31,7 +31,14 @@ data = [trace1];
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
-	title: 'Number of confirmed COVID-19 patients occupying beds',
+	title: {text:'Number of confirmed COVID-19 patients occupying beds',
+  font: {
+      family: 'Arial, sans',
+      size: 14
+    },
+    xref: 'paper',
+    x: 0.01,
+  },
   autosize: false,
   width: 900,
   height: 350,
