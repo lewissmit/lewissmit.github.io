@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/ee698975b8ea51b38ac01e9bfd7ec1b7/raw/005fa34282d65c250f1f79155093c216a224dddf/nu24.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1940838010&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Number'),
+  y: unpack(rows, 'Value'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'Number of confirmed<br>COVID-19 patients<br>occupying beds',
   type: 'bar'
@@ -55,7 +55,60 @@ tickangle:320
     title: 'Number',
     type: 'bar'
   },
-  
+  shapes: [
+        // 1st highlight during Feb 4 - Feb 6
+        {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '5-Nov',
+            y0: 0,
+            x1: '2-Dec',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+        {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '23-Mar',
+            y0: 0,
+            x1: '15-Jun',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+         {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '5-Jan',
+            y0: 0,
+            x1: '15-Jan',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+        ]
+
+
+
 };
 
 Plotly.newPlot('myDiv', data, layout);
