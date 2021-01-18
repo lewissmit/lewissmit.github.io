@@ -220,15 +220,19 @@ layout = {
   legend: {orientation: 'h', y: -0.7},
   title: '',
   xaxis: {
-    title: ''
+    title: '',
+       tickangle:320,
+       zeroline:true
   },
   yaxis: {
     range: [0,32000],
-    title: 'Number'
+    title: 'Number',
+    zeroline:true
   },
-  hovermode: "",
+  hovermode: "x",
   hoverlabel: {namelength :-1,
          bgcolor: "#FFF" },
+         config: { responsive: true }
 };
 
 Plotly.newPlot('myDiv', data, layout);
