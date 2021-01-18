@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/a10f4074f98abc4503dfa7cec6e7668c/raw/a851864f1dc063fb7819622dfeddc764f3ae407b/812.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=32919336&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Number'),
+  y: unpack(rows, 'Value'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: '2020-21',
   type: 'lines',
