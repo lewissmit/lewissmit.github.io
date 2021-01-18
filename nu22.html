@@ -12,16 +12,16 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/66d5c929564e89f4c20373775da86840/raw/3f40b1956e18d0bc62510c46d971b78a17a8610c/nu22.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2005718664&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'date'),
-  y: unpack(rows, 'Sum of cases'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value'),
   marker: {color: 'rgb(68, 68, 68)'},
-  name: 'date',
+  name: 'Date',
   type: 'bar',
   
 };
@@ -58,9 +58,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '05-Nov',
+            x0: '5-Nov',
             y0: 0,
-            x1: '02-Dec',
+            x1: '2-Dec',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
@@ -84,7 +84,22 @@ layout = {
                 width: 0
             }
         },
-         
+         {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '5-Jan',
+            y0: 0,
+            x1: '10-Jan',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
         ]
 };
 
@@ -95,3 +110,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
