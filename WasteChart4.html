@@ -13,14 +13,14 @@
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
 
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8e3e83c3e75cf181548d91ac1fcf548e/raw/3d7fae179cd8770b3a8a766a75ed18a8ad855bf7/WasteChart4.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFpDrtHLT3U3msRhirTrMZhsCza2J3LAPBVsIu-53vZKuimUminSFbwoaekhJDQquraAuJoz17wWf/pub?gid=1191423881&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Car boot load'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(0,102,102)'},
   name: 'Car boot load',
   type: 'bar',
@@ -29,7 +29,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Other single item'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(34,99,53)'},
   name: 'Other single item',
   type: 'bar',
@@ -37,7 +37,7 @@ trace2 = {
 };
 trace3 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Significant/multiple loads'),
+  y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(157,195,230)'},
   name: 'Significant / multiple loads',
   type: 'bar',
@@ -45,7 +45,7 @@ trace3 = {
 };
 trace4 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Single black bag'),
+  y: unpack(rows, 'Value4'),
   marker: {color: 'rgb(0,0,0)'},
   name: 'Single black bag',
   type: 'bar',
@@ -53,7 +53,7 @@ trace4 = {
 };
 trace5 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Small van load'),
+  y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(152,153,0)'},
   name: 'Small van load',
   type: 'bar',
@@ -61,7 +61,7 @@ trace5 = {
 };
 trace6 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Tipper lorry load'),
+  y: unpack(rows, 'Value6'),
   marker: {color: 'rgb(255,119,51)'},
   name: 'Tipper lorry load',
   type: 'bar',
@@ -69,7 +69,7 @@ trace6 = {
 };
 trace7 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Transit van load'),
+  y: unpack(rows, 'Value7'),
   marker: {color: 'rgb(0,138,230)'},
   name: 'Transit van load',
   type: 'bar',
@@ -111,3 +111,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
