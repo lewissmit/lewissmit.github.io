@@ -75,14 +75,14 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4c
 var mapA = new mapboxgl.Map({
   container: createContainer(),
   style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
-  center: [-2.17822,53.48134],
+  center: [-2.24815,53.47762],
   zoom: 11.3
 });
 
 var mapB = new mapboxgl.Map({
   container: createContainer({ height: 400 }),
   style: 'mapbox://styles/smithl1/ckdednb7x1s271iob3byfu9t9',
-  center: [-2.17822,53.48134],
+  center: [-2.24815,53.47762],
   zoom: 11.3
 });
 
@@ -202,6 +202,17 @@ paint: {'circle-radius': {
 ]
 }
 });
+mapB.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+mapB.addLayer({
+id: "wards",
+type: "line",
+source: "wards"
+
+}
+);
 });
 mapA.on('load', () => {
   // add a clustered GeoJSON source for powerplant
