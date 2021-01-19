@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/4f3dd931cfa284f2c489b0e67a3b168a/raw/db13cbd49e05984f1d763d575a73fa81562f94f0/WasteChart3.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFpDrtHLT3U3msRhirTrMZhsCza2J3LAPBVsIu-53vZKuimUminSFbwoaekhJDQquraAuJoz17wWf/pub?gid=1027980035&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Animal Carcass'),
+  y: unpack(rows, 'Value1'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -33,7 +33,7 @@ trace1 = {
 };
 trace2 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Asbestos'),
+  y: unpack(rows,'Value2'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -47,7 +47,7 @@ trace2 = {
 };
 trace3 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Black bags commerical (XX)'),
+  y: unpack(rows,'Value3'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -61,7 +61,7 @@ trace3 = {
 };
 trace4 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Black bags household (WW)'),
+  y: unpack(rows,'Value4'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -75,7 +75,7 @@ trace4 = {
 };
 trace5 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'"Chemical drum, oil"'),
+  y: unpack(rows,'Value5'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -89,7 +89,7 @@ trace5 = {
 };
 trace6 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Clinical'),
+  y: unpack(rows,'Value6'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -103,7 +103,7 @@ trace6 = {
 };
 trace7 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Green (garden waste)'),
+  y: unpack(rows,'Value7'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -117,7 +117,7 @@ trace7 = {
 };
 trace8 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Other (unidentified)'),
+  y: unpack(rows,'Value8'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -131,7 +131,7 @@ trace8 = {
 };
 trace9 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Other commercial waste (YY)'),
+  y: unpack(rows,'Value9'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -145,7 +145,7 @@ trace9 = {
 };
 trace10 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Other electrical'),
+  y: unpack(rows,'Value10'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -159,7 +159,7 @@ trace10 = {
 };
 trace11 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Other household waste (ZZ)'),
+  y: unpack(rows,'Value11'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -173,7 +173,7 @@ trace11 = {
 };
 trace12 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Rubble (construction/excavation)'),
+  y: unpack(rows,'Value12'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -186,7 +186,7 @@ trace12 = {
 };
 trace14 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Tyres'),
+  y: unpack(rows,'Value14'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -200,7 +200,7 @@ trace14 = {
 };
 trace15 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'Vehicle parts'),
+  y: unpack(rows,'Value15'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -214,7 +214,7 @@ trace15 = {
 };
 trace16 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows,'White goods'),
+  y: unpack(rows,'Value16'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -252,6 +252,11 @@ layout = {
     title: 'Number of reports',
     type: 'lines+markers'
   },
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+    
   
 };
 
@@ -262,3 +267,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
