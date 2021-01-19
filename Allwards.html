@@ -73,16 +73,16 @@ document.head.appendChild(css);
 mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
 
 var mapA = new mapboxgl.Map({
-  container: createContainer(),
+  container: createContainer({ height: 400}),
   style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
-  center: [-2.24815,53.47762],
+  center: [-2.22815,53.47762],
   zoom: 11.3
 });
 
 var mapB = new mapboxgl.Map({
   container: createContainer({ height: 400 }),
   style: 'mapbox://styles/smithl1/ckdednb7x1s271iob3byfu9t9',
-  center: [-2.24815,53.47762],
+  center: [-2.22815,53.47762],
   zoom: 11.3
 });
 
