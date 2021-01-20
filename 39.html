@@ -12,15 +12,15 @@
 
 <div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/037be1788ed115ea8633e7a7a38cfeb7/raw/d4cd4a43fc6f443b2a83e240d28d669ccc37a7c1/39.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1958450315&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Number'),
-  marker: {color: 'rgb(34,43,53)'},
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(204,183,108)'},
   name: 'Number <28 days',
   type: 'bar'
   
@@ -28,7 +28,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Total'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(0,51,102)'},
   name: 'Total assessments',
   type: 'bar'
@@ -38,7 +38,7 @@ trace2 = {
 
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Percent'),
+  y: unpack(rows, 'Value3'),
   yaxis: 'y2',
   marker: {color: 'rgb(0,102,102)'},
   name: 'Percent within 28 days',
@@ -90,8 +90,11 @@ layout = {
       size: 12,
       color: 'green'
     },
-  }
-  
+  },
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
   
 };
 
