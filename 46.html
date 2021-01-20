@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/10321f5ca9fd4eb7f82310b7cab16bae/raw/51f7af49e541c5b075ec3fbb4712b0639b2357cd/46.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=190864739&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Number'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'date',
   type: 'bar',
@@ -51,6 +51,34 @@ layout = {
     title: 'Total number',
     type: 'bar'
   },
+  annotations: [
+    {
+      x: '14-Apr',
+      y: 300,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '4-Jan',
+      y: 300,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
   
 };
 
