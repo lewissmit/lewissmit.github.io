@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/7223c9f309a871a1e98aba95ed2837d3/raw/27be9580318ac1228376eb1706d0abcbcc996e37/4143.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2027269525&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Relief'),
+  y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'date',
   type: 'bar',
@@ -51,7 +51,34 @@ layout = {
     title: 'Total number of households',
     type: 'bar'
   },
-  
+  annotations: [
+    {
+      x: '09-Mar',
+      y: 100,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '04-Jan',
+      y: 100,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
