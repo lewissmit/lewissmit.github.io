@@ -51,7 +51,34 @@ layout = {
     title: 'Total number of households',
     type: 'bar'
   },
-  
+  annotations: [
+    {
+      x: '09-Mar',
+      y: 300,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '04-Jan',
+      y: 300,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
