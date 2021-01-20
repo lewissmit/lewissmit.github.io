@@ -12,15 +12,15 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/e932b9e621d338a5799050bc24a35456/raw/e4e469534b26b19a82869022566ab60b3345509d/45.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1110890332&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Discharge'),
-  marker: {color: 'rgb(25, 42, 69)'},
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(128, 0, 128)'},
   name: 'Discharge from<br>hospital/prison/other institution',
   type: 'lines'
   
@@ -28,8 +28,8 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Dom'),
-  marker: {color: 'rgb(80, 82, 87)'},
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(255, 205, 0)'},
   name: 'Domestic abuse',
   type: 'lines'
   
@@ -37,7 +37,7 @@ trace2 = {
 
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'End'),
+  y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(0, 74, 20)'},
   name: 'End of private tenancy',
   type: 'lines'
@@ -45,7 +45,7 @@ trace3 = {
 };
 trace4 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Endsoc'),
+  y: unpack(rows, 'Value4'),
   marker: {color: 'rgb(78, 89, 8)'},
   name: 'End of social tenancy<br>/ supported housing',
   type: 'lines'
@@ -53,7 +53,7 @@ trace4 = {
 };
 trace5 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Fam'),
+  y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(43, 138, 240)'},
   name: 'Family/friends no longer<br>able/willing to accommodate',
   type: 'lines'
@@ -61,7 +61,7 @@ trace5 = {
 };
 trace6 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Other'),
+  y: unpack(rows, 'Value6'),
   marker: {color: 'rgb(235, 64, 52)'},
   name: 'Other',
   type: 'lines'
@@ -96,6 +96,38 @@ tickangle:320
     title: 'Number of presentations',
     type: 'lines'
   },
+  annotations:[
+  {
+      x: '9-Mar',
+      y: 120,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '11-Jan',
+      y: 120,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+  ],
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
   
 };
 
