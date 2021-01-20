@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8aa2ca09976845f59e8990da73252b41/raw/036d7a2ff4c504ccee27bd4aadd9208d87fd80f7/82.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1238138629&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Mcr'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'Manchester',
   type: 'marker'
@@ -28,7 +28,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Uk'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(0, 51, 102)'},
   name: 'UK',
   type: 'marker'
