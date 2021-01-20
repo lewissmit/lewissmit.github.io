@@ -12,15 +12,15 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/eb016968e429f9d1cbd097febdb83a88/raw/4f3720615503c6776c1d628c1a9a11728e876e70/38.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=33712756&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Calls'),
-  marker: {color: 'rgb(34, 43, 53)'},
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(155, 194, 230)'},
   name: 'COVID support calls',
   type: 'bar'
   
@@ -28,8 +28,8 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Safe'),
-  marker: {color: 'rgb(0, 51, 102)'},
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(34, 43, 53)'},
   name: 'Safeguarding calls',
   type: 'bar'
   
@@ -37,36 +37,39 @@ trace2 = {
 
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Social'),
+  y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'Social care calls',
   type: 'bar'
   
 };
-
 trace4 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Carer'),
-  marker: {color: 'rgb(58, 56, 56)'},
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(102, 102, 102)'},
   name: 'Carer calls',
   type: 'bar'
   
 };
-
 data = [trace1,trace2,trace3,trace4];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: true,
+		legend: {'orientation': 'h',
+    y:1.1},
+    
   autosize: false,
   width: 900,
-  height: 400,
+  height: 350,
   margin: {
-    l: 60,
+    l: 80,
     r: 50,
-    b: 50,
-    t: 30,
-    pad: 4},
+    b: 80,
+    t: 40,
+    pad: 4
+  },
   barmode: 'stack',
   xaxis: {
     title: '',
@@ -74,10 +77,41 @@ layout = {
   },
   yaxis: {
     range: [0, 800],
-    title: 'Number of calls',
+    title: 'Number of households',
     type: 'bar'
   },
-  
+  annotations:[
+  {
+      x: '15-Mar',
+      y: 720,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '3-Jan',
+      y: 720,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+  ],
+hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }  
 };
 
 Plotly.newPlot('myDiv', data, layout);
