@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/62f651159a7c56232a38b8f72e1b5f85/raw/f4b294905d42bbd4c9c17bd7bc2e1ac274e2592b/91nu.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=247664010&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -20,20 +20,22 @@ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/62f651159a7c56232a38
 
 var trace1 = {
   type: "scatter",
-  mode: "lines",
-  name: '2020',
+  mode: "lines+markers",
+  name: '2021',
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2020'),
+  y: unpack(rows, '2021'),
   line: {color: '#17BECF'}
 }
 
 var trace2 = {
   type: "scatter",
-  mode: "bar",
-  name: '2021',
+  mode: "lines",
+  name: '2020',
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2021'),
-  line: {color: '#7F7F7F'}
+  y: unpack(rows, '2020'),
+  line: {color: '#7F7F7F',
+  dash: 'dot',
+    width: 1}
 }
 
 var trace3 = {
@@ -42,7 +44,9 @@ var trace3 = {
   name: '2019',
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
-  line: {color: '#7F7G7G'}
+  line: {color: '#7F7G7G',
+  dash: 'dot',
+    width: 1}
 }
 
 var data = [trace1,trace2,trace3];
@@ -61,7 +65,7 @@ var layout = {
         
         {step: 'Show full year'}
       ]},
-    rangeslider: {range: ['2021-01-01', '2021-12-31']},
+    rangeslider: {range: ['2021-01-01', '2021-01-31']},
     type: 'date'
   },
   yaxis: {
