@@ -13,39 +13,39 @@
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
 
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/48b8e5c855e805ecc19103d09033a3a8/raw/2fdba381af452634155879f750d7642d1cb7bd2b/WFill.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=981431930&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Indicator Definition'),
-  y: unpack(rows, 'Number of staff absent due to sickness - unrelated to COVID-19'),
-  marker: {color: 'rgb(155, 194, 230)'},
-  name: 'Unrelated to COVID-19',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  marker: {color: 'rgb(0,102,102)'},
+  name: 'With COVID-19 symptoms',
   type: 'bar',
   
 };
 
 trace2 = {
-  x: unpack(rows, 'Indicator Definition'),
-  y: unpack(rows, 'Number of staff with COVID-19 symptoms'),
-  marker: {color: 'rgb(34, 43, 53)'},
-  name: 'With COVID-19 symptoms',
-  type: 'bar',
-  
-};
-trace3 = {
-  x: unpack(rows, 'Indicator Definition'),
-  y: unpack(rows, 'Number of staff not in work but unable to work from home for different reasons'),
-  marker: {color: 'rgb(0, 102, 102)'},
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value7'),
+  marker: {color: 'rgb(34,42,53)'},
   name: 'Not in work',
   type: 'bar',
   
 };
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(157,195,230)'},
+  name: 'Unrelated to COVID-19',
+  type: 'bar',
+  
+};
 
 
-var data =[trace1,trace2,trace3],
+var data =[trace1, trace2,trace3],
 
 layout = {
 
@@ -63,7 +63,7 @@ layout = {
   showlegend: true,
   barmode: 'stack',
   xaxis: {
-    title: '',
+    title: '', 
     tickangle: 320
   },
   yaxis: {
@@ -71,7 +71,34 @@ layout = {
     title: 'Number of staff',
     type: 'bar'
   },
-  
+  annotations: [
+    {
+      x: '6-Apr',
+      y: 2000,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '13-Jan',
+      y: 2000,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
