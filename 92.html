@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8b66adb7d50779aad295382ceeb8520a/raw/e901020d7474014d4d90426e73125b5f9800a442/92.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1213967786&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2020 bins'),
+  y: unpack(rows, '2020'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: '2020 number of reports',
   type: 'lines',
@@ -27,7 +27,7 @@ trace1 = {
 };
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2021 bins'),
+  y: unpack(rows, '2021'),
   marker: {color: 'rgb(255, 102, 102)'},
   name: '2021',
   type: 'lines',
@@ -55,7 +55,7 @@ layout = {
     tickangle: 320
   },
   yaxis: {
-    range: [0,2000],
+    range: [0,3000],
     title: 'Number of reports'
   },
   
