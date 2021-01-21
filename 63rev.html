@@ -60,10 +60,7 @@ layout = {
     title: '',
     type: 'lines'
   },
-  hovermode: "x",
-  hoverlabel: {namelength :-1,
-         bgcolor: "#FFF" },
-         config: { responsive: true },
+  
   annotations: [
     {
       x: '3-Jun',
@@ -90,7 +87,11 @@ layout = {
       },
       showarrow: false,
       
-    }
+    }],
+    hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true },
 };
 
 Plotly.newPlot('myDiv', data, layout);
