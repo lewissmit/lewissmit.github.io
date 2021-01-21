@@ -63,7 +63,34 @@ layout = {
   hovermode: "x",
   hoverlabel: {namelength :-1,
          bgcolor: "#FFF" },
-         config: { responsive: true }
+         config: { responsive: true },
+  annotations: [
+    {
+      x: '3-Jun',
+      y: 10,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '13-Jan',
+      y: 10,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
 };
 
 Plotly.newPlot('myDiv', data, layout);
