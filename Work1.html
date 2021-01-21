@@ -13,14 +13,14 @@
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
 
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/facb77115b7ac6b77384a737b7394a25/raw/7a702ab982a95e1111dd7dd8d4a09b576c9b02ef/1to3.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=981431930&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'BAU'),
+  y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(0,102,102)'},
   name: 'On site',
   type: 'bar',
@@ -29,7 +29,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Work'),
+  y: unpack(rows, 'Value6'),
   marker: {color: 'rgb(34,42,53)'},
   name: 'Working from home',
   type: 'bar',
@@ -37,7 +37,7 @@ trace2 = {
 };
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Red'),
+  y: unpack(rows, 'Value8'),
   marker: {color: 'rgb(157,195,230)'},
   name: 'Redeployed',
   type: 'bar',
@@ -67,11 +67,38 @@ layout = {
     tickangle: 320
   },
   yaxis: {
-    range: [0,7000],
+    range: [0,7200],
     title: 'Number of staff',
     type: 'bar'
   },
-  
+  annotations: [
+    {
+      x: '6-Apr',
+      y: 7000,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '13-Jan',
+      y: 7200,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
