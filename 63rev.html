@@ -60,7 +60,10 @@ layout = {
     title: '',
     type: 'lines'
   },
-  
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
 };
 
 Plotly.newPlot('myDiv', data, layout);
