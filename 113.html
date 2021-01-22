@@ -20,7 +20,7 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
-  marker: {color: 'rgb(68, 68, 68)',size:8},
+  marker: {color: '#bb99df',size:8},
   name: '2020-21 % congestion',
   type: 'lines+markers',
   connectgaps: true
@@ -69,10 +69,10 @@ layout = {
   annotations:[
   {
       x: '04/05 to 08/05',
-      y: 40,
+      y: 5,
       xref: 'x',
       yref: 'y',
-      text: '2020',
+      text: '2020 - 2021 congestion plot',
       font: {
         size: 14,
         color: '#bb99df'
@@ -82,13 +82,40 @@ layout = {
     },
     {
       x: '04/01 to 09/01',
-      y: 40,
+      y: 5,
       xref: 'x',
       yref: 'y',
       text: '2021',
       font: {
         size: 14,
         color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    
+  {
+      x: '04/05 to 08/05',
+      y: 45,
+      xref: 'x',
+      yref: 'y',
+      text: '2019 - 2020 congestion plot',
+      font: {
+        size: 14,
+        color: 'rgb(0, 102, 102)'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '04/01 to 09/01',
+      y: 45,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: 'rgb(0, 102, 102)'
       },
       showarrow: false,
       
