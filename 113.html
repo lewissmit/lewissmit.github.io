@@ -12,26 +12,27 @@
 
 <div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/08cf1dc211663bddd36ffff4cf7dc569/raw/41200df712b7f107c4c6d2a6a97e17a2413cf96a/113.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1712635681&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Week'),
-  y: unpack(rows, '% congestion'),
-  marker: {color: 'rgb(68, 68, 68)'},
-  name: '2020 % congestion',
-  type: 'lines',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(68, 68, 68)',size:8},
+  name: '2020-21 % congestion',
+  type: 'lines+markers',
+  connectgaps: true
   
 };
 trace2 = {
-  x: unpack(rows, 'Week'),
-  y: unpack(rows, '% average 2019'),
-  marker: {color: 'rgb(0, 102, 102)'},
-  name: '2019 % congestion (weekly average)',
- 
-  type: 'lines',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(0, 102, 102)',size:14},
+  name: '2019-20 % congestion (weekly average)', 
+  type: 'lines+markers',
+  connectgaps: true
   
 };
 
@@ -42,6 +43,10 @@ layout = {
 
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: true,
+		legend: {'orientation': 'h',
+    y:1.1},
+    
   autosize: false,
   width: 900,
   height: 350,
@@ -59,9 +64,39 @@ layout = {
   },
   yaxis: {
     range: [0, 60],
-    title: '% ',
-    type: 'bar'
+    title: '%',
   },
+  annotations:[
+  {
+      x: '04/05 to 08/05',
+      y: 40,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '04/01 to 09/01',
+      y: 40,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }],
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }  
   
 };
 
