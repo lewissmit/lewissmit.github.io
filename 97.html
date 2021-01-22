@@ -71,6 +71,15 @@ var axis1 = {domain: [0.01, 1], anchor: 'y1', showticklabels: false}
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
+   autosize: false,
+  width: 900,
+  height: 550,
+  margin: {
+    l: 60,
+    r: 90,
+    b: 90,
+    t: 90,
+    pad: 1},
   showlegend: false,
     xaxis1: Object.assign(axis1,axis),
     xaxis2: Object.assign(axis2,axis),
@@ -81,7 +90,54 @@ layout = {
     hovermode: "x",
   hoverlabel: {namelength :-1,
          bgcolor: "#FFF" },
-         config: { responsive: true }
+         config: { responsive: true },
+           annotations: [
+    {
+      x: '4-Jul',
+      y: 2000,
+      xref: 'x2',
+      yref: 'y2',
+      text: 'Libraries reopen',
+      showarrow: true,
+      arrowhead: 1,
+      ax: 0,
+      ay: -38
+    },
+    {
+      x: '5-Nov',
+      y: 2500,
+      xref: 'x2',
+      yref: 'y2',
+      text: 'Start 2nd national<br>lockdown 05/11/20',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -33
+    },
+  {
+      x: '2-Dec',
+      y: 2500,
+      xref: 'x2',
+      yref: 'y2',
+      text: 'End 2nd national<br>lockdown 02/12/20',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -33
+    },
+    {
+      x: '5-Jan',
+      y: 2500,
+      xref: 'x1',
+      yref: 'y1',
+      text: 'Start 3rd national<br>lockdown 05/01/21',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -37
+    }]
+
+
 };
 
 Plotly.newPlot('myDiv', data, layout);
