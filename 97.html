@@ -78,7 +78,11 @@ layout = {
     xaxis3: Object.assign(axis3,axis),
     yaxis1: Object.assign(axis4,axis),
     yaxis2: Object.assign(axis5,axis),
-    yaxis3: Object.assign(axis6,axis)
+    yaxis3: Object.assign(axis6,axis),
+    hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
 };
 
 Plotly.newPlot('myDiv', data, layout);
