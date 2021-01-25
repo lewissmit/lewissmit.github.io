@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/9050c5785479a8b056332349cca05dcd/raw/1c8f0e861bce1a8db5afc7ba65407e032bbb8193/69.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=895839599&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Claims'),
+  y: unpack(rows, 'Value'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Benefits / Universal Credit',
   type: 'lines',
@@ -50,7 +50,34 @@ layout = {
     title: 'Number of claims',
     type: 'lines'
   },
-  
+  annotations: [
+    {
+      x: '5-Apr',
+      y: 30,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '3-Jan',
+      y: 30,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
