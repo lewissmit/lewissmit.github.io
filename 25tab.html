@@ -1,0 +1,62 @@
+<html>
+<head>
+<script   src="https://code.jquery.com/jquery-3.5.1.js"   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="   crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+
+<style>
+#example {font-family: Arial,sans-serif;
+border-collapse: collapse;
+text-align: center;}
+
+</style>
+</head>
+<body>
+
+<table id="example" class="cell-border compact stripe hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Week Ending</th>
+                <th>COVID-19 Hospital Deaths</th>
+                <th>COVID-19 Deaths elsewhere - including Care Home, Hospice and Home</th>
+                <th>Total COVID-19 Deaths</th>
+                <th>Total Deaths from All Causes</th>
+                <th>% of Deaths involving COVID-19</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "ajax": "https://gist.githubusercontent.com/lewissmit/32fe738d0292da2d723d2e6d48cc8184/raw/31f4cbc918657da0c3068670a80e6869f80f74de/tester.json",
+    
+        "columnDefs":
+            [{
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false             
+            }]               
+    } );
+} );
+$.extend( $.fn.dataTable.defaults, {
+    searching: false,
+    ordering:  false
+} );
+
+</script>
+    </body>
+    </html>
+    
+
+
