@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:120%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/8d903cc354f3f2ec3711fe1add4e47e3/raw/e42ffb0e49e56074e9cb5d750d02fc3c12586d44/101.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1499882656&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -50,6 +50,34 @@ layout = {
     range: [0,5],
     title: 'Number of FOI received<br>relating to COVID-19'
   },
+   annotations: [
+    {
+      x: '16-Mar',
+      y: 5,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '4-Jan',
+      y: 5,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
   
 };
 
