@@ -53,10 +53,9 @@ layout = {
     t: 10,
     pad: 4},
   barmode: 'stack',
-  showlegend: true,
-		legend: {
-    x:0.3,
-    y:1.53},
+   showlegend: true,
+		legend: {'orientation': 'h',
+    y:1.1},
   xaxis: {
     title: 'Week commencing',
     tickangle: 320
@@ -66,7 +65,10 @@ layout = {
     title: '',
     type: 'bar',
   },
-  
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true } 
 };
 
 Plotly.newPlot('myDiv', data, layout);
