@@ -3,40 +3,35 @@
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-
 <!-- Plots go in blank <div> elements. 
     You can size them in the plot layout,
     or give the div a size as shown here.
 -->
 <body>
-
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bf00ea9da1cbb638ccf5888723c54153/raw/d438c954209e1cab38be2638af64b23334e12785/XSD.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=30641495&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
-
 trace1 = {
-  x: unpack(rows, 'Week'),
+  x: unpack(rows, 'Week ending'),
   y: unpack(rows, 'All Deaths'),
   marker: {color: 'rgb(204, 183, 108)'},
-  name: 'Total deaths 2020',
+  name: 'Total deaths 2020-21',
   type: 'marker'
   
 };
-
 trace2 = {
-  x: unpack(rows, 'Week'),
+  x: unpack(rows, 'Week ending'),
   y: unpack(rows, 'COVID'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'COVID-19 deaths',
   type: 'marker'
   
 };
-
 trace3 = {
-  x: unpack(rows, 'Week'),
+  x: unpack(rows, 'Week ending'),
   y: unpack(rows, 'Average Deaths 2014-18'),
   marker: {color: 'rgb(56,66,79)'},
   name: 'Average deaths 2014-18',
@@ -45,28 +40,32 @@ trace3 = {
   dash:'dot'}
   
 };
-
 data = [trace1,trace2,trace3];
-
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
+   showlegend: true,
+
+ 		legend: {'orientation': 'h',
+     y:1.2,
+     x:0.01},
   width: 900,
-  height: 400,
+  height: 450,
   margin: {
     l: 60,
-    r: 50,
-    b: 50,
+    r: 60,
+    b: 60,
     t: 90,
     pad: 4},
   title: '',
   xaxis: {
-    title: 'Week number',
+    title: '',
+    showticklabels:true,
     tickangle:320
   },
   yaxis: {
-    range:[0, 200],
+    range:[0, 300],
     title: 'Number of deaths',
     type: 'marker'
   },
@@ -117,14 +116,51 @@ layout = {
     },
   {
       x: 49,
-      y: 140,
+      y: 180,
       xref: 'x',
       yref: 'y',
-      text: 'End 2nd national<br>lockdown 02/12/20',
+      text: 'End 2nd national<br>lockdown<br>02/12/20',
       showarrow: true,
       arrowhead: 3,
       ax: 0,
       ay: -40
+    },
+    {
+      x: 54,
+      y: 270,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start 3rd national<br>lockdown<br>05/01/21',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    },
+     {
+      x: '17-Jan',
+      y: 10,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '1-Jan',
+      y: 10,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
     }
   ],
    shapes: [
@@ -135,9 +171,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '45',
+            x0: 13,
             y0: 0,
-            x1: '49',
+            x1: 25,
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
@@ -151,25 +187,42 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '13',
+            x0: 45,
             y0: 0,
-            x1: '25',
+            x1: 49,
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
             line: {
                 width: 0
             }
-        }
-         
-        ]
+        },
+        {
+        type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: 54,
+            y0: 0,
+            x1: 55,
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+                
+        ],
+         hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }  
   
 };
-
 Plotly.newPlot('myDiv', data, layout);
-
 });
-
 </script>
 </body>
 </html>
