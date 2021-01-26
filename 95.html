@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/144f27c7dc1495815986e4183fa4667b/raw/fd6c43cf5f6b6987ac7934f7a843405aa0c930ec/95.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1815127826&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'C19'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'COVID-19 related incident',
   type: 'bar',
@@ -27,7 +27,7 @@ trace1 = {
 };
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Enf'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'COVID-19 enforcement action',
   type: 'bar',
@@ -58,7 +58,38 @@ layout = {
     range: [0,800],
     title: ''
   },
-  
+    annotations:[
+  {
+      x: '4-May',
+      y: 800,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '4-Jan',
+      y: 800,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+  ],
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true } 
 };
 
 Plotly.newPlot('myDiv', data, layout);
