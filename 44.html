@@ -3,92 +3,104 @@
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-
 <!-- Plots go in blank <div> elements. 
     You can size them in the plot layout,
     or give the div a size as shown here.
 -->
 <body>
 
-<div id="myDiv" style="width:90%;height:100%;"></div>
-<script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1639515286&single=true&output=csv", function(err, rows){
-      function unpack(rows, key) {
-          return rows.map(function(row) { return row[key]; });
-      }
+ <div id="myDiv" style="width:90%;height:100%;"></div>
+ <script>
+ Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/bb1cbb22b9cd15745727f8dc33bc5a4c/raw/6f356f99e5d4d87290fee35e8cc3fcb4a2af3657/44.csv", function(err, rows){
+ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=575846239&single=true&output=csv", function(err, rows){
+       function unpack(rows, key) {
+           return rows.map(function(row) { return row[key]; });
+       }
 
-trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value'),
-  marker: {color: 'rgb(68, 68, 68)'},
-  name: 'Number of claimants',
-  type: 'bar',
-  
-};
+ trace1 = {
+   x: unpack(rows, 'Date'),
+   y: unpack(rows, 'B&B'),
+   y: unpack(rows, 'Value1'),
+   marker: {color: 'rgb(155, 194, 230)'},
+   name: 'In B&B accommodation',
+   type: 'bar'
+ @@ -28,7 +28,7 @@
 
-data = [trace1];
+ trace2 = {
+   x: unpack(rows, 'Date'),
+   y: unpack(rows, 'Temp'),
+   y: unpack(rows, 'Value2'),
+   marker: {color: 'rgb(34, 43, 53)'},
+   name: 'MCC temporary accommodation',
+   type: 'bar'
+ @@ -37,7 +37,7 @@
 
-layout = {
-  paper_bgcolor: 'rgb(255, 255, 255)',
-  plot_bgcolor: 'rgb(255, 255, 255)',
-  autosize: false,
-  width: 900,
-  height: 350,
-  margin: {
-    l: 80,
-    r: 80,
-    b: 80,
-    t: 10,
-    pad: 4},
-  title: '',
-  xaxis: {
-    title: '',
-    tickangle:320
-  },
-  yaxis: {
-    range: [0, 350],
-    title: 'Number of incidents',
-    type: 'bar'
-  },
-  annotations:[
-  {
-      x: '6-Apr',
-      y: 350,
-      xref: 'x',
-      yref: 'y',
-      text: '2020',
-      font: {
-        size: 14,
-        color: '#bb99df'
-      },
-      showarrow: false,
-      
-    },
-    {
-      x: '4-Jan',
-      y: 350,
-      xref: 'x',
-      yref: 'y',
-      text: '2021',
-      font: {
-        size: 14,
-        color: '#bb99df'
-      },
-      showarrow: false,
-      
-    }
-  ],
-  hovermode: "x",
-  hoverlabel: {namelength :-1,
-         bgcolor: "#FFF" },
-         config: { responsive: true }  
-  
-};
+ trace3 = {
+   x: unpack(rows, 'Date'),
+   y: unpack(rows, 'Disp'),
+   y: unpack(rows, 'Value3'),
+   marker: {color: 'rgb(0, 102, 102)'},
+   name: 'Dispersed (private rented sector) accommodation',
+   type: 'bar'
+ @@ -50,9 +50,9 @@
+   paper_bgcolor: 'rgb(255, 255, 255)',
+   plot_bgcolor: 'rgb(255, 255, 255)',
+   showlegend: true,
+ 		legend: {
+     x:0.5,
+     y:1.53},
+ 		legend: {'orientation': 'h',
+     y:1.1},
 
-Plotly.newPlot('myDiv', data, layout);
+   autosize: false,
+   width: 900,
+   height: 350,
+ @@ -69,11 +69,42 @@
+     tickangle:320
+   },
+   yaxis: {
+     range: [0, 2500],
+     range: [0, 3000],
+     title: 'Number of households',
+     type: 'bar'
+   },
 
+   annotations:[
+   {
+       x: '2-Mar',
+       y: 2500,
+       xref: 'x',
+       yref: 'y',
+       text: '2020',
+       font: {
+         size: 14,
+         color: '#bb99df'
+       },
+       showarrow: false,
+
+     },
+     {
+       x: '11-Jan',
+       y: 2700,
+       xref: 'x',
+       yref: 'y',
+       text: '2021',
+       font: {
+         size: 14,
+         color: '#bb99df'
+       },
+       showarrow: false,
+
+     }
+   ],
+ hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
+ };
+
+ Plotly.newPlot('myDiv', data, layout);
 });
-
 </script>
 </body>
 </html>
