@@ -40,23 +40,23 @@ text-align: center;}
 $(document).ready(function() {
     $('#example').DataTable( {
         "ajax": "https://gist.githubusercontent.com/lewissmit/32fe738d0292da2d723d2e6d48cc8184/raw/31f4cbc918657da0c3068670a80e6869f80f74de/tester.json",
-    
+
         "columnDefs":
             [{
                 "targets": [ 0 ],
                 "visible": false,
-                "searchable": false             
+                "searchable": false,
+              
             }]               
     } );
 } );
 $.extend( $.fn.dataTable.defaults, {
     searching: false,
-    ordering:  false
+    lengthChange: false,
+    ordering:  false,
+    
 } );
 
 </script>
     </body>
     </html>
-    
-
-
