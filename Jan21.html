@@ -5,6 +5,8 @@
 <title>Highlight features within a bounding box</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
 <style>
 body { margin:0; padding:0; }
@@ -62,6 +64,7 @@ width: 10px;
 <div><span style='background-color: #ecab83'></span>Completed - compliance activity required</div>
 <div><span style='background-color: #0a33eb'></span>Failed - unable to find waste</div>
 <div><span style='background-color: #7eda52'></span>Failed for other reasons</div>
+<div><span style='background-color: #edea21'></span>Failed as private land</div>
 </div> 
 
 <script>
@@ -74,12 +77,14 @@ minZoom: 0,
 zoom:14
 
 });
+
 map.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   map.addSource('biffa', {
     'type': 'geojson',
     'data': 'https://gist.githubusercontent.com/lewissmit/b777b22511d00b46305dbca1417370e5/raw/1d0591ef9c8c1d3d7ed617fa1a664604a50820e0/Jan21.geojson'
   });
+  
 map.addLayer({
 id: "points",
 type: "circle",
@@ -96,6 +101,8 @@ paint: {'circle-radius': {
 ['get', 'Outcome'],
 'Completed',
 '#6845d9',
+'Completed partially - additional fly tip required',
+'#f52e2e',
 'Failed - as unable to locate',
 '#0a33eb',
 'Failed - MCC not responsible',
@@ -103,7 +110,7 @@ paint: {'circle-radius': {
 'Failed - no access',
 '#7eda52',
 'Failed - private land',
-'#7eda52',
+'#edea21',
 'Failed - rubble construction works ongoing',
 '#7eda52',
 'Completed - compliance investigation required',
@@ -112,8 +119,8 @@ paint: {'circle-radius': {
 ]
 }
 });
-});
 
+});
 </script>
  
 </body>
