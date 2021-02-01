@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2081249993&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000003&metric=newCasesBySpecimenDate&format=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value'),
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'newCasesBySpecimenDate'),
   marker: {color: 'rgb(204, 183, 108)'},
   name: 'Total deaths 2020',
   type: 'bar'
@@ -53,7 +53,7 @@ layout = {
   },
   annotations: [
     {
-      x: '23-Mar',
+      x: '2020-03-23',
       y: 480,
       xref: 'x',
       yref: 'y',
@@ -64,7 +64,7 @@ layout = {
       ay: -40
     },
     {
-      x: '15-Jun',
+      x: '2020-06-15',
       y:600,
       xref: 'x',
       yref: 'y',
@@ -75,7 +75,7 @@ layout = {
       ay: -40
     },
     {
-      x: '4-Jul',
+      x: '2020-07-04',
       y: 880,
       xref: 'x',
       yref: 'y',
@@ -86,7 +86,7 @@ layout = {
       ay: -40
     },
     {
-      x: '5-Nov',
+      x: '2020-11-05',
       y: 850,
       xref: 'x',
       yref: 'y',
@@ -97,7 +97,7 @@ layout = {
       ay: -40
     },
   {
-      x: '2-Dec',
+      x: '2020-12-02',
       y: 450,
       xref: 'x',
       yref: 'y',
@@ -108,7 +108,7 @@ layout = {
       ay: -40
     },
     {
-      x: '5-Jan',
+      x: '2021-01-05',
       y: 900,
       xref: 'x',
       yref: 'y',
@@ -127,9 +127,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '5-Nov',
+            x0: '2020-11-05',
             y0: 0,
-            x1: '2-Dec',
+            x1: '2020-12-02',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
@@ -143,9 +143,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '23-Mar',
+            x0: '2020-03-23',
             y0: 0,
-            x1: '15-Jun',
+            x1: '2020-06-15',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
@@ -159,9 +159,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '5-Jan',
+            x0: '2021-01-05',
             y0: 0,
-            x1: '30-Jan',
+            x1: '2021-01-30',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
