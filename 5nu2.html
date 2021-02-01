@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/4f23b2c56faeb73940e6882d58066c16/raw/1ac01981736b33044977f3353f1069574c7c258e/5nu2.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=622938554&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Absence'),
+  y: unpack(rows, 'Value'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -53,8 +53,8 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [0, 20],
-    title: '% absence',
+    range: [0, 50],
+    title: '% children on roll with EHCP attending',
     type: 'lines+markers'
   },
   
