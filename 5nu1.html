@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/0968216e56b2d07fbc2f56406ffd9a33/raw/3f35c74fe6117d251bd62b994f9a47d705e9ef21/5nu1.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1734886329&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Primary'),
+  y: unpack(rows, 'Value1'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -33,7 +33,7 @@ trace1 = {
 };
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows,'Secondary'),
+  y: unpack(rows,'Value2'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -47,7 +47,7 @@ trace2 = {
 };
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows,'Special'),
+  y: unpack(rows,'Value3'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -80,7 +80,7 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [80, 100],
+    range: [0, 30],
     title: '% attendance',
     type: 'lines+markers'
   },
