@@ -52,7 +52,34 @@ layout = {
     title: 'Number of vacancies',
     type: 'lines'
   },
-  
+  annotations: [
+    {
+      x: '15-Feb',
+      y: 5000,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '2-Jan',
+      y: 5000,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+    ],
 };
 
 Plotly.newPlot('myDiv', data, layout);
