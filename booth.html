@@ -1,0 +1,104 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/acf99acf70ac2344813386db789ade21/raw/4388aa09536548afb1b67940fda67e1ebaa13a2a/MSOA.csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'E02001045'),
+  marker: {color: 'rgb(68, 68, 68)'},
+  name: 'Date',
+  type: 'bar',
+  
+};
+
+data = [trace1];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  title: {text:'Boothroyden & Higher Blackley',
+  font: {
+      family: 'Arial',
+      size: 24
+    },
+    xref: 'paper',
+    x: 0.5,
+  },
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 120,
+    t: 90,
+    pad: 4},
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 80],
+    title: 'Number of confirmed cases',
+    type: 'bar'
+  },
+   shapes: [
+        // 1st highlight during Feb 4 - Feb 6
+        {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '03-Nov',
+            y0: 0,
+            x1: '01-Dec',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+        
+         {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '05-Jan',
+            y0: 0,
+            x1: '26-Jan',
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+        ]
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
