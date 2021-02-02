@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/e8b74449a1e2f2b1bd54faad65b3f60c/raw/1ea1edbe1a307a1a63f9013eceb2b7138469924d/815.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=655792375&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'City Centre'),
+  x: unpack(rows, 'Quarter'),
+  y: unpack(rows, 'Value1'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -32,8 +32,8 @@ trace1 = {
   
 };
 trace2 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows,'Manchester (excl. City Centre)'),
+  x: unpack(rows, 'Quarter'),
+  y: unpack(rows,'Value2'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -46,8 +46,8 @@ trace2 = {
   
 };
 trace3 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Greater Manchester'),
+  x: unpack(rows, 'Quarter'),
+  y: unpack(rows, 'Value3'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -80,7 +80,7 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [0, 1200],
+    range: ['0','1200'],
     title: '£',
     type: 'lines+markers'
   },
@@ -94,3 +94,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
