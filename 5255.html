@@ -22,7 +22,7 @@ trace1 = {
   y: unpack(rows, 'Look'),
   marker: {color: 'rgb(165, 42, 6)'},
   name: '5.6 Children Looked After',
-  type: 'bar'
+  type: 'lines+markers'
   
 };
 
@@ -33,7 +33,7 @@ trace2 = {
   yaxis: 'y2',
   marker: {color: 'rgb(80, 82, 87)'},
   name: '5.7 Number of Child Protection Plans',
-  type: 'bar'
+  type: 'lines+markers'
   
 };
 
@@ -44,7 +44,7 @@ trace4 = {
   yaxis: 'y3',
   marker: {color: 'rgb(78, 144, 8)'},
   name: '5.8 Number of referrals per month',
-  type: 'bar'
+  type: 'lines+markers'
   
 };
 data = [trace1,trace2];
@@ -91,7 +91,10 @@ yaxis2: {
     title: 'Number of referrals',
     type: 'bar'
   },
-  
+hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
 };
 Plotly.newPlot('myDiv', data, layout);
 
