@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/6cf4d40ab697d33ce9acc140220207e5/raw/615cee9726c44333d867b5b5765db8fc348c6efd/69b.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=62838046&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Year'),
-  y: unpack(rows, 'A'),
+  y: unpack(rows, '2019'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: '2019',
   type: 'bar',
@@ -27,15 +27,22 @@ trace1 = {
 };
 trace2 = {
   x: unpack(rows, 'Year'),
-  y: unpack(rows, 'B'),
+  y: unpack(rows, '2020'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: '2020',
   type: 'bar',
   
 };
+trace3 = {
+  x: unpack(rows, 'Year'),
+  y: unpack(rows, '2021'),
+  marker: {color: 'rgb(0, 0, 202)'},
+  name: '2021',
+  type: 'bar',
+  
+};
 
-
-data = [trace1,trace2];
+data = [trace1,trace2,trace3];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
