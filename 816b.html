@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/87b9e0c69778b1d851a1f2b38823671b/raw/7ee1e22be8291d2416f8d4b73b4168fa3c92d0cb/816.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2015370256&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'NumberCC'),
+  y: unpack(rows, 'Value1'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -33,7 +33,7 @@ trace1 = {
 };
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows,'NumberMcr'),
+  y: unpack(rows,'Value2'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
@@ -47,7 +47,7 @@ trace2 = {
 };
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows,'Numberneighbours'),
+  y: unpack(rows,'Value3'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
