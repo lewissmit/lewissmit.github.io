@@ -22,7 +22,7 @@ trace1 = {
   y: unpack(rows, 'CONT'),
   marker: {color: 'rgb(165, 42, 6)'},
   name: '5.4 Number of Contacts',
-  type: 'bar'
+  type: 'lines+markers'
   
 };
 
@@ -33,7 +33,7 @@ trace2 = {
   yaxis: 'y2',
   marker: {color: 'rgb(80, 82, 87)'},
   name: '5.5 Number of Children In Need',
-  type: 'bar'
+  type: 'lines+markers'
   
 };
 
@@ -67,6 +67,10 @@ grid: {rows:1, columns:2, pattern: 'independent'},
     title: '',
     type: 'bar'
   },
+  hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
   
 };
 
