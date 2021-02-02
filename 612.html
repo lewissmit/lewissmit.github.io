@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/d6847a7b8c5c200eb39459e79d1babdd/raw/081eb4779274c11fc3680383bf37e9f2222e0aa4/612.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1173748634&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Number'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Number of households',
   type: 'bar',
@@ -50,6 +50,38 @@ layout = {
     title: 'Number of households',
     type: 'bar'
   },
+  annotations:[
+   {
+       x: '2-Mar',
+       y: 30,
+       xref: 'x',
+       yref: 'y',
+       text: '2020',
+       font: {
+         size: 14,
+         color: '#bb99df'
+       },
+       showarrow: false,
+
+     },
+     {
+       x: '11-Jan',
+       y: 30,
+       xref: 'x',
+       yref: 'y',
+       text: '2021',
+       font: {
+         size: 14,
+         color: '#bb99df'
+       },
+       showarrow: false,
+
+     }
+   ],
+ hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
   
 };
 
