@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2005718664&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8h_ds1SHJbc-SERxiccMmTqN5B-8ICL8HHZWfwX5aaSL7jDVTlktf0YrnskI4M52D-GqwNB7aMBJJ/pub?gid=1917570190&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value'),
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'SUM of cases'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Date',
   type: 'bar',
@@ -110,4 +110,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
