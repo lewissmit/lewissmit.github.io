@@ -53,12 +53,12 @@ var data = [trace1,trace2,trace3];
 
 var layout = {
   xaxis: {
-    autorange: true,
-    range: ['2021-01-01', '2021-12-31']},
+    tickangle:320
+    },
   yaxis: {
     autorange: false,
     range: [0,3000],
-    type: 'linear'
+    type: 'linear',
   }
 };
 
@@ -70,4 +70,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
