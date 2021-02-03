@@ -45,21 +45,8 @@ trace2 = {
   type: 'lines+markers',
   
 };
-trace3 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows,'Value3'),
-  mode: 'lines+markers',
-  line: {color: 'rgb(68, 68, 68)',
-  width: 1},
-  marker: {
-    color: 'rgb(100, 25, 102)',
-    size: 8
-  },
-  name: 'Nearest statistical neighbours',
-  type: 'lines+markers',
-  
-};
-data = [trace1,trace2,trace3];
+
+data = [trace1,trace2];
 
 layout = {
   paper_bgcolor: 'rgb(256, 256, 256)',
