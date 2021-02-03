@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/2c33ed12b119744dff01ead5b688fc79/raw/00b4c99fbed54d3772daffac98457ee4b9baee9e/CHILDS.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=118960920&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'CONT'),
+  y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(165, 42, 6)'},
   name: '5.4 Number of Contacts',
   type: 'lines+markers'
@@ -28,7 +28,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'CIN'),
+  y: unpack(rows, 'Value3'),
   xaxis: 'x2',
   yaxis: 'y2',
   marker: {color: 'rgb(80, 82, 87)'},
@@ -63,7 +63,12 @@ grid: {rows:1, columns:2, pattern: 'independent'},
     tickangle:320
   },
   yaxis: {
-    range: [0, 5000],
+    range: [0, 6000],
+    title: '',
+    type: 'bar'
+  },
+   yaxis2: {
+    range: [0, 6000],
     title: '',
     type: 'bar'
   },
@@ -81,3 +86,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
