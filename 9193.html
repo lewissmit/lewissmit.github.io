@@ -54,23 +54,10 @@ var data = [trace1,trace2,trace3];
 var layout = {
   xaxis: {
     autorange: true,
-    range: ['2021-01-01', '2021-12-31'],
-    rangeselector: {buttons: [
-        {
-          count: 1,
-          label: 'Show 1 month',
-          step: 'month',
-          
-        },
-        
-        {step: 'Show full year'}
-      ]},
-    rangeslider: {range: ['2021-01-01', '2021-01-31']},
-    type: 'date'
-  },
+    range: ['2021-01-01', '2021-12-31']},
   yaxis: {
-    autorange: true,
-    range: [0,30000],
+    autorange: false,
+    range: [0,3000],
     type: 'linear'
   }
 };
@@ -83,3 +70,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
