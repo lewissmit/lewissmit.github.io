@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/cc77755d21886d84e3e22b273c15ab8a/raw/3a6687e1ae87d20c2dbf7ccbc3db1297a192d614/52.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=118960920&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Look'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(165, 42, 6)'},
   name: '5.6 Children Looked After',
   type: 'lines+markers'
@@ -28,7 +28,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'CPP'),
+  y: unpack(rows, 'Value2'),
   xaxis: 'x2',
   yaxis: 'y2',
   marker: {color: 'rgb(80, 82, 87)'},
@@ -37,16 +37,7 @@ trace2 = {
   
 };
 
-trace4 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Ref'),
-  xaxis: 'x3',
-  yaxis: 'y3',
-  marker: {color: 'rgb(78, 144, 8)'},
-  name: '5.8 Number of referrals per month',
-  type: 'lines+markers'
-  
-};
+
 data = [trace1,trace2];
 
 layout = {
@@ -103,3 +94,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
