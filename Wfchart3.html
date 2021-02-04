@@ -31,8 +31,8 @@ TESTER=document.getElementById('tester');
 
 var trace2 = {
   x: ['Neighbourhoods', 'Growth & Development', 'Corporate Core', 'Childrens & Education','Adults'],
-  y: [1.69, 0.55, 0.34, 1.49, 2.54],
-  name: '27 Jan 2021',
+  y: [1.44, 0.69, 0.28, 1.22, 2.37],
+  name: '03 Feb 2021',
   type: 'bar',
   marker: {
     color: 'rgb(34,43,53)',
@@ -51,11 +51,11 @@ var layout =  {paper_bgcolor: 'rgb(255, 255, 255)',
   width: 900,
   height: 450,
   margin: {
-    l: 90,
-    r: 150,
-    b: 120,
+    l: 50,
+    r: 50,
+    b: 100,
     t: 50,
-    pad: 1},
+    pad: 4},
     xaxis: {tickangle:320
     },
     yaxis: {
@@ -70,8 +70,8 @@ var layout =  {paper_bgcolor: 'rgb(255, 255, 255)',
     }
   },
   legend: {
-    x: 1,
-    y: 1.0,
+    x: 0.8,
+    y: 1.2,
     bgcolor: 'rgba(255, 255, 255, 0)',
     bordercolor: 'rgba(255, 255, 255, 0)'
   },
@@ -84,3 +84,5 @@ Plotly.newPlot('tester', data, layout);
 </script>
 </body>
 </html>
+
+
