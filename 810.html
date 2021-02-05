@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/869571fe2fa689127ec70345c5f219d9/raw/ae94b9289b6ca82898ada086d117334bf1d87ade/810.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=295074083&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Period'),
-  y: unpack(rows, '2020-21'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: '2020-21',
   type: 'lines',
@@ -27,8 +27,8 @@ trace1 = {
 };
 
 trace2 = {
-  x: unpack(rows, 'Period'),
-  y: unpack(rows, '2019-20'),
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(168, 200, 68)'},
   name: '2019-20',
   type: 'lines',
@@ -70,3 +70,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
