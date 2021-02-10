@@ -1,0 +1,115 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8h_ds1SHJbc-SERxiccMmTqN5B-8ICL8HHZWfwX5aaSL7jDVTlktf0YrnskI4M52D-GqwNB7aMBJJ/pub?gid=420688845&single=true&output=csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+  // header values
+  var headerNames = Plotly.d3.keys(rows[0]);
+  var headerValues = [headerNames[0],headerNames[1]];
+
+  // cell values
+  var cellValues = [];
+  for (i = 0; i < headerValues.length; i++) {
+    cellValue = unpack(rows, headerValues[i]);
+    cellValues[i] = cellValue;
+  }
+
+  // clean date
+  for (i = 0; i < cellValues[0].length; i++) {
+  var dateValue = cellValues[0][i].split(' ')[0]
+  cellValues[0][i] = dateValue
+  }
+
+  // create table
+  var table = {
+    type: 'table',
+    columnwidth: [50,50],
+    header: {
+      values: headerValues,
+      align: "center",
+      line: {width: 1, color: 'rgb(50, 50, 50)'},
+      fill: {color: ['rgb(0,0,0)']},
+      font: {family: "Arial", size: 11, color: "white"}
+    },
+    cells: {
+      values: cellValues,
+      align: ["center", "center"],
+      line: {color: "black", width: 1},
+      fill: {color: ['rgb(255, 255, 255)', 'rgba(255, 255, 255, 0.65)']},
+      font: {family: "Arial", size: 10, color: ["black"]}
+    },
+    xaxis: 'x',
+    yaxis: 'y',
+    domain: {x: [0,0.4], y: [0,1]}
+  }
+
+  // create 1st plot
+  var trace1 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'Total number of confirmed COVID-19 cases for Manchester residents'),
+    xaxis: 'x1',
+    yaxis: 'y1',
+    mode: 'lines',
+    line: {width: 2, color: '#8B0000'},
+    name: 'total'
+  }
+  // create 2nd plot
+  
+  var data = [table,trace1]
+
+  // define subplot axes
+  var axis = {
+    showline: true,
+    zeroline: false,
+    showgrid: true,
+    mirror:true,
+    ticklen: 4,
+    gridcolor: '#zzzzzz',
+    tickfont: {size: 10},
+  }
+
+  var axis1 = {domain: [0.5, 1], anchor: 'y1', showticklabels: true}
+  var axis2 = {domain: [0.5, 1], anchor: 'y2', showticklabels: false}
+
+  var axis3 = {domain: [0.66, 0.98], anchor: 'x1', hoverformat: '.2f'}
+  var axis4 = {domain: [0.34, 0.64], anchor: 'x2', tickprefix: '$', hoverformat: '.2f'}
+
+
+  // define layout
+  var layout = {
+    plot_bgcolor: 'rgba(255,255,255, 0.65)',
+    showlegend: false,
+    xaxis1: Object.assign(axis1,axis),
+    xaxis2: Object.assign(axis2,axis),
+  
+    yaxis1: Object.assign(axis3,axis),
+    yaxis2: Object.assign(axis4,axis)
+  }
+
+  Plotly.newPlot('myDiv', data, layout);
+
+});
+
+
+</script>
+</body>
+</html>
+
+
+
