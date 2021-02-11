@@ -38,35 +38,38 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8h_ds1SHJbc-SER
 
 var data = [{
   type: 'table',
-   columnwidth: [400,100],
    columnorder: [0,1],
+   columnwidth: [350,100],
+   rowheight: [100,100,100,100],
   header: {
     values: headerValues,
     align: ["left","left"],
     line: {width: 0.2, color: 'rgb(0, 0, 0)'},
     fill: {color: ['rgb(0, 0, 0)']},
-    font: {family: "Arial", size: 12, color: "white", align: 'center'}
+    font: {family: "Arial", size: 14, color: "white", align: 'center'}
   },
   cells: {
     values: cellValues,
     align: ["left"],
     line: {color: "black", width: 0.2},
     fill: {color: ['rgb(255,255,255)']},
-    font: {family: "Arial", size: 12, color: ["black"]}
+    font: {family: "Arial", size: 14, color: ["black"]}
   }
 }]
 
 var layout = {
- autosize: true,
+  autosize: false,
   width: 500,
-  height: 400,
+  height: 500,
   margin: {
-    l: 10,
-    r: 10,
-    b: 5,
-    t: 10,
-    pad: 4},
+    l: 70,
+    r: 70,
+    b: 50,
+    t: 50,
+    pad: 4
+  },
 }
+  
 
 Plotly.newPlot('myDiv', data, layout,{displaylogo: false});
 });
