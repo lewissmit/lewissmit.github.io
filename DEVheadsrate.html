@@ -1,0 +1,107 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8h_ds1SHJbc-SERxiccMmTqN5B-8ICL8HHZWfwX5aaSL7jDVTlktf0YrnskI4M52D-GqwNB7aMBJJ/pub?gid=301097821&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Value1'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 102, 102)',
+    size: 8
+  },
+  name: 'Manchester',
+  type: 'lines+markers',
+  
+};
+trace2 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Value2'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 55, 55)',
+    size: 8
+  },
+  name: 'NW',
+  type: 'lines+markers',
+  
+};
+trace3 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Value3'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(201, 201, 201)',
+    size: 8
+  },
+  name: 'England',
+  type: 'lines+markers',
+  
+};
+
+data = [trace1,trace2,trace3];
+
+layout = {
+  paper_bgcolor: 'rgb(256, 256, 256)',
+  plot_bgcolor: 'rgb(256, 256, 256)',
+  autosize: false,
+  width: 450,
+  height: 200,
+  margin: {
+    l: 70,
+    r: 20,
+    b: 80,
+    t: 20,
+    pad: 4
+  },
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320,
+    tickfont: {
+      family: 'Arial, sansserif',
+      size: 10,
+      color: 'black'
+    },
+  },
+  yaxis: {
+    range: [6000,9000],
+    title: 'Rate',
+    type: 'lines+markers',
+    tickfont: {
+      family: 'Arial, sansserif',
+      size: 10,
+      color: 'black'
+    },
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout,{displayModeBar: false});
+
+});
+
+</script>
+</body>
+</html>
