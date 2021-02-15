@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ8h_ds1SHJbc-SERxiccMmTqN5B-8ICL8HHZWfwX5aaSL7jDVTlktf0YrnskI4M52D-GqwNB7aMBJJ/pub?gid=1917570190&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRnU0M-Wh_UlV8v1ZFSO6HOx8lToznjoPtB8EN9_3hJAicgb9Z5wbsyuui3bF395AGlUXe9HfC3xf42/pub?gid=0&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -58,9 +58,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '5-Nov',
+            x0: '2020-11-05',
             y0: 0,
-            x1: '2-Dec',
+            x1: '2020-12-02',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
@@ -74,9 +74,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '23-Mar',
+            x0: '2020-03-23',
             y0: 0,
-            x1: '15-Jun',
+            x1: '2020-05-05',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
@@ -90,9 +90,9 @@ layout = {
             xref: 'x',
             // y-reference is assigned to the plot paper [0,1]
             yref: 'paper',
-            x0: '5-Jan',
+            x0: '2021-01-05',
             y0: 0,
-            x1: '9-Feb',
+            x1: '2021-02-09',
             y1: 1,
             fillcolor: '#d3d3d3',
             opacity: 0.2,
