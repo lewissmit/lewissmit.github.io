@@ -19,61 +19,33 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRIWUJUsIk8pE4jy0
 
 trace1 = {
   x: unpack(rows, 'date'),
-  y: unpack(rows, 'Value1'),
+  y: unpack(rows, 'newCasesBySpecimenDate'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
   marker: {
-    color: 'rgb(68, 68, 68)',
-    size: 2
+    color: 'rgb(0, 102, 102)',
+    size: 3
   },
-  name: 'Manchester',
-  type: 'lines+markers',
-  
-};
-trace2 = {
-  x: unpack(rows, 'date'),
-  y: unpack(rows, 'Value2'),
-  mode: 'lines+markers',
-  line: {color: 'rgb(255, 128, 0)',
-  width: 1},
-  marker: {
-    color: 'rgb(255, 128, 0)',
-    size: 2
-  },
-  name: 'NW',
-  type: 'lines+markers',
-  
-};
-trace3 = {
-  x: unpack(rows, 'date'),
-  y: unpack(rows, 'Value3'),
-  mode: 'lines+markers',
-  line: {color: 'rgb(201, 201, 201)',
-  width: 1},
-  marker: {
-    color: 'rgb(201, 201, 201)',
-    size: 2
-  },
-  name: 'England',
+  name: '',
   type: 'lines+markers',
   
 };
 
-data = [trace1,trace2,trace3];
+data = [trace1];
 
-layout = {
+layout = {xaxis: {autorange: 'reversed'},
   paper_bgcolor: 'rgb(256, 256, 256)',
   plot_bgcolor: 'rgb(256, 256, 256)',
-  autosize: false,
+  autosize: true,
   width: 450,
   height: 200,
   margin: {
-    l: 70,
-    r: 20,
-    b: 80,
+    l: 50,
+    r: 50,
+    b: 40,
     t: 20,
-    pad: 4
+    pad: 1
   },
   title: '',
   xaxis: {
@@ -82,12 +54,14 @@ layout = {
     tickfont: {
       family: 'Arial, sansserif',
       size: 10,
-      color: 'black'
+      color: 'black',
+autorange:'reversed'
+      
     },
   },
   yaxis: {
-    range: [4000,9000],
-    title: 'Rate',
+    range: [0, 600],
+    title: 'Daily cases',
     type: 'lines+markers',
     tickfont: {
       family: 'Arial, sansserif',
