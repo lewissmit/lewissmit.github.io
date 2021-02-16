@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRIWUJUsIk8pE4jy06_1VDAQiNE6i8zQ9GxJiKRynjJvn-Brh9rdyFIPKDRrq_ZBCDvHXWrfystmWWO/pub?gid=103944172&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRIWUJUsIk8pE4jy06_1VDAQiNE6i8zQ9GxJiKRynjJvn-Brh9rdyFIPKDRrq_ZBCDvHXWrfystmWWO/pub?gid=2029868802&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'date'),
-  y: unpack(rows, 'newCasesBySpecimenDate'),
+  y: unpack(rows, 'Value'),
   mode: 'lines+markers',
   line: {color: 'rgb(68, 68, 68)',
   width: 1},
