@@ -20,8 +20,8 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value3'),
-  marker: {color: 'rgb(3, 7, 252)'},
-  name: 'Number of households in Dispersed Accommodation (Private Rented Sector)',
+  marker: {color: 'rgb(70, 131, 135)'},
+  name: 'Number of households in<br>MCC Temporary Accommodation',
   type: 'bar',
   
 };
@@ -29,14 +29,14 @@ trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(252, 186, 3)'},
-  name: 'Number of households in MCC Temporary Accommodation',
+  name: 'Number of households in<br>MCC Temporary Accommodation',
   type: 'bar',
   
 };
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
-  marker: {color: 'rgb(0, 102, 102)'},
+  marker: {color: 'rgb(70, 71, 135)'},
   name: 'Number of households in B&Bs',
   type: 'bar',
   
