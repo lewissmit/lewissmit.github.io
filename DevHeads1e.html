@@ -1,0 +1,81 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSWTLMKfLyC6Md-K1Hfbi9ss1l0bK_HeBvhbm0zVba76tB8iSdH9KK_bGCpCiAnVaJOgmfUFxg25SMt/pub?gid=0&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'newCasesBySpecimenDateRollingSum'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(0, 102, 102)',
+    size: 3
+  },
+  name: '',
+  type: 'lines+markers',
+  
+};
+
+data = [trace1];
+
+layout = {xaxis: {autorange: 'reversed'},
+  paper_bgcolor: 'rgb(256, 256, 256)',
+  plot_bgcolor: 'rgb(256, 256, 256)',
+  autosize: true,
+  width: 450,
+  height: 200,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 40,
+    t: 20,
+    pad: 1
+  },
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320,
+    tickfont: {
+      family: 'Arial, sansserif',
+      size: 10,
+      color: 'black',
+autorange:'reversed'
+      
+    },
+  },
+  yaxis: {
+    range: [0, 5000],
+    title: 'Daily cases',
+    type: 'lines+markers',
+    tickfont: {
+      family: 'Arial, sansserif',
+      size: 10,
+      color: 'black'
+    },
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout,{displayModeBar: false});
+
+});
+
+</script>
+</body>
+</html>
