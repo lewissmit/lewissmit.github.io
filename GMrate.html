@@ -39,8 +39,12 @@ trace3 = {
   x: unpack(rows, 'date'),
   y: unpack(rows, 'Manchester'),
   marker: {color: 'rgb(0, 0, 0)'},
+  line: {
+    dash: 'dot',
+    width: 4
+  },
   name: 'Manchester',
-  type: 'lines'
+  type: 'lines+markers'
   
 };
 trace4 = {
