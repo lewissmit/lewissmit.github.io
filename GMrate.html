@@ -95,7 +95,15 @@ trace9 = {
   type: 'lines'
   
 };
-data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9];
+trace9 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Rochdale'),
+  marker: {color: 'rgb(204, 102, 1)'},
+  name: 'Rochdale',
+  type: 'lines'
+  
+};	
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
