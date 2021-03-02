@@ -48,6 +48,7 @@ data = [trace1,trace2];
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: false,
   autosize: false,
   width: 900,
   height: 400,
@@ -86,6 +87,18 @@ layout = {
                 width: 0
             }
         }],
+        annotations: [
+    {
+      x: '2020-04-01',
+      y: 3800000,
+      xref: 'x',
+      yref: 'y',
+      text: '<b>March 2020 onwards</b><br>% variation to previous year<br>shown on hover',
+      showarrow: false,
+      ax: 50,
+      ay: -40
+    }
+  ],
         hovermode: "x",
   hoverlabel: {namelength :-1,
          bgcolor: "#FFF" },
