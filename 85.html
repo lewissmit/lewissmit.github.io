@@ -20,9 +20,17 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value'),
-  marker: {color: 'rgb(0, 102, 102)'},
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(128, 0, 128)',
+    size: 8
+  },
+  line: {
+    color: 'rgb(128, 0, 128)',
+    width: 1
+  },
   name: 'Pre COVID-19 period',
-  type: 'line+markers',
+
   
 };
 trace2 = {
