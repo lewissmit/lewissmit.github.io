@@ -21,12 +21,20 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(0, 102, 102)'},
-  name: 'date',
+  name: 'First dose',
+  type: 'lines+markers',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(71, 72, 102)'},
+  name: 'Second dose',
   type: 'lines+markers',
   
 };
 
-data = [trace1];
+data = [trace1,trace2];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
