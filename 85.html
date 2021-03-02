@@ -22,19 +22,27 @@ trace1 = {
   y: unpack(rows, 'Value'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'Pre COVID-19 period',
+  type: 'line+markers',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(0, 102, 102)'},
+  name: '% decrease on previous year',
   type: 'bar',
   
 };
 
 
-data = [trace1];
+data = [trace1,trace2];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
-  height: 350,
+  height: 400,
   margin: {
     l: 50,
     r: 50,
@@ -50,7 +58,7 @@ layout = {
   yaxis: {
     range: [0, 4000000],
     title: 'Total number of passangers per month',
-    type: 'bar',
+    type: 'line',
   },
   shapes: [
         // 1st highlight during Feb 4 - Feb 6
@@ -70,6 +78,10 @@ layout = {
                 width: 0
             }
         }],
+        hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true } 
 };
 
 Plotly.newPlot('myDiv', data, layout);
