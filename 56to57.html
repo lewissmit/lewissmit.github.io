@@ -21,7 +21,7 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(165, 42, 6)'},
-  name: '5.6 Children Looked After',
+  name: '5.6 Children Looked After                     ',
   type: 'lines+markers'
   
 };
@@ -46,6 +46,10 @@ grid: {rows:1, columns:2, pattern: 'independent'},
 		legend: {"orientation": "v"},
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: true,
+  legend: {orientation: 'h',
+  y:1600,
+  x: 0.2},
   autosize: false,
   width: 900,
   height: 350,
