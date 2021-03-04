@@ -21,7 +21,7 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(165, 42, 6)'},
-  name: '5.4 Number of Contacts        ',
+  name: '5.4 Number of Contacts',
   type: 'lines+markers'
   
 };
@@ -43,10 +43,7 @@ layout = {
 grid: {rows:1, columns:2, pattern: 'independent'},
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
-  showlegend: true,
-  legend: {orientation: 'h',
-  y:6100,
-  x:0.2},
+  showlegend: false,
   autosize: false,
   width: 900,
   height: 350,
@@ -59,11 +56,11 @@ grid: {rows:1, columns:2, pattern: 'independent'},
   },
 
   xaxis: {
-    title: '',
+    title: '<b>5.4 Number of Contacts</b>',
     tickangle:320
   },
   xaxis2: {
-    title: '',
+    title: '<b>5.5 Number of Children In Need</b>',
     tickangle:320
   },
   yaxis: {
