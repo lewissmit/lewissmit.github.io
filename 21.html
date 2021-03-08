@@ -87,7 +87,7 @@ layout = {
     },
     {
       x: '2020-11-05',
-      y: 850,
+      y: 650,
       xref: 'x',
       yref: 'y',
       text: 'Start 2nd national<br>lockdown 05/11/20',
@@ -113,6 +113,17 @@ layout = {
       xref: 'x',
       yref: 'y',
       text: 'Start 3rd national<br>lockdown 05/01/21',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '2021-03-08',
+      y: 600,
+      xref: 'x',
+      yref: 'y',
+      text: 'Easing of<br>restrictions begins',
       showarrow: true,
       arrowhead: 3,
       ax: 0,
@@ -164,6 +175,22 @@ layout = {
             x1: '2021-03-08',
             y1: 1,
             fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+        {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '2021-03-08',
+            y0: 0,
+            x1: '2021-03-31',
+            y1: 1,
+            fillcolor: '#ffeea8',
             opacity: 0.2,
             line: {
                 width: 0
