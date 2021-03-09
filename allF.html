@@ -56,14 +56,14 @@ var data = [{
     mode: 'lines',
     name: '2019',
     visible: false,
-    line: {color: '#F06A6A'}
+    line: {color: '#3480eb'}
   },
 
 ]
 var high_annotations = [
     {
       x: '6-Mar',
-      y: 65000,
+      y: 50000,
       xref: 'x',
       yref: 'y',
       text: 'Easing of<br>restrictions 07/03/21',
@@ -76,18 +76,18 @@ var high_annotations = [
 var low_annotations = [
     {
       x: '23-Mar',
-      y: 55000,
+      y: 1000,
       xref: 'x',
       yref: 'y',
       text: 'Start UK lockdown 23/03/20',
       showarrow: true,
-      arrowhead: 7,
+      arrowhead: 1,
       ax: 0,
       ay: -40
     },
     {
       x: '5-Nov',
-      y: 65000,
+      y: 48000,
       xref: 'x',
       yref: 'y',
       text: 'Start 2nd national<br>lockdown 05/11/20',
@@ -98,7 +98,7 @@ var low_annotations = [
     },
   {
       x: '2-Dec',
-      y: 5000,
+      y: 30000,
       xref: 'x',
       yref: 'y',
       text: 'End 2nd national<br>lockdown 02/12/20',
@@ -114,7 +114,7 @@ var updatemenus=[
         buttons: [    
             {
                 args: [{'visible': [false, true, false, false,]},
-                       {'title': '2021',
+                       {'title': '',
                        'annotations': high_annotations}],
                 label: '2021',
                 method: 'update'
@@ -122,7 +122,7 @@ var updatemenus=[
             
             {
                 args: [{'visible': [true, false, true, false,]},
-                       {'title': '2020',
+                       {'title': '',
                        'annotations': low_annotations
                         }],
                 label: '2020',
@@ -130,14 +130,14 @@ var updatemenus=[
             },
             {
                 args: [{'visible': [false, false, false, true,]},
-                       {'title': '2019',
+                       {'title': '',
                        'annotations':[] }],        
                 label: '2019',
                 method: 'update'
             },
             {
                 args: [{'visible': [true, true, true, false,]},
-                       {'title': '2020 and 2021',
+                       {'title': '',
                        'annotations': [...low_annotations, ...high_annotations]}],
                       
                 label: '2020 and 2021',
@@ -145,7 +145,7 @@ var updatemenus=[
             },
 {
                 args: [{'visible': [false, true, false, true,]},
-                       {'title': '2019 and 2021',
+                       {'title': '',
                       'annotations': high_annotations
                         }],
                 label: '2019 and 2021',
@@ -153,7 +153,7 @@ var updatemenus=[
             },
 {
                 args: [{'visible': [true,true,true,true]},
-                       {'title': 'All years'
+                       {'title': ''
                         }],
                 label: 'All',
                 method: 'update'
