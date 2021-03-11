@@ -21,7 +21,7 @@ trace1 = {
   x: unpack(rows, 'Label'),
   y: unpack(rows, 'Value'),
   marker: {color: 'rgb(0, 102, 102)'},
-  name: 'Yes',
+  name: 'No',
   type: 'bar',
   
 };
@@ -29,7 +29,7 @@ trace2 = {
   x: unpack(rows, 'Label'),
   y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(76, 23, 102)'},
-  name: 'No',
+  name: 'Yes',
   type: 'bar',
   
 };
@@ -39,7 +39,7 @@ data = [trace1,trace2];
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
-  showlegend: false,
+  showlegend: true,
   autosize: false,
   width: 450,
   height: 450,
