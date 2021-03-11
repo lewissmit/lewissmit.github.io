@@ -17,10 +17,10 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
           return rows.map(function(row) { return row[key]; });
       }
 
-trace1 = {
+trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2020'),
-  marker: {color: 'rgb(0, 102, 102)'},
+  marker: {color: 'rgb(0, 2, 3)'},
   name: '2020',
   type: 'lines',
   line: {
@@ -37,10 +37,10 @@ trace2 = {
   type: 'lines',
   
 };
-trace3 = {
+trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
-  marker: {color: 'rgb(0, 1, 1)'},
+  marker: {color: 'rgb(0, 102, 102)'},
   name: '2019',
   type: 'lines',
   line: {
