@@ -24,8 +24,8 @@ trace3 = {
   name: '2020',
   type: 'lines',
   line: {
-    dash: 'dot',
-    width: 2
+    dash: 'dashdot',
+    width: 3
   }
   
 };
@@ -50,7 +50,7 @@ trace1 = {
   
 };
 
-data = [trace2,trace1,trace3];
+data = [trace2,trace3,trace1];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
@@ -88,4 +88,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
