@@ -23,6 +23,10 @@ trace1 = {
   marker: {color: 'rgb(0, 102, 102)'},
   name: '2020',
   type: 'lines',
+  line: {
+    dash: 'dot',
+    width: 2
+  }
   
 };
 trace2 = {
@@ -36,9 +40,13 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
-  marker: {color: 'rgb(255, 102, 102)'},
+  marker: {color: 'rgb(0, 1, 1)'},
   name: '2019',
   type: 'lines',
+  line: {
+    dash: 'dot',
+    width: 1
+  }
   
 };
 
@@ -80,3 +88,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
