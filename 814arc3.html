@@ -1,0 +1,106 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQl1sRuNXDf1lXJPgazTw-0dZp1MSvaBciT8PNcjx9W1x3BYEJPDmDfY9TjWS1wtMFJB-_SyjAo7I_g/pub?gid=29673254&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(229, 237, 223)'},
+  name: 'By January 2021',
+  type: 'bar',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(207, 174, 83)'},
+  name: 'By July 2021',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  marker: {color: 'rgb(207, 126, 86)'},
+  name: 'By January 2022',
+  type: 'bar',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(209, 94, 86)'},
+  name: 'By January 2023',
+  type: 'bar',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  marker: {color: 'rgb(214, 54, 102)'},
+  name: 'Longer than<br>January 2023',
+  type: 'bar',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  marker: {color: 'rgb(214, 54, 102)'},
+  name: 'By October 2020',
+  type: 'bar',
+  
+};
+
+
+data = [trace5,trace4,trace3,trace2,trace1,trace6];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: true,
+  autosize: false,
+  width: 450,
+  height: 450,
+  margin: {
+    l: 100,
+    r: 50,
+    b: 120,
+    t: 40,
+    pad: 4
+  },
+  title: '',
+  barmode: 'stack',
+  xaxis: {
+    title: '',
+    tickangle: 320
+  },
+  yaxis: {
+    range: [0, 70],
+    title: '% of businesses',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
