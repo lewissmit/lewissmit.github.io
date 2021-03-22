@@ -1,0 +1,177 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRPXUyCXtgYMYsaZ8PThlsWsfHHLSmnrOCR2_dr2yC3NaROSan2yPcZRBEd0OORsuQ5RmP_KzFTYa7U/pub?gid=47801050&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Bolton'),
+  marker: {color: 'rgb(128, 0, 128)'},
+  name: 'Bolton',
+  type: 'lines'
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Bury'),
+  marker: {color: 'rgb(255, 205, 0)'},
+  name: 'Bury',
+  type: 'lines'
+  
+};
+
+trace3 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Manchester'),
+  marker: {color: 'rgb(0, 0, 0)'},
+  line: {
+    dash: 'dot',
+    width: 4
+  },
+  name: 'Manchester',
+  type: 'lines+markers'
+  
+};
+trace4 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Oldham'),
+  marker: {color: 'rgb(78, 89, 8)'},
+  name: 'Oldham',
+  type: 'lines'
+  
+};
+trace5 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Salford'),
+  marker: {color: 'rgb(43, 138, 240)'},
+  name: 'Salford',
+  type: 'lines'
+  
+};
+trace6 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Stockport'),
+  marker: {color: 'rgb(235, 64, 52)'},
+  name: 'Stockport',
+  type: 'lines'
+  
+};
+trace7 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Trafford'),
+  marker: {color: 'rgb(135, 70, 92)'},
+  name: 'Trafford',
+  type: 'lines'
+  
+};
+trace8 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Tameside'),
+  marker: {color: 'rgb(135, 120, 70)'},
+  name: 'Tameside',
+  type: 'lines'
+  
+};
+trace9 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Wigan'),
+  marker: {color: 'rgb(74, 20, 1)'},
+  name: 'Wigan',
+  type: 'lines'
+  
+};
+trace10 = {
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'Rochdale'),
+  marker: {color: 'rgb(204, 102, 1)'},
+  name: 'Rochdale',
+  type: 'lines'
+  
+};	
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+	autosize: false,
+  width: 900,
+  height: 500,
+  margin: {
+    l: 70,
+    r: 20,
+    b: 60,
+    t: 40,
+    pad: 4
+  },
+  showlegend: true,
+		 legend: {
+    x: 1.00,
+    y: 1
+  },
+  xaxis: {
+  range: ['2021-01-01', '2021-03-31'],
+    title: '',
+tickangle:320
+  },
+  yaxis: {
+    range: [0, 1250],
+    title: 'Cumulative deaths within 28 days of positive test',
+    type: 'lines'
+  },
+  annotations:[
+  {
+      x: '2020-08-17',
+      y: 1250,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '2021-01-11',
+      y: 1250,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+  ],
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
