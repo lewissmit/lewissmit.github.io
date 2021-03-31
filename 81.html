@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=781986358&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2130817218&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -20,22 +20,106 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
-  marker: {color: 'rgb(0, 102, 102)'},
-  name: 'Manchester',
-  type: 'marker'
-  
+ mode: 'lines+markers',
+  marker: {
+    color: 'rgb(128, 0, 128)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(128, 0, 128)',
+    width: 1
+  },
+  name: 'Manchester 2020 against 2019',
+ 
 };
 
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
-  marker: {color: 'rgb(0, 51, 102)'},
-  name: 'UK',
-  type: 'marker'
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(51, 0, 18)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(51, 0, 18)',
+    width: 1
+  },
+
+  name: 'UK 2020 against 2019',
+ 
   
 };
 
-data = [trace1,trace2];
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(251, 51, 18)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(251, 51, 18)',
+    width: 1
+  },
+  name: 'Manchester 2021 against 2020',
+  
+  
+};
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(175,51, 102)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(175, 51, 102)',
+    width: 1
+  },
+  name: 'UK 2021 against 2020',
+
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(255, 189, 102)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(255, 189, 102)',
+    width: 1
+  },
+  name: 'Manchester 2021 against 2020',
+  
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value6'),
+ mode: 'lines+markers',
+  marker: {
+    color: 'rgb(51, 0, 18)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(51, 0, 18)',
+    width: 1
+  },
+  name: 'UK 2021 against 2020',
+  
+  
+};
+
+
+
+
+data = [trace1,trace2,trace3,trace4,trace5,trace6];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
@@ -55,78 +139,59 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [-100, 10],
+    range: [-100, 100],
     title: '% variation',
-    type: 'marker'
+    type: 'lines+markers'
   },
   annotations: [
     {
       x: '23-Mar',
-      y: 0,
+      y: 50,
       xref: 'x',
       yref: 'y',
       text: 'Start UK lockdown<br>23/03/20',
-      showarrow: true,
-      arrowhead: 1,
-      ax: 0,
-      ay: -40
+      showarrow: false
     },
     {
       x: '15-Jun',
-      y:0,
+      y:80,
       xref: 'x',
       yref: 'y',
       text: 'Non essential shops<br>reopen 15/06/20',
-      showarrow: true,
-      arrowhead: 1,
-      ax: 0,
-      ay: -40
+      showarrow: false
     },
-    {
-      x: '29-Jun',
-      y: -95,
-      xref: 'x',
-      yref: 'y',
-      text: 'Pubs & restaurants<br>reopen 04/07/20',
-      showarrow: true,
-      arrowhead: 1,
-      ax: 0,
-      ay: -28
-    },
+    
     {
       x: '02-Nov',
-      y: 0,
+      y: 20,
       xref: 'x',
       yref: 'y',
-      text: 'Start 2nd national<br>lockdown 05/11/20',
-      showarrow: true,
-      arrowhead: 1,
-      ax: 0,
-      ay: -40
+      text: 'Start 2nd<br>national<br>lockdown<br>05/11/20',
+      showarrow: false
     },
   {
       x: '30-Nov',
-      y:  -90,
+      y: 90,
       xref: 'x',
       yref: 'y',
-      text: 'End 2nd<br>national lockdown<br>02/12/20',
-      showarrow: true,
-      arrowhead: 1,
-      ax: 0,
-      ay: -25
+      text: 'End 2nd<br>national<br>lockdown<br>02/12/20',
+      showarrow: false
+
     },
     {
       x: '04-Jan',
-      y:  0,
+      y:  30,
       xref: 'x',
       yref: 'y',
-      text: 'Start 3rd<br>national lockdown<br>05/01/21',
-      showarrow: true,
-      arrowhead: 1,
-      ax: 0,
-      ay: -25
+      text: 'Start 3rd<br>national<br>lockdown<br>05/01/21',
+      showarrow: false
     }
-  ]
+  ],
+   hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+
   
 };
 
@@ -137,4 +202,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
