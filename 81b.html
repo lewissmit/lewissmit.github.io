@@ -1,0 +1,204 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2130817218&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
+ mode: 'lines+markers',
+  marker: {
+    color: 'rgb(128, 0, 128)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(128, 0, 128)',
+    width: 1
+  },
+  name: 'Manchester 2020 compared to 2019',
+ 
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(51, 0, 18)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(51, 0, 18)',
+    width: 1
+  },
+
+  name: 'UK 2020 compared to 2019',
+ 
+  
+};
+
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(251, 51, 18)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(251, 51, 18)',
+    width: 1
+  },
+  name: 'Manchester 2021 x 2020',
+  
+  
+};
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(175,51, 102)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(175, 51, 102)',
+    width: 1
+  },
+  name: 'UK 2021 x 2020',
+
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  mode: 'lines+markers',
+  marker: {
+    color: 'rgb(255, 189, 102)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(255, 189, 102)',
+    width: 1
+  },
+  name: 'Manchester 2021 x 2020',
+  
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value6'),
+ mode: 'lines+markers',
+  marker: {
+    color: 'rgb(51, 0, 18)',
+    size: 5
+  },
+  line: {
+    color: 'rgb(51, 0, 18)',
+    width: 1
+  },
+  name: 'UK 2021 x 2020',
+  
+  
+};
+
+
+
+
+data = [trace2,trace4,trace6];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 60,
+    r: 50,
+    b: 80,
+    t: 50,
+    pad: 4},
+  title: '',
+  xaxis: {
+    title: 'Date',
+    tickangle:320
+  },
+  yaxis: {
+    range: [-100, 100],
+    title: '% variation',
+    type: 'lines+markers'
+  },
+  annotations: [
+    {
+      x: '2020-03-20',
+      y: 50,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start UK lockdown<br>23/03/20',
+      showarrow: false
+    },
+    {
+      x: '2020-06-15',
+      y:80,
+      xref: 'x',
+      yref: 'y',
+      text: 'Non essential shops<br>reopen 15/06/20',
+      showarrow: false
+    },
+    
+    {
+      x: '2020-11-02',
+      y: 20,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start 2nd<br>national<br>lockdown<br>05/11/20',
+      showarrow: false
+    },
+  {
+      x: '2020-11-30',
+      y: 90,
+      xref: 'x',
+      yref: 'y',
+      text: 'End 2nd<br>national<br>lockdown<br>02/12/20',
+      showarrow: false
+
+    },
+    {
+      x: '2021-01-04',
+      y:  30,
+      xref: 'x',
+      yref: 'y',
+      text: 'Start 3rd<br>national<br>lockdown<br>05/01/21',
+      showarrow: false
+    }
+  ],
+   hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
