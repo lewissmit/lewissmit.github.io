@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRnU0M-Wh_UlV8v1ZFSO6HOx8lToznjoPtB8EN9_3hJAicgb9Z5wbsyuui3bF395AGlUXe9HfC3xf42/pub?gid=0&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRnU0M-Wh_UlV8v1ZFSO6HOx8lToznjoPtB8EN9_3hJAicgb9Z5wbsyuui3bF395AGlUXe9HfC3xf42/pub?gid=1599318586&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'date'),
-  y: unpack(rows, 'SUM of cases'),
+  y: unpack(rows, 'cases'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Date',
   type: 'bar',
@@ -108,9 +108,25 @@ layout = {
             yref: 'paper',
             x0: '2021-03-08',
             y0: 0,
-            x1: '2021-03-31',
+            x1: '2021-03-28',
             y1: 1,
             fillcolor: '#ffeea8',
+            opacity: 0.2,
+            line: {
+                width: 0
+            }
+        },
+       {
+            type: 'rect',
+            // x-reference is assigned to the x-values
+            xref: 'x',
+            // y-reference is assigned to the plot paper [0,1]
+            yref: 'paper',
+            x0: '2021-03-29',
+            y0: 0,
+            x1: '2021-04-12',
+            y1: 1,
+            fillcolor: '#ebffa8',
             opacity: 0.2,
             line: {
                 width: 0
