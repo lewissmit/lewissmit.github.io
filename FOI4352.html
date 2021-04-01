@@ -70,8 +70,9 @@ map.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   map.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/e5f91ab2a6824344a1ed13532c43649b/raw/0917ce9bc41a37027d22fb0a349e5bf4c0fd5403/Broadway.geojson'
+    'data': 'https://gist.githubusercontent.com/lewissmit/e5f91ab2a6824344a1ed13532c43649b/raw/41d31272aaa26319a5263081c93adc43b2d3d4e1/Broadway.geojson'
   });
+
 map.addLayer({
 id: "points",
 type: "circle",
@@ -82,8 +83,8 @@ paint: {'circle-radius': {
 [12, 4],
 [22, 6]
 ]
-}
-}
+}}
+
 });
 
 map.addSource('wards', {
@@ -95,11 +96,41 @@ id: "wards",
 type: "line",
 source: "wards"
 
-}
-);
 });
 
+map.on('click', function (e) {
+var features = map.queryRenderedFeatures(e.point, {
+layers: ['points'] // replace this with the name of the layer
+});
+ 
+if (!features.length) {
+return;
+}
+ 
+var feature = features[0];
+ 
+var popup = new mapboxgl.Popup({ offset: [0, -15] })
+.setLngLat(feature.geometry.coordinates)
+.setHTML(
+'<h3>' +
+feature.properties.Createdon +
+'</h3><p>' +
+feature.properties.CRM +
+'</h3><p>' +
+feature.properties.Ward +
+'</h3><p>' +
+feature.properties.Add +
+'</h3><p>' +
+feature.properties.Loc +
+'</h3><p>' +
+feature.properties.Req +
+'</p>'
+)
+.setLngLat(feature.geometry.coordinates)
+.addTo(map);
 
+});
+});
 
 </script>
  
