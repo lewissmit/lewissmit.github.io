@@ -19,7 +19,7 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRnU0M-Wh_UlV8v1Z
 
 trace1 = {
   x: unpack(rows, 'areaName'),
-  y: unpack(rows, 'cases'),
+  y: unpack(rows, 'age'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Date',
   type: 'bar',
@@ -142,3 +142,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
