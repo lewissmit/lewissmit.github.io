@@ -22,7 +22,8 @@ trace1 = {
   y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'date',
-  type: 'bar',
+  fill: 'tozeroy',
+  type: 'scatter',
   
 };
 
@@ -48,7 +49,8 @@ layout = {
   yaxis: {
     range: [0, 10],
     title: '% of residents',
-    type: 'bar'
+    fill: 'tozeroy',
+    type: 'scatter'
   },
   annotations: [
     {
