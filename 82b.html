@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=199453159&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=2130817218&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -29,15 +29,14 @@ trace1 = {
     color: 'rgb(128, 0, 128)',
     width: 1
   },
-  name: 'Manchester 2020 compared to 2019',
+  name: 'City Centre footfall vs last year',
  
 };
 
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
-  xaxis: 'x2',
-  yaxis: 'y2',
+ 
   mode: 'lines+markers',
   marker: {
     color: 'rgb(51, 0, 18)',
@@ -48,14 +47,16 @@ trace2 = {
     width: 1
   },
 
-  name: 'UK 2020 compared to 2019',
+  name: 'City Centre footfall vs 2yrs ago (2021 vs 2019)',
  
   
 };
 
 trace3 = {
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, 'Value3'),
+   xaxis: 'x2',
+  yaxis: 'y2',
   mode: 'lines+markers',
   marker: {
     color: 'rgb(251, 51, 18)',
@@ -65,12 +66,12 @@ trace3 = {
     color: 'rgb(251, 51, 18)',
     width: 1
   },
-  name: 'Manchester 2021 x 2020',
+  name: 'District Centre footfall vs last year',
   
   
 };
 trace4 = {
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, 'Value4'),
   xaxis: 'x2',
   yaxis: 'y2',
@@ -83,49 +84,16 @@ trace4 = {
     color: 'rgb(175, 51, 102)',
     width: 1
   },
-  name: 'UK 2021 x 2020',
+  name: 'City Centre footfall vs 2yrs ago (2021 vs 2019)',
 
   
 };
-trace5 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value5'),
-  mode: 'lines+markers',
-  marker: {
-    color: 'rgb(255, 189, 102)',
-    size: 5
-  },
-  line: {
-    color: 'rgb(255, 189, 102)',
-    width: 1
-  },
-  name: 'Manchester 2021 x 2020',
-  
-  
-};
-trace6 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value6'),
-  xaxis: 'x2',
-  yaxis: 'y2',
- mode: 'lines+markers',
-  marker: {
-    color: 'rgb(51, 0, 18)',
-    size: 5
-  },
-  line: {
-    color: 'rgb(51, 0, 18)',
-    width: 1
-  },
-  name: 'UK 2021 x 2020',
-  
-  
-};
 
 
 
 
-data = [trace1,trace2,trace3,trace4,trace5,trace6];
+
+data = [trace1,trace2,trace3,trace4];
 
 layout = {
  grid: {
@@ -150,7 +118,7 @@ layout = {
     tickangle:320
   },
   yaxis: {
-    range: [-100, 120],
+    range: [-100, 300],
     title: '% variation',
     type: 'lines+markers'
   },
@@ -159,7 +127,7 @@ layout = {
     tickangle:320
   },
    yaxis2: {
-    range: [-100, 120],
+    range: [-100, 300],
     title: '',
     type: 'lines+markers'
   },
