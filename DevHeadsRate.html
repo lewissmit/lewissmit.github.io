@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRwe62CZTxf4dyh7eUILZE60SM5whEzTc-2ysspECJRg97_UA3bAR_x1sKpTrMX7QiYmViSbDxoM5rU/pub?gid=1007136683&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ72AL86x4esw5TkPJXhC9-4_yLvIiq4rQwvlTWg-hL81wpy_neLYMx9IQOZ4OsjE2oZxCORpCmtDBw/pub?gid=931903125&single=true&output=csv", function(err, rows){
 
   function unpack(rows, key) {
   return rows.map(function(row) { return row[key]; });
@@ -76,4 +76,3 @@ Plotly.newPlot('myDiv', data, layout,{displaylogo: false});
 </script>
 </body>
 </html>
-
