@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=972872036&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000003&metric=uniquePeopleTestedBySpecimenDateRollingSum&metric=uniqueCasePositivityBySpecimenDateRollingSum&format=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value'),
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'uniqueCasePositivityBySpecimenDateRollingSum'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: '',
   type: 'bar'
@@ -154,3 +154,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
