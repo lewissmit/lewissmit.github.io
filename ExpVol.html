@@ -1,0 +1,55 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS9FPpz26MOiGkMvgRAWDMtR4DGZs2Lapywt45-zOK_vZK4u1Kb07d4Dm2-iBiQV5dodFeiQW7lHFmo/pub?gid=0&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Cat'),
+  y: unpack(rows, 'Vol'),
+  marker: {color: 'rgb(0, 102, 102)'},
+  name: 'date',
+  type: 'bar',
+  
+};
+
+data = [trace1];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: true,
+  
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle: 320
+  },
+  yaxis: {
+    range: [0, 20000],
+    title: 'Total number of businesses',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
