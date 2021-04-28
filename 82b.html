@@ -36,7 +36,8 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
- 
+ xaxis: 'x2',
+  yaxis: 'y2',
   mode: 'lines+markers',
   marker: {
     color: 'rgb(3, 69, 5)',
@@ -55,8 +56,8 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Date2'),
   y: unpack(rows, 'Value3'),
-   xaxis: 'x2',
-  yaxis: 'y2',
+   xaxis: 'x3',
+  yaxis: 'y3',
   mode: 'lines+markers',
   marker: {
     color: 'rgb(92, 86, 59)',
@@ -73,8 +74,8 @@ trace3 = {
 trace4 = {
   x: unpack(rows, 'Date2'),
   y: unpack(rows, 'Value4'),
-  xaxis: 'x2',
-  yaxis: 'y2',
+  xaxis: 'x4',
+  yaxis: 'y4',
   mode: 'lines+markers',
   marker: {
     color: 'rgb(66, 135, 245)',
@@ -97,15 +98,19 @@ data = [trace1,trace2,trace3,trace4];
 
 layout = {
  grid: {
-    rows: 1,
+    rows: 2,
     columns: 2,
-    subplots:[['xy','x2y2']],
+
+    pattern: 'independent'
   },
+
+		showlegend: false,
+	
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
   width: 900,
-  height: 450,
+  height: 900,
   margin: {
     l: 60,
     r: 50,
@@ -114,7 +119,7 @@ layout = {
     pad: 4},
   title: '',
   xaxis: {
-    title: '',
+    title: 'City Centre footfall vs last year',
     tickangle:320
   },
   yaxis: {
@@ -123,11 +128,31 @@ layout = {
     type: 'lines+markers'
   },
   xaxis2: {
-    title: '',
+    range: ['2021-03-21', '2021-04-18'],
+    title: 'City Centre footfall vs 2yrs ago (2021 vs 2019)',
     tickangle:320
   },
    yaxis2: {
-    range: [-100, 300],
+    range: [-100, 100],
+    title: '',
+    type: 'lines+markers'
+  },
+   xaxis3: {
+    title: 'District Centre footfall vs last year',
+    tickangle:320
+  },
+   yaxis3: {
+    range: [-100, 150],
+    title: '',
+    type: 'lines+markers'
+  },
+   xaxis4: {
+   range: ['2021-03-21', '2021-04-18'],
+    title: 'District Centre footfall vs 2yrs ago (2021 vs 2019)',
+    tickangle:320
+  },
+   yaxis4: {
+    range: [-100, 100],
     title: '',
     type: 'lines+markers'
   },
