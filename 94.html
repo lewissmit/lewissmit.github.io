@@ -28,9 +28,10 @@ trace1 = {
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2020'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  marker: {color: 'rgba(68, 68, 68,0.1)'},
   name: '2020',
-  type: 'lines',
+  type: 'scatter',
+  fill: 'tozeroy'
   
 };
 trace3 = {
@@ -48,7 +49,7 @@ layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   autosize: false,
-  width: 900,
+  width: 450,
   height: 350,
   margin: {
     l: 50,
@@ -75,3 +76,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
