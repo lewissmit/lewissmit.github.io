@@ -1,0 +1,157 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:100%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQbqVgYWDhHiN3PCk03KPJ5UlR1Kq5nOlpfDEq-3_lkQn4D2cW12Bs-WWvxlKEmYIIpXuzgJS9xxrzN/pub?gid=0&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(168, 68, 68)'},
+  name: 'Uncoded',
+  type: 'bar',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(68, 68, 68)'},
+  name: 'Advertising & communication',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  marker: {color: 'rgb(68, 68, 200)'},
+  name: 'Car park',
+  type: 'bar',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(77, 68, 200)'},
+  name: 'Education',
+  type: 'bar',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  marker: {color: 'rgb(68, 168, 200)'},
+  name: 'Health & public services',
+  type: 'bar',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value6'),
+  marker: {color: 'rgb(77, 8, 200)'},
+  name: 'Hotels',
+  type: 'bar',
+  
+};
+trace7 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value7'),
+  marker: {color: 'rgb(77, 8, 20)'},
+  name: 'Industrial',
+  type: 'bar',
+  
+};
+trace8 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value8'),
+  marker: {color: 'rgb(9, 190, 200)'},
+  name: 'Office',
+  type: 'bar',
+  
+};
+trace9= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value9'),
+  marker: {color: 'rgb(9, 190, 200)'},
+  name: 'Other',
+  type: 'bar',
+  
+};
+trace10= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value10'),
+  marker: {color: 'rgb(28, 26, 28)'},
+  name: 'Retail',
+  type: 'bar',
+  
+};
+trace11= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value11'),
+  marker: {color: 'rgb(112, 84, 108)'},
+  name: 'Services & food',
+  type: 'bar',
+  
+};
+
+trace12= {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value13'),
+  marker: {color: 'rgb(50, 158, 43)'},
+  name: 'Sports, recreation & culture',
+  type: 'bar',
+  
+};
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11,trace12];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 1200,
+  height: 550,
+  margin: {
+    l: 50,
+    r: 90,
+    b: 40,
+    t: 30,
+    pad: 4},
+  
+  barmode: 'stack',
+  legend: {orientation: 'h', y: -0.7},
+  title: '',
+  xaxis: {
+    title: '',
+       tickangle:320,
+       zeroline:true
+  },
+  yaxis: {
+    range: [0,32000],
+    title: 'Number of businesses',
+    zeroline:true
+  },
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
