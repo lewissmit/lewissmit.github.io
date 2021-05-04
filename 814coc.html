@@ -1,0 +1,127 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=854014780&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(75,186,69)'},
+  name: 'Increase',
+  type: 'bar'
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(186, 157, 69)'},
+  name: 'Remain the same',
+  type: 'bar'
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  marker: {color: 'rgb(130,86,77)'},
+  name: 'Decrease',
+  type: 'bar'
+  
+};
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  xaxis: 'x2',
+  yaxis: 'y2',
+  marker: {color: 'rgb(75,186,69)'},
+  name: 'Increase',
+  type: 'bar'
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  xaxis: 'x2',
+  yaxis: 'y2',
+  marker: {color: 'rgb(186, 157,69)'},
+  name: 'Remain the same',
+  type: 'bar'
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value6'),
+  xaxis: 'x2',
+  yaxis: 'y2',
+  marker: {color: 'rgb(130,86,77)'},
+  name: 'Decrease',
+  type: 'bar'
+  
+};
+
+data = [trace3,trace2,trace1,trace6,trace5,trace4];
+
+layout = {
+grid: {rows:1, columns:2, pattern: 'independent'},
+barmode: 'stack',
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  showlegend: true,
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 55,
+    r: 50,
+    b: 80,
+    t: 60,
+    pad: 4
+  },
+
+  xaxis: {
+    title: '<b>Turnover Confidence</b>',
+    tickangle:320
+  },
+  xaxis2: {
+    title: '<b>Profitability Confidence</b>',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 100],
+    title: '',
+    type: 'bar'
+  },
+   yaxis2: {
+    range: [0, 100],
+    title: '',
+    type: 'bar'
+  },
+  hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
+
