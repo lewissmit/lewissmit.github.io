@@ -25,14 +25,24 @@ trace1 = {
   width: 1},
   marker: {
     color: 'rgb(0, 102, 102)',
-    size: 8
+    size: 6
   },
   name: '',
   type: 'lines+markers',
   
 };
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  mode: 'lines',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  name: '',
+  type: 'lines',
+  
+};
 
-data = [trace1];
+data = [trace1,trace2];
 
 layout = {
   paper_bgcolor: 'rgb(256, 256, 256)',
@@ -58,6 +68,30 @@ layout = {
     title: '% variation',
     type: 'lines+markers'
   },
+  annotations: [
+    {
+      x: '2021-04-12',
+      y: 90,
+      xref: 'x',
+      yref: 'y',
+      text: 'Outside hospitality<br>resumes',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: '2021-05-17',
+      y:90,
+      xref: 'x',
+      yref: 'y',
+      text: 'Indoor hospitality<br>resumes',
+      showarrow: true,
+      arrowhead: 3,
+      ax: 0,
+      ay: -40
+    }
+  ],
   
 };
 
