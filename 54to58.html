@@ -21,18 +21,18 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(165, 42, 6)'},
-  name: '5.4 Number of Contacts',
+  name: '5.4 Number of contacts',
   type: 'lines+markers'
   
 };
 
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value3'),
+  y: unpack(rows, 'Value4'),
   xaxis: 'x2',
   yaxis: 'y2',
   marker: {color: 'rgb(80, 82, 87)'},
-  name: '5.5 Number of Children In Need',
+  name: '5.5 Referrals',
   type: 'lines+markers'
   
 };
@@ -60,7 +60,7 @@ grid: {rows:1, columns:2, pattern: 'independent'},
     tickangle:320
   },
   xaxis2: {
-    title: '<b>5.5 Number of Children In Need</b>',
+    title: '<b>5.5 Number of Referrals</b>',
     tickangle:320
   },
   yaxis: {
@@ -69,7 +69,7 @@ grid: {rows:1, columns:2, pattern: 'independent'},
     type: 'bar'
   },
    yaxis2: {
-    range: [0, 6000],
+    range: [0, 1000],
     title: '',
     type: 'bar'
   },
