@@ -37,9 +37,46 @@ Plotly.d3.csv(
           x: x,
           y: y,
           text: y2,
-          transforms: [{ type: "groupby", groups: y2 }],
+          transforms: [
+          { 
+          type: "groupby", groups: y2,
+          styles: [
+          {target: 'Moston', value: {marker: {color: '#00522F'}}},
+          {target: 'Crumpsall', value: {marker: {color: '#CAF3AD'}}},
+          {target: 'Chorlton Park', value: {marker: {color: '#003260'}}},
+          {target: 'Higher Blackley', value: {marker: {color: '#DCF083'}}},
+          {target: 'Charlestown', value: {marker: {color: '#000967'}}},
+          {target: 'Whalley Range', value: {marker: {color: '#EDE799'}}},
+          {target: 'Clayton & Openshaw', value: {marker: {color: '#12006D'}}},
+          {target: 'Northenden', value: {marker: {color: '#E9C78F'}}},
+          {target: 'Rusholme', value: {marker: {color: '#460073'}}},
+          {target: 'Chorlton', value: {marker: {color: '#E6A285'}}},
+          {target: 'Hulme', value: {marker: {color: '#780074'}}},
+          {target: 'Deansgate', value: {marker: {color: '#E17B7A'}}},
+          {target: 'Piccadilly', value: {marker: {color: '#7D0046'}}},
+          {target: 'Sharston', value: {marker: {color: '#D9669C'}}},
+          {target: 'Harpurhey', value: {marker: {color: '#820016'}}},
+          {target: 'Fallowfield', value: {marker: {color: '#D45CB9'}}},
+          {target: 'Woodhouse Park', value: {marker: {color: '#8B5A07'}}},
+          {target: 'Old Moat', value: {marker: {color: '#7043C3'}}},
+          {target: 'Ardwick', value: {marker: {color: '#8A8E0A'}}},
+          {target: 'Burnage', value: {marker: {color: '#2E70B0'}}},
+          {target: 'Baguley', value: {marker: {color: '#288EA9'}}},
+          {target: 'Didsbury West', value: {marker: {color: '#59920F'}}},
+          {target: 'Didsbury East', value: {marker: {color: '#1D9A6C'}}},
+          {target: 'Ancoats & Beswick', value: {marker: {color: 'dark orange'}}},
+          {target: 'Fallowfield', value: {marker: {color: '#E9A3AF'}}},
+          {target: 'Gorton & Abbey Hey', value: {marker: {color: '#030052'}}},
+          {target: 'Moss Side', value: {marker: {color: '#3574B0'}}},
+          {target: 'Longsight', value: {marker: {color: '#005582'}}},
+          {target: 'Levenshulme', value: {marker: {color: '#BE0500'}}},
+          {target: '#N/A', value: {marker: {color: 'light grey'}}},
+          {target: 'Withington', value: {marker: {color: '#00D97D'}}},
+          {target: 'Brooklands', value: {marker: {color: 'light green'}}}],
+          
+        }],
           hovertemplate:
-            
+           
             "%{xaxis.title.text}: %{x}<br>" +
             "%{yaxis.title.text}: %{y}<br>" + 
             "Primary ward: %{text}<br><br>" +
@@ -64,6 +101,7 @@ Plotly.d3.csv(
         showlegend: false,
         hoverlabel: { bgcolor: "#FFF" },
         legend: {orientation: 'h', y: -0.3},
+        legendgroup: y2,
         xaxis: {
           tickformat: ".0%",
           title: "MSOA",
@@ -74,10 +112,7 @@ Plotly.d3.csv(
           title: "Cumulative no. 1st/2nd vaccinations",
           zeroline: false
         },
-      y2axis: {
-          title: "Ward",
-          zeroline: false
-        }
+     
       },
       config: { responsive: true }
     });
