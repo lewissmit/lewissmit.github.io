@@ -12,25 +12,42 @@
 
 <div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTLMysxqvCYQomWjZbx-GS3WSoCwTParR4Yx8uii7FsNmBnUna21dQFLISQHd_6PSl-tjBtnqgE7jN8/pub?gid=2130052188&single=true&output=csv", function(err, rows){
-      function unpack(rows, key) {
-          return rows.map(function(row) { return row[key]; });
-      }
+Plotly.d3.csv(
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTLMysxqvCYQomWjZbx-GS3WSoCwTParR4Yx8uii7FsNmBnUna21dQFLISQHd_6PSl-tjBtnqgE7jN8/pub?gid=2130052188&single=true&output=csv",
+  function(rows) {
+    var x = [],
+      y = [],
+      s = [],
+      c = [],
+      t = [];
 
-trace1 = {
-  x: unpack(rows, 'Name'),
-  y: unpack(rows, 'Value'),
-  marker: {color: 'rgb(204,183,108)'},
-  name: 'Cumulative total vaccinations (includes 1st & 2nd dose)',
-  type: 'bar'
-  
-};
+    for (var i = 0; i < rows.length; i++) {
+      row = rows[i];
+      y.push(row["Value"]);
+      x.push(row["Name"]);
+      s.push(row["Ward"]);
+      c.push(row["Rank"]);
+      t.push(row["MSOA"]);
+    }
 
-
-data = [trace1];
-
-layout = {
-  paper_bgcolor: 'rgb(255, 255, 255)',
+    Plotly.newPlot('myDiv', {
+      data: [
+        {
+          type: "bar",
+          x: x,
+          y: y,
+          text: s,
+          marker: { size: s, sizeref: 4000, sizemode: "area" },
+          transforms: [{ type: "groupby", groups: s }],
+          hovertemplate:
+            "<b>Primary ward: %{text}</b><br><br>" +
+            "%{yaxis.title.text}: %{y}<br>" +
+            "%{xaxis.title.text}: %{x}<br>" +
+            "<extra></extra>"
+        }
+      ],
+      layout: {
+      paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
 	autosize: false,
   width: 900,
@@ -38,42 +55,30 @@ layout = {
   margin: {
     l: 150,
     r: 100,
-    b: 150,
+    b: 300,
     t: 40,
     pad: 4
   },
-		showlegend: true,
-		legend: {orientation: 'h',
-    x:0.1,
-    y:1.23},
-    barmode: 'stack',
-  xaxis: {
-    title: 'MSOA',
-    showticklabels: true,
-    tickangle: 320,
-    tickfont: {
-      family: 'Arial, sans-serif',
-      size: 12,
-      color: 'black'
-    },
-    
-  },
-  yaxis: {
-    range: [0, 10000],
-    title: 'Number',
-    type: 'bar'
-  },
- 
-  hovermode: "x",
-  hoverlabel: {namelength :-1,
-         bgcolor: "#FFF" },
-         config: { responsive: true }
-  
-};
-
-Plotly.newPlot('myDiv', data, layout);
-
-});
+        title: "Middle super output area vaccination count",
+        hovermode: "closest",
+        showlegend: false,
+        hoverlabel: { bgcolor: "#FFF" },
+        legend: {orientation: 'h', y: -0.3},
+        xaxis: {
+          tickformat: ".0%",
+          title: "MSOA",
+          zeroline: false,
+          tickangle: 320
+        },
+        yaxis: {
+          title: "Cumulative no. 1st/2nd vaccinations",
+          zeroline: false
+        }
+      },
+      config: { responsive: true }
+    });
+  }
+);
 
 </script>
 </body>
