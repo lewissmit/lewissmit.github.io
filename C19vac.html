@@ -1,129 +1,356 @@
 <html>
-<head>
-  <!-- Plotly.js -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
 
-<!-- Plots go in blank <div> elements. 
+  <head>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+
+  <!-- Plots go in blank <div> elements. 
     You can size them in the plot layout,
     or give the div a size as shown here.
 -->
-<body>
 
-<div id="myDiv" style="width:100%;height:100%;"></div>
-<script>
-Plotly.d3.csv(
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTLMysxqvCYQomWjZbx-GS3WSoCwTParR4Yx8uii7FsNmBnUna21dQFLISQHd_6PSl-tjBtnqgE7jN8/pub?gid=2130052188&single=true&output=csv",
-  function(rows) {
-    var x = [],
-      y = [],
-      y2 = [],
-      c = [],
-      t = [];
+  <body>
 
-    for (var i = 0; i < rows.length; i++) {
-      row = rows[i];
-      x.push(row["Value"]);
-      y.push(row["Name"]);
-      y2.push(row["Ward"]);
-      c.push(row["Rank"]);
-      t.push(row["MSOA"]);
-    }
+    <div id="myDiv" style="width:100%;height:100%;"></div>
+    <script>
+      Plotly.d3.csv(
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTLMysxqvCYQomWjZbx-GS3WSoCwTParR4Yx8uii7FsNmBnUna21dQFLISQHd_6PSl-tjBtnqgE7jN8/pub?gid=2130052188&single=true&output=csv",
+        function(rows) {
+          var x = [],
+            y = [],
+            s = [],
+            c = [],
+            t = [];
 
-    Plotly.newPlot('myDiv', {
-      data: [
-        {
-          type: "bar",
-          orientation: 'h',
-          x: x,
-          y: y,
-          text: y2,
-          transforms: [
-          { 
-          type: "groupby", groups: y2,
-          styles: [
-          {target: 'Moston', value: {marker: {color: '#00522F'}}},
-          {target: 'Crumpsall', value: {marker: {color: '#CAF3AD'}}},
-          {target: 'Chorlton Park', value: {marker: {color: '#003260'}}},
-          {target: 'Higher Blackley', value: {marker: {color: '#DCF083'}}},
-          {target: 'Charlestown', value: {marker: {color: '#000967'}}},
-          {target: 'Whalley Range', value: {marker: {color: '#EDE799'}}},
-          {target: 'Clayton & Openshaw', value: {marker: {color: '#12006D'}}},
-          {target: 'Northenden', value: {marker: {color: '#E9C78F'}}},
-          {target: 'Rusholme', value: {marker: {color: '#460073'}}},
-          {target: 'Chorlton', value: {marker: {color: '#E6A285'}}},
-          {target: 'Hulme', value: {marker: {color: '#780074'}}},
-          {target: 'Deansgate', value: {marker: {color: '#E17B7A'}}},
-          {target: 'Piccadilly', value: {marker: {color: '#7D0046'}}},
-          {target: 'Sharston', value: {marker: {color: '#D9669C'}}},
-          {target: 'Harpurhey', value: {marker: {color: '#820016'}}},
-          {target: 'Fallowfield', value: {marker: {color: '#D45CB9'}}},
-          {target: 'Woodhouse Park', value: {marker: {color: '#8B5A07'}}},
-          {target: 'Old Moat', value: {marker: {color: '#7043C3'}}},
-          {target: 'Ardwick', value: {marker: {color: '#8A8E0A'}}},
-          {target: 'Burnage', value: {marker: {color: '#2E70B0'}}},
-          {target: 'Baguley', value: {marker: {color: '#288EA9'}}},
-          {target: 'Didsbury West', value: {marker: {color: '#59920F'}}},
-          {target: 'Didsbury East', value: {marker: {color: '#1D9A6C'}}},
-          {target: 'Ancoats & Beswick', value: {marker: {color: 'dark orange'}}},
-          {target: 'Fallowfield', value: {marker: {color: '#E9A3AF'}}},
-          {target: 'Gorton & Abbey Hey', value: {marker: {color: '#030052'}}},
-          {target: 'Moss Side', value: {marker: {color: '#3574B0'}}},
-          {target: 'Longsight', value: {marker: {color: '#005582'}}},
-          {target: 'Levenshulme', value: {marker: {color: '#BE0500'}}},
-          {target: 'No ward', value: {marker: {color: 'white'}}},
-          {target: 'Withington', value: {marker: {color: '#00D97D'}}},
-          {target: 'Brooklands', value: {marker: {color: 'light green'}}}],
-          
-        }],
-          hovertemplate:
-           
-            "%{xaxis.title.text}: %{x}<br>" +
-            "%{yaxis.title.text}: %{y}<br>" + 
-            "Primary ward: %{text}<br><br>" +
-            "<extra></extra>"
-        }
-      ],
-      layout: {
-      paper_bgcolor: 'rgb(255, 255, 255)',
-  plot_bgcolor: 'rgb(255, 255, 255)',
-	autosize: false,
-  width: 900,
-  height: 950,
-  margin: {
-    l: 250,
-    r: 100,
-    b: 300,
-    t: 40,
-    pad: 4
-  },
-  
-        title: "Middle super output area vaccination count",
-        hovermode: "closest",
-        showlegend: false,
-        hoverlabel: { bgcolor: "#FFF" },
-        legend: {orientation: 'h', y: -0.3},
-        legendgroup: y2,
-        yaxis: {
-          showticklabels: true,
-          title: "MSOA",
-          zeroline: false,
-          tickfont: {
-      size: 8,
-      color: 'black'
-    },
-        },
-        xaxis: {
-          title: "Cumulative no. 1st/2nd vaccinations",
-          zeroline: false
-        },
-     
-      },
-      config: { responsive: true }
-    });
-  }
-);
+          for (var i = 0; i < rows.length; i++) {
+            row = rows[i];
+            x.push(row["Value"]);
+            y.push(row["Name"]);
+            s.push(row["Ward"]);
+            c.push(row["Rank"]);
+            t.push(row["MSOA"]);
+          }
 
-</script>
-</body>
+         
+         var  data = [{
+              type: "bar",
+              orientation: 'h',
+              x: x,
+              y: y,
+              text: s,
+              transforms: [{
+                type: "groupby",
+                groups: s,
+                styles: [{
+                    target: 'Moston',
+                    value: {
+                      marker: {
+                        color: '#00522F'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Crumpsall',
+                    value: {
+                      marker: {
+                        color: '#CAF3AD'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Chorlton Park',
+                    value: {
+                      marker: {
+                        color: '#003260'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Higher Blackley',
+                    value: {
+                      marker: {
+                        color: '#DCF083'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Charlestown',
+                    value: {
+                      marker: {
+                        color: '#000967'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Whalley Range',
+                    value: {
+                      marker: {
+                        color: '#EDE799'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Clayton & Openshaw',
+                    value: {
+                      marker: {
+                        color: '#12006D'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Northenden',
+                    value: {
+                      marker: {
+                        color: '#E9C78F'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Rusholme',
+                    value: {
+                      marker: {
+                        color: '#460073'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Chorlton',
+                    value: {
+                      marker: {
+                        color: '#E6A285'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Hulme',
+                    value: {
+                      marker: {
+                        color: '#780074'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Deansgate',
+                    value: {
+                      marker: {
+                        color: '#E17B7A'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Piccadilly',
+                    value: {
+                      marker: {
+                        color: '#7D0046'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Sharston',
+                    value: {
+                      marker: {
+                        color: '#D9669C'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Harpurhey',
+                    value: {
+                      marker: {
+                        color: '#820016'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Fallowfield',
+                    value: {
+                      marker: {
+                        color: '#D45CB9'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Woodhouse Park',
+                    value: {
+                      marker: {
+                        color: '#8B5A07'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Old Moat',
+                    value: {
+                      marker: {
+                        color: '#7043C3'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Ardwick',
+                    value: {
+                      marker: {
+                        color: '#8A8E0A'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Burnage',
+                    value: {
+                      marker: {
+                        color: '#2E70B0'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Baguley',
+                    value: {
+                      marker: {
+                        color: '#288EA9'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Didsbury West',
+                    value: {
+                      marker: {
+                        color: '#59920F'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Didsbury East',
+                    value: {
+                      marker: {
+                        color: '#1D9A6C'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Ancoats & Beswick',
+                    value: {
+                      marker: {
+                        color: 'dark orange'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Fallowfield',
+                    value: {
+                      marker: {
+                        color: '#E9A3AF'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Gorton & Abbey Hey',
+                    value: {
+                      marker: {
+                        color: '#030052'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Moss Side',
+                    value: {
+                      marker: {
+                        color: '#3574B0'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Longsight',
+                    value: {
+                      marker: {
+                        color: '#005582'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Levenshulme',
+                    value: {
+                      marker: {
+                        color: '#BE0500'
+                      }
+                    }
+                  },
+                  {
+                    target: 'No ward',
+                    value: {
+                      marker: {
+                        color: 'white'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Withington',
+                    value: {
+                      marker: {
+                        color: '#00D97D'
+                      }
+                    }
+                  },
+                  {
+                    target: 'Brooklands',
+                    value: {
+                      marker: {
+                        color: 'light green'
+                      }
+                    }
+                  }
+                ],
+
+              }],
+              hovertemplate: "%{xaxis.title.text}: %{x}<br>" +
+                "%{yaxis.title.text}: %{y}<br>" +
+                "Primary ward: %{text}<br><br>" +
+                "<extra></extra>"
+            }]
+            
+          var layout = {
+              paper_bgcolor: 'rgb(255, 255, 255)',
+              plot_bgcolor: 'rgb(255, 255, 255)',
+              autosize: false,
+              width: 900,
+              height: 850,
+              margin: {
+                l: 350,
+                r: 50,
+                b: 300,
+                t: 100,
+                pad: 3
+              },
+              title: "Middle super output area vaccination count",
+              hovermode: "closest",
+              showlegend: false,
+              hoverlabel: {
+                bgcolor: "#FFF"
+              },
+              yaxis: {
+              
+                title: "MSOA",
+                zeroline: false,
+            showticklabels: true,
+            tickmode: 'linear',
+                tickfont: {
+                  size: 10,
+                  color: 'black'
+                },
+              },
+              xaxis: {
+                title: "Cumulative no. 1st/2nd vaccinations",
+                zeroline: false,
+                range: [0,10000],
+              },
+         }
+         
+Plotly.newPlot('myDiv', data, layout);
+});
+      
+ 
+
+    </script>
+  </body>
+
 </html>
+
