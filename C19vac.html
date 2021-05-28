@@ -302,8 +302,7 @@
 
               }],
               hovertemplate: "%{xaxis.title.text}: %{x}<br>" +
-                "%{yaxis.title.text}: %{y}<br>" +
-                "Primary ward: %{text}<br><br>" +
+                "primary ward: %{text}" +
                 "<extra></extra>"
             }]
             
@@ -312,16 +311,16 @@
               plot_bgcolor: 'rgb(255, 255, 255)',
               autosize: false,
               width: 900,
-              height: 850,
+              height: 900,
               margin: {
                 l: 350,
                 r: 50,
                 b: 300,
                 t: 100,
-                pad: 3
+                pad: 4
               },
               title: "Middle super output area vaccination count",
-              hovermode: "closest",
+              hovermode: "y unified",
               showlegend: false,
               hoverlabel: {
                 bgcolor: "#FFF"
