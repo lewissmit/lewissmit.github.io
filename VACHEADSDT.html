@@ -35,7 +35,7 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTLMysxqvCYQomWjZ
 var data = [{
   type: 'table',
    columnorder: [0],
-   columnwidth: [520,80],
+   columnwidth: [900],
   header: {
     values: headerValues,
     align: ["left","left"],
@@ -46,7 +46,7 @@ var data = [{
   cells: {
     values: cellValues,
     align: ["left"],
-    height: 50,
+    height: 30,
     line: {color: "black", width: 0.2},
     fill: {color: ['rgb(255,255,255)']},
     font: {family: "Arial", size: 16, color: ["black"]}
@@ -55,8 +55,8 @@ var data = [{
 
 var layout = {
   autosize: false,
-  width: 600,
-  height: 500,
+  width: 900,
+  height: 130,
   margin: {
     l: 20,
     r: 50,
