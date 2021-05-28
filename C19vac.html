@@ -17,7 +17,7 @@ Plotly.d3.csv(
   function(rows) {
     var x = [],
       y = [],
-      s = [],
+      y2 = [],
       c = [],
       t = [];
 
@@ -25,7 +25,7 @@ Plotly.d3.csv(
       row = rows[i];
       y.push(row["Value"]);
       x.push(row["Name"]);
-      s.push(row["Ward"]);
+      y2.push(row["Ward"]);
       c.push(row["Rank"]);
       t.push(row["MSOA"]);
     }
@@ -36,13 +36,13 @@ Plotly.d3.csv(
           type: "bar",
           x: x,
           y: y,
-          text: s,
-          marker: { size: s, sizeref: 4000, sizemode: "area" },
-          transforms: [{ type: "groupby", groups: s }],
+          text: y2,
+          transforms: [{ type: "groupby", groups: y2 }],
           hovertemplate:
-            "<b>Primary ward: %{text}</b><br><br>" +
-            "%{yaxis.title.text}: %{y}<br>" +
+            
             "%{xaxis.title.text}: %{x}<br>" +
+            "%{yaxis.title.text}: %{y}<br>" + 
+            "Primary ward: %{text}<br><br>" +
             "<extra></extra>"
         }
       ],
@@ -72,6 +72,10 @@ Plotly.d3.csv(
         },
         yaxis: {
           title: "Cumulative no. 1st/2nd vaccinations",
+          zeroline: false
+        },
+      y2axis: {
+          title: "Ward",
           zeroline: false
         }
       },
