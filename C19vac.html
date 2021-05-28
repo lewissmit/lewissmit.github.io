@@ -71,7 +71,7 @@ Plotly.d3.csv(
           {target: 'Moss Side', value: {marker: {color: '#3574B0'}}},
           {target: 'Longsight', value: {marker: {color: '#005582'}}},
           {target: 'Levenshulme', value: {marker: {color: '#BE0500'}}},
-          {target: '#N/A', value: {marker: {color: 'white'}}},
+          {target: 'No ward', value: {marker: {color: 'white'}}},
           {target: 'Withington', value: {marker: {color: '#00D97D'}}},
           {target: 'Brooklands', value: {marker: {color: 'light green'}}}],
           
@@ -88,15 +88,16 @@ Plotly.d3.csv(
       paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
 	autosize: false,
-  width: 800,
-  height: 900,
+  width: 900,
+  height: 950,
   margin: {
-    l: 200,
+    l: 250,
     r: 100,
-    b: 80,
+    b: 300,
     t: 40,
     pad: 4
   },
+  
         title: "Middle super output area vaccination count",
         hovermode: "closest",
         showlegend: false,
@@ -108,8 +109,7 @@ Plotly.d3.csv(
           title: "MSOA",
           zeroline: false,
           tickfont: {
-      family: 'Arial, sans',
-      size: 11,
+      size: 8,
       color: 'black'
     },
         },
