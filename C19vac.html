@@ -23,8 +23,8 @@ Plotly.d3.csv(
 
     for (var i = 0; i < rows.length; i++) {
       row = rows[i];
-      y.push(row["Value"]);
-      x.push(row["Name"]);
+      x.push(row["Value"]);
+      y.push(row["Name"]);
       y2.push(row["Ward"]);
       c.push(row["Rank"]);
       t.push(row["MSOA"]);
@@ -34,6 +34,7 @@ Plotly.d3.csv(
       data: [
         {
           type: "bar",
+          orientation: 'h',
           x: x,
           y: y,
           text: y2,
@@ -70,7 +71,7 @@ Plotly.d3.csv(
           {target: 'Moss Side', value: {marker: {color: '#3574B0'}}},
           {target: 'Longsight', value: {marker: {color: '#005582'}}},
           {target: 'Levenshulme', value: {marker: {color: '#BE0500'}}},
-          {target: '#N/A', value: {marker: {color: 'light grey'}}},
+          {target: '#N/A', value: {marker: {color: 'white'}}},
           {target: 'Withington', value: {marker: {color: '#00D97D'}}},
           {target: 'Brooklands', value: {marker: {color: 'light green'}}}],
           
@@ -87,12 +88,12 @@ Plotly.d3.csv(
       paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
 	autosize: false,
-  width: 900,
-  height: 550,
+  width: 800,
+  height: 900,
   margin: {
-    l: 150,
+    l: 200,
     r: 100,
-    b: 300,
+    b: 80,
     t: 40,
     pad: 4
   },
@@ -102,13 +103,17 @@ Plotly.d3.csv(
         hoverlabel: { bgcolor: "#FFF" },
         legend: {orientation: 'h', y: -0.3},
         legendgroup: y2,
-        xaxis: {
-          tickformat: ".0%",
+        yaxis: {
+          showticklabels: true,
           title: "MSOA",
           zeroline: false,
-          tickangle: 320
+          tickfont: {
+      family: 'Arial, sans',
+      size: 11,
+      color: 'black'
+    },
         },
-        yaxis: {
+        xaxis: {
           title: "Cumulative no. 1st/2nd vaccinations",
           zeroline: false
         },
