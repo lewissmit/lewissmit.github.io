@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/43da1523306d087844751381249f66c8/raw/d4538a5a4053020e0d4d739e07de04b322fad927/WasteChart2.csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFpDrtHLT3U3msRhirTrMZhsCza2J3LAPBVsIu-53vZKuimUminSFbwoaekhJDQquraAuJoz17wWf/pub?gid=0&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -105,3 +105,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
