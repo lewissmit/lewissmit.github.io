@@ -72,7 +72,7 @@ map.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   map.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/de10bad7d6ca4254902c08b92e66a039/raw/3b5b51eea36cea7e665f7d5e9ded729d7284af97/Cat.geojson'
+    'data': 'https://gist.githubusercontent.com/lewissmit/506ac8104afd64611bc923096b764040/raw/84097fe2ff4bcf9581375dd9adb9e5bcf17c14ff/Cat2.geojson'
   });
 
 map.addLayer({
@@ -158,16 +158,17 @@ var popup = new mapboxgl.Popup({ offset: [0, -15] })
 '<h3>' +
 feature.properties.Createdon +
 '</h3><p>' +
-feature.properties.CRM +
+feature.properties.Service +
 '</h3><p>' +
-feature.properties.Ward +
+feature.properties.Createdon +
 '</h3><p>' +
-feature.properties.Add +
+feature.properties.Final +
 '</h3><p>' +
-feature.properties.Loc +
+feature.properties.Emailaddress1 +
 '</h3><p>' +
-feature.properties.Req +
-'</p>'
+feature.properties.Customeridname +
+'</h3><p>'
+
 )
 .setLngLat(feature.geometry.coordinates)
 .addTo(map);
