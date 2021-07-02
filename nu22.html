@@ -12,18 +12,26 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRnU0M-Wh_UlV8v1ZFSO6HOx8lToznjoPtB8EN9_3hJAicgb9Z5wbsyuui3bF395AGlUXe9HfC3xf42/pub?gid=1599318586&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000003&age='60+'&metric=newCasesBySpecimenDateAgeDemographics&format=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'areaName'),
-  y: unpack(rows, 'age'),
+  x: unpack(rows, 'date'),
+  y: unpack(rows, 'cases'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Date',
   type: 'bar',
-  
+  transforms: [
+        {
+        type: 'filter',
+        target: unpack(rows, 'age'),
+        operation: '=',
+        value: '60+'
+         
+    }]
+ 
 };
 
 data = [trace1];
