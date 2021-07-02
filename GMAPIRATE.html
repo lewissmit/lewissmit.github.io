@@ -33,9 +33,10 @@ var x1 = [], y1 = [];
 		var trace1 = {
 			x: x1, 
 			y: y1,
+      name: 'Bolton',
 			mode: 'lines',
 			line: {
-				color: 'red',
+				color: 'rgb(128, 0, 128)',
 				size: 2
 			}
 		};
@@ -52,9 +53,10 @@ var x1 = [], y1 = [];
 		var trace2 = {
 			x: x2, 
 			y: y2,
+      name: 'Bury',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(255, 205, 0)',
 				size: 2
 			}
 		};
@@ -69,9 +71,10 @@ var x1 = [], y1 = [];
 		var trace3 = {
 			x: x3, 
 			y: y3,
-			mode: 'lines',
+      name: 'Manchester',
+			mode: 'lines+markers',
 			line: {
-				color: 'blue',
+				color: 'rgb(0, 66, 0)',
 				size: 2
 			}
 		};
@@ -86,9 +89,10 @@ var x1 = [], y1 = [];
 		var trace4 = {
 			x: x4, 
 			y: y4,
+      name: 'Oldham',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(78, 89, 8)',
 				size: 2
 			}
 		}; 
@@ -103,9 +107,10 @@ var x1 = [], y1 = [];
 		var trace5 = {
 			x: x5, 
 			y: y5,
+      name: 'Rochdale',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(43, 138, 240)',
 				size: 2
 			}
 		}; 
@@ -120,9 +125,10 @@ var x1 = [], y1 = [];
 		var trace6 = {
 			x: x6, 
 			y: y6,
+      name: 'Salford',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(235, 64, 52)',
 				size: 2
 			}
 		}; 
@@ -130,16 +136,17 @@ var x1 = [], y1 = [];
 
 	  	for (var i=0; i<csvData7.length; i++) {
 	  		row1 = csvData7[i];
-	  		x6.push( row1['date'] );
-	  		y6.push( row1['cumCasesBySpecimenDateRate'] );
+	  		x7.push( row1['date'] );
+	  		y7.push( row1['cumCasesBySpecimenDateRate'] );
 	  	}
 
 		var trace7 = {
 			x: x7, 
 			y: y7,
+      name: 'Stockport',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(135, 70, 92)',
 				size: 2
 			}
 		}; 
@@ -147,16 +154,17 @@ var x1 = [], y1 = [];
 
 	  	for (var i=0; i<csvData8.length; i++) {
 	  		row1 = csvData8[i];
-	  		x6.push( row1['date'] );
-	  		y6.push( row1['cumCasesBySpecimenDateRate'] );
+	  		x8.push( row1['date'] );
+	  		y8.push( row1['cumCasesBySpecimenDateRate'] );
 	  	}
 
 		var trace8 = {
 			x: x8, 
 			y: y8,
+      name: 'Tameside',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(135, 120, 70)',
 				size: 2
 			}
 		}; 
@@ -164,16 +172,17 @@ var x1 = [], y1 = [];
 
 	  	for (var i=0; i<csvData9.length; i++) {
 	  		row1 = csvData9[i];
-	  		x6.push( row1['date'] );
-	  		y6.push( row1['cumCasesBySpecimenDateRate'] );
+	  		x9.push( row1['date'] );
+	  		y9.push( row1['cumCasesBySpecimenDateRate'] );
 	  	}
 
 		var trace9 = {
 			x: x9, 
 			y: y9,
+      name: 'Trafford',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(74, 20, 1)',
 				size: 2
 			}
 		}; 
@@ -181,16 +190,17 @@ var x1 = [], y1 = [];
 
 	  	for (var i=0; i<csvData10.length; i++) {
 	  		row1 = csvData10[i];
-	  		x6.push( row1['date'] );
-	  		y6.push( row1['cumCasesBySpecimenDateRate'] );
+	  		x10.push( row1['date'] );
+	  		y10.push( row1['cumCasesBySpecimenDateRate'] );
 	  	}
 
 		var trace10 = {
 			x: x10, 
 			y: y10,
+      name: 'Wigan',
 			mode: 'lines',
 			line: {
-				color: 'blue',
+				color: 'rgb(204, 102, 1)',
 				size: 2
 			}
 		}; 
@@ -215,6 +225,7 @@ layout = {
     y: 1
   },
   xaxis: {
+  range: ['2021-01-01', '2021-07-21'],
     title: '',
 tickangle:320
   },
@@ -223,6 +234,34 @@ tickangle:320
     title: 'Rate per 100,000 population',
     type: 'lines'
   },
+  annotations:[
+  {
+      x: '2020-03-09',
+      y: 10000,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '2021-01-11',
+      y: 10000,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+  ],
  
   hovermode: "x",
   hoverlabel: {namelength :-1,
