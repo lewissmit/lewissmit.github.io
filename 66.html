@@ -34,9 +34,17 @@ trace2 = {
   type: 'lines',
   
 };
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  marker: {color: 'rgb(55, 200, 102)'},
+  name: '2021-22 financial year',
+  type: 'lines',
+  
+};
 
 
-data = [trace1,trace2];
+data = [trace1,trace2,trace3];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
