@@ -1,0 +1,286 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000001&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData1) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000002&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData2) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000003&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData3) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000004&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData4) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000005&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData5) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000006&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData6) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000007&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData7) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000008&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData8) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000009&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData9) {
+Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&areaCode=E08000010&metric=newCasesBySpecimenDateRollingSum&format=csv", function(err, csvData10) {
+var x1 = [], y1 = [];
+
+	  	for (var i=0; i<csvData1.length; i++) {
+	  		row1 = csvData1[i];
+	  		x1.push( row1['date'] );
+	  		y1.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace1 = {
+			x: x1, 
+			y: y1,
+      name: 'Bolton',
+			mode: 'lines',
+			line: {
+				color: 'rgb(128, 0, 128)',
+				size: 2
+			}
+		};
+
+		/* Second URL data */
+		var x2 = [], y2 = [];
+
+	  	for (var i=0; i<csvData2.length; i++) {
+	  		row1 = csvData2[i];
+	  		x2.push( row1['date'] );
+	  		y2.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace2 = {
+			x: x2, 
+			y: y2,
+      name: 'Bury',
+			mode: 'lines',
+			line: {
+				color: 'rgb(255, 205, 0)',
+				size: 2
+			}
+		};
+    var x3 = [], y3 = [];
+
+	  	for (var i=0; i<csvData3.length; i++) {
+	  		row1 = csvData3[i];
+	  		x3.push( row1['date'] );
+	  		y3.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace3 = {
+			x: x3, 
+			y: y3,
+      name: 'Manchester',
+			mode: 'lines+markers',
+			line: {
+				color: 'rgb(0, 66, 0)',
+				size: 2
+			}
+		};
+   var x4 = [], y4 = [];
+
+	  	for (var i=0; i<csvData4.length; i++) {
+	  		row1 = csvData4[i];
+	  		x4.push( row1['date'] );
+	  		y4.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace4 = {
+			x: x4, 
+			y: y4,
+      name: 'Oldham',
+			mode: 'lines',
+			line: {
+				color: 'rgb(78, 89, 8)',
+				size: 2
+			}
+		}; 
+    var x5 = [], y5 = [];
+
+	  	for (var i=0; i<csvData5.length; i++) {
+	  		row1 = csvData5[i];
+	  		x5.push( row1['date'] );
+	  		y5.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace5 = {
+			x: x5, 
+			y: y5,
+      name: 'Rochdale',
+			mode: 'lines',
+			line: {
+				color: 'rgb(43, 138, 240)',
+				size: 2
+			}
+		}; 
+    var x6 = [], y6 = [];
+
+	  	for (var i=0; i<csvData6.length; i++) {
+	  		row1 = csvData6[i];
+	  		x6.push( row1['date'] );
+	  		y6.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace6 = {
+			x: x6, 
+			y: y6,
+      name: 'Salford',
+			mode: 'lines',
+			line: {
+				color: 'rgb(235, 64, 52)',
+				size: 2
+			}
+		}; 
+     var x7 = [], y7 = [];
+
+	  	for (var i=0; i<csvData7.length; i++) {
+	  		row1 = csvData7[i];
+	  		x7.push( row1['date'] );
+	  		y7.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace7 = {
+			x: x7, 
+			y: y7,
+      name: 'Stockport',
+			mode: 'lines',
+			line: {
+				color: 'rgb(135, 70, 92)',
+				size: 2
+			}
+		}; 
+     var x8 = [], y8 = [];
+
+	  	for (var i=0; i<csvData8.length; i++) {
+	  		row1 = csvData8[i];
+	  		x8.push( row1['date'] );
+	  		y8.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace8 = {
+			x: x8, 
+			y: y8,
+      name: 'Tameside',
+			mode: 'lines',
+			line: {
+				color: 'rgb(135, 120, 70)',
+				size: 2
+			}
+		}; 
+     var x9 = [], y9 = [];
+
+	  	for (var i=0; i<csvData9.length; i++) {
+	  		row1 = csvData9[i];
+	  		x9.push( row1['date'] );
+	  		y9.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace9 = {
+			x: x9, 
+			y: y9,
+      name: 'Trafford',
+			mode: 'lines',
+			line: {
+				color: 'rgb(74, 20, 1)',
+				size: 2
+			}
+		}; 
+     var x10 = [], y10 = [];
+
+	  	for (var i=0; i<csvData10.length; i++) {
+	  		row1 = csvData10[i];
+	  		x10.push( row1['date'] );
+	  		y10.push( row1['newCasesBySpecimenDateRollingSum'] );
+	  	}
+
+		var trace10 = {
+			x: x10, 
+			y: y10,
+      name: 'Wigan',
+			mode: 'lines',
+			line: {
+				color: 'rgb(204, 102, 1)',
+				size: 2
+			}
+		}; 
+    data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8, trace9, trace10];
+    
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+	autosize: false,
+  width: 900,
+  height: 500,
+  margin: {
+    l: 70,
+    r: 20,
+    b: 60,
+    t: 40,
+    pad: 4
+  },
+  showlegend: true,
+		 legend: {
+    x: 1.00,
+    y: 1
+  },
+  xaxis: {
+  range: ['2021-01-01', '2021-07-21'],
+    title: '',
+tickangle:320
+  },
+  yaxis: {
+    range: [0, 3000],
+    title: '7 day rolling sum of cases',
+    type: 'lines'
+  },
+  annotations:[
+  {
+      x: '2020-03-09',
+      y: 1000,
+      xref: 'x',
+      yref: 'y',
+      text: '2020',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    },
+    {
+      x: '2021-01-11',
+      y: 1000,
+      xref: 'x',
+      yref: 'y',
+      text: '2021',
+      font: {
+        size: 14,
+        color: '#bb99df'
+      },
+      showarrow: false,
+      
+    }
+  ],
+ 
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+});
+});
+});
+});
+});
+});
+});
+});
+});
+});
+</script>
+</body>
+</html>
