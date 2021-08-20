@@ -12,14 +12,14 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/2af59e6a52753e73c464e0f754e4f34a/raw/", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSP9gnm9JZk2ffqoE_UQhanyWCTDkxlrOEFVTbfGXGPicsXlPuvWhTwxdhPKdHEvARf0OWnx57lm5-j/pub?gid=0&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Claim'),
+  x: unpack(rows, 'DATE_NAME'),
+  y: unpack(rows, 'OBS_VALUE'),
   marker: {color: 'rgb(68, 68, 68)'},
   line: {color: 'rgb(168,68,68)'},
   name: 'Number of claimants',
@@ -61,4 +61,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
