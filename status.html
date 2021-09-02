@@ -21,7 +21,7 @@ trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(204,183,108)'},
-  name: 'BAU Staff on site',
+  name: 'Staff on site (full time)',
   type: 'bar'
   
 };
@@ -30,7 +30,7 @@ trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(0,51,102)'},
-  name: 'Staff absent due to sickness - unrelated to COVID-19',
+  name: 'Mix of on site and home working',
   type: 'bar'
   
 };
@@ -40,7 +40,7 @@ trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(73, 209, 107)'},
-  name: 'Staff with COVID-19 symptoms',
+  name: 'Working from home (full time)',
   type: 'bar'
   
 };
@@ -48,7 +48,7 @@ trace4 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value4'),
   marker: {color: 'rgb(66, 135, 245)'},
-  name: 'Staff with COVID-19 Diagnosis',
+  name: 'Staff not in work - other sickness',
   type: 'bar'
   
 };
@@ -56,7 +56,7 @@ trace5 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(80, 68, 115)'},
-  name: 'Staff - Test and Trace',
+  name: 'Staff not in work - COVID symptoms',
   type: 'bar'
   
 };
@@ -64,7 +64,7 @@ trace6 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value6'),
   marker: {color: 'rgb(138, 131, 129)'},
-  name: 'Staff working from home',
+  name: 'Staff not in work - diagnosed COVID',
   type: 'bar'
   
 };
@@ -72,13 +72,20 @@ trace7 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value7'),
   marker: {color: 'rgb(163, 86, 67)'},
-  name: 'Staff Unable to work',
+  name: 'Staff not in work - test and trace',
+  type: 'bar'
+  
+};
+trace8 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value7'),
+  marker: {color: 'rgb(13, 86, 67)'},
+  name: 'Staff unable to work,
   type: 'bar'
   
 };
 
-
-data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7];
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
