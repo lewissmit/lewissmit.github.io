@@ -1,0 +1,112 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1270078153&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value1'),
+  marker: {color: 'rgb(0,102,102)'},
+  name: 'Adults',
+  type: 'bar',
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(34,42,53)'},
+  name: 'Childrens & Education',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  marker: {color: 'rgb(157,195,230)'},
+  name: 'Corporate Core',
+  type: 'bar',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(1,90,230)'},
+  name: 'Growth & Development',
+  type: 'bar',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value5'),
+  marker: {color: 'rgb(187,190,30)'},
+  name: 'Neighbourhoods',
+  type: 'bar',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value6'),
+  marker: {color: 'rgb(100,50,23)'},
+  name: 'Chief Executives',
+  type: 'bar',
+  
+};
+
+
+var data =[trace1, trace2,trace3, trace4, trace5, trace6],
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 90,
+    r: 150,
+    b: 80,
+    t: 50,
+    pad: 4},
+  showlegend: true,
+ barmode: 'stack',
+  xaxis: {
+    title: 'Date', 
+    tickangle: 320
+  },
+  yaxis: {
+    range: [0,200],
+    title: 'Number of staff',
+    type: 'bar'
+  },
+ 
+   
+	       hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
