@@ -1,0 +1,97 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRpC93MKpXL7eQJbgG0oykz8VQbrbKG45dzrzPWs0TLW_dvE1ydaCmptGAX816Heto_ZVoQ2CQkR-Jg/pub?gid=0&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(0,102,102)'},
+  name: 'On site (full-time)',
+  type: 'bar',
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value14'),
+  marker: {color: 'rgb(34,42,53)'},
+  name: 'Working from home (full-time)',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value13'),
+  marker: {color: 'rgb(157,195,230)'},
+  name: 'Mix of on-site and working from home',
+  type: 'bar',
+  
+};
+
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value7'),
+  marker: {color: 'rgb(12,15,230)'},
+  name: 'Unable to work',
+  type: 'bar',
+  
+};
+
+
+var data =[trace1, trace2,trace3],
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 90,
+    r: 150,
+    b: 80,
+    t: 50,
+    pad: 4},
+  showlegend: true,
+  barmode: 'stack',
+  xaxis: {
+    title: '', 
+    tickangle: 320
+  },
+  yaxis: {
+    range: [0, 10000],
+    title: 'Number of staff',
+    type: 'bar'
+  },
+
+  hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
+ 
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
