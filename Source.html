@@ -153,10 +153,11 @@ map.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   map.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/7d083da7e47a7d63012c07883cdada13/raw/f5bbb9f0fa28721d6ca8bc75d6dc9906e11a0d63/Sourced.geojson'
+    'data': 'https://gist.githubusercontent.com/lewissmit/7d083da7e47a7d63012c07883cdada13/raw'
   });
+  
 map.addLayer({
-id: "points",
+id: "Public and anonymous",
 type: "circle",
 source: "biffa",
 paint: {'circle-radius': {
@@ -168,7 +169,7 @@ paint: {'circle-radius': {
 }, 
 'circle-color': [
 'match',
-['get', 'Final source'],
+['get', 'Final Source'],
 'Assumed Resident',
 '#f52e2e',
 'Anonymous',
@@ -188,7 +189,44 @@ paint: {'circle-radius': {
 }
 });
 });
-
+map.on('load', () => {
+  map.addSource('mcc', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/15890840059dfd03203d49359c09a8b5/raw'
+  });
+map.addLayer({
+id: "MCC and partners",
+type: "circle",
+source: "mcc",
+paint: {'circle-radius': {
+'base': 2,
+'stops': [
+[12, 4],
+[22, 6]
+]
+}, 
+'circle-color': [
+'match',
+['get', 'Final Source'],
+'Assumed Resident',
+'#f52e2e',
+'Anonymous',
+'#ecab83',
+'Active Lifestyles',
+'#0a33eb',
+'Councillor',
+'#7eda52',
+'Commercial organisation',
+'#f5f247',
+'GMP',
+'#23fbe1',
+'Registered provider',
+'#df47fa',
+/* other */ '#0a33eb'
+]
+}
+});
+});
 var toggleableLayerIds = [ 'Public and anonymous', 'MCC and partners'];
  
 for (var i = 0; i < toggleableLayerIds.length; i++) {
