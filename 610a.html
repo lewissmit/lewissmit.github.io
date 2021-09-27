@@ -12,30 +12,30 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://gist.githubusercontent.com/lewissmit/c9d39c40be847b5edecb14a35744a9b0/raw/", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vS8IAsoO6oGqSkVxJkqG5XCDvJFFx5ATdG3Ze113rAw0VO9gXOd9_D0flQ0yqbj2lBdfkr1LsN0VXHM/pub?gid=421553365&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Status'),
-  y: unpack(rows, 'Not'),
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Manchester - No. of people not in employment on Universal Credit - Raw value'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Not in employment',
   type: 'bar',
   
 };
 trace2 = {
-  x: unpack(rows, 'Status'),
-  y: unpack(rows, 'In'),
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Manchester - No. of people in employment on Universal Credit - Raw value'),
   marker: {color: 'rgb(0, 102, 102)'},
   name: 'In employment',
   type: 'bar',
   
 };
 trace3 = {
-  x: unpack(rows, 'Status'),
-  y: unpack(rows, 'Comb'),
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Manchester - No. of people on Universal Credit - Raw value'),
   marker: {color: 'rgb(168, 168, 50)'},
   name: 'No employment split<br>available for latest data',
   type: 'bar',
@@ -79,3 +79,6 @@ Plotly.newPlot('myDiv', data, layout);
 </html>
 
 
+
+
+ 
