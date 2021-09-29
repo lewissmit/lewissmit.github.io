@@ -44,14 +44,7 @@ trace3 = {
   type: 'bar'
   
 };
-trace4 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value4'),
-  marker: {color: 'rgb(148, 148, 148)'},
-  name: 'Staff not in work - other sickness',
-  type: 'bar'
-  
-};
+
 trace5 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value5'),
@@ -85,7 +78,7 @@ trace8 = {
   
 };
 
-data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8];
+data = [trace1,trace2,trace3,trace5,trace6,trace7,trace8];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
