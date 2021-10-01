@@ -75,15 +75,15 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4c
 var mapA = new mapboxgl.Map({
   container: createContainer({ height: 400}),
   style: 'mapbox://styles/smithl1/cku81kziw0l9n17mpmsqzdh2g',
-  center: [-2.190178, 53.449137],
-  zoom: 15.5
+  center: [-2.18969,53.44475],
+  zoom: 13
 });
 
 var mapB = new mapboxgl.Map({
   container: createContainer({ height: 400 }),
   style: 'mapbox://styles/smithl1/cku81kziw0l9n17mpmsqzdh2g',
-  center: [-2.190178, 53.449137],
-  zoom: 15.5
+  center: [-2.18969,53.44475],
+  zoom: 13
 });
 
 
@@ -174,7 +174,7 @@ mapB.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapB.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/2dcb946f71f8aa5a125a83301d8c2981/raw/'
+    'data': 'https://gist.githubusercontent.com/lewissmit/82aacbec647aa6cc56decbbf36c0000d/raw/00a717dcf7e7af8b0d9c15dae2341c8e11171e54/Pl2020.geojson'
   });
 mapB.addLayer({
 id: "points",
@@ -218,7 +218,7 @@ mapA.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapA.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/402ba3bdfcc8491af631852563f6ed45/raw/6f2fd2e8ef5ec1bcbfe483c881c9ee3f87f3b754/All2020.csv'
+    'data': 'https://gist.githubusercontent.com/lewissmit/15115b42a0d3253fee603284b9dfe88f/raw/dc8491d313167b09455f76354b75726926775818/Pl2021.geojson'
   });
   
 mapA.addLayer({
