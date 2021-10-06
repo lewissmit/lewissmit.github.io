@@ -31,8 +31,25 @@ trace1 = {
   type: 'lines+markers',
   
 };
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value2'),
+  mode: 'lines+markers',
+  line: {color: 'rgb(68, 68, 68)',
+  width: 1},
+  marker: {
+    color: 'rgb(55, 12, 102)',
+    size: 8
+  },
+  name: 'Secondary schools',
+  type: 'lines+markers',
+  
+};  
+  
+  
+  
 
-data = [trace1];
+data = [trace1,trace2];
 
 layout = {
   paper_bgcolor: 'rgb(256, 256, 256)',
