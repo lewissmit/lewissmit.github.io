@@ -43,9 +43,17 @@ trace2 = {
   type: 'line+markers',
   
 };
+trace4 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Value8'),
+  marker: {color: 'rgb(2, 91, 168)'},
+  name: '2022',
+  type: 'line+markers',
+  
+};
 
 
-data = [trace1,trace2,trace3];
+data = [trace1,trace2,trace3,trace4];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
@@ -79,3 +87,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
