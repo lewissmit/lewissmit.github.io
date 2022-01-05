@@ -42,8 +42,19 @@ trace3 = {
   type: 'lines+markers',
   
 };
+trace4 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Value7'),
+  marker: {color: 'rgb(58, 29, 200)'},
+  name: '2022',
+  type: 'lines+markers',
+  
+};  
+  
+  
+  
 
-data = [trace1,trace2,trace3];
+data = [trace1,trace2,trace3,trace4];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
