@@ -58,8 +58,62 @@ var trace4 = {
   line: {color: '#a89e32'}
 }
 
+var trace8 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2022'),
+  marker: {color: 'rgb(165, 10, 255)'},
+  name: '2022 full year',
+  type: 'lines',
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  
+  };
 
-var data = [trace4,trace1,trace2,trace3];
+var trace7 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020 full year'),
+  marker: {color: 'rgb(0, 2, 3)'},
+  name: '2020 full year',
+  type: 'lines',
+   line: {
+    dash: 'dot',
+    width: 3
+  },
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  
+};
+var trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2021 full year'),
+  marker: {color: 'rgb(255, 102, 102)'},
+  name: '2021 full year',
+  type: 'lines',
+   line: {
+    dash: 'dot',
+    width: 3
+  },
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  
+};
+var trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2019'),
+  marker: {color: 'rgb(0, 102, 102)'},
+  name: '2019 full year',
+  type: 'lines',
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+   
+};
+
+
+var data = [trace4,trace1,trace2,trace3,trace5,trace6,trace7,trace8];
 
 var layout = {
   xaxis: {
@@ -71,7 +125,18 @@ var layout = {
     autorange: false,
     range: [0,1000],
     type: 'linear',
+  },
+  yaxis2: {
+    domain: [0.78, 0.95],
+    anchor: 'x2'
+  },
+  xaxis2: {
+    domain: [0.4, 1.2],
+    title: '',
+    tickangle: 320,
+    anchor: 'y2'
   }
+  
 };
 
 
