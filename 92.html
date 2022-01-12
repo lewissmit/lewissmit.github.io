@@ -59,20 +59,75 @@ trace1 = {
   
   
 };
+trace8 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2022'),
+  marker: {color: 'rgb(165, 10, 255)'},
+  name: '2022 full year',
+  type: 'lines',
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  
+  };
 
-data = [trace4,trace2,trace3,trace1];
+trace7 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020 full year'),
+  marker: {color: 'rgb(0, 2, 3)'},
+  name: '2020 full year',
+  type: 'lines',
+   line: {
+    dash: 'dot',
+    width: 3
+  },
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2021 full year'),
+  marker: {color: 'rgb(255, 102, 102)'},
+  name: '2021 full year',
+  type: 'lines',
+   line: {
+    dash: 'dot',
+    width: 3
+  },
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2019'),
+  marker: {color: 'rgb(0, 102, 102)'},
+  name: '2019 full year',
+  type: 'lines',
+  showlegend: false,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  
+  
+};
+
+
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   showlegend: true,
 
- 		legend: {'orientation': 'r',
-     y:1.2,
-     x:1},
+ 		legend: {'orientation': 'v',
+     y:0.5,
+     x:1.05},
   autosize: false,
-  width: 400,
-  height: 350,
+  width: 800,
+  height: 450,
   margin: {
     l: 60,
     r: 50,
@@ -90,8 +145,19 @@ layout = {
     range: [0,500],
     title: 'Number of reports'
   },
-  
+  yaxis2: {
+    domain: [0.78, 0.95],
+    anchor: 'x2'
+  },
+  xaxis2: {
+    domain: [0.4, 1.2],
+    title: '',
+    tickangle: 320,
+    anchor: 'y2'
+  }
 };
+  
+
 
 Plotly.newPlot('myDiv', data, layout);
 
@@ -100,4 +166,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
