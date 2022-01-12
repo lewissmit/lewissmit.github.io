@@ -17,6 +17,15 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
           return rows.map(function(row) { return row[key]; });
       }
 
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2022'),
+  marker: {color: 'rgb(165, 10, 255)'},
+  name: '2022',
+  type: 'lines',
+  
+  };
+
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2020'),
@@ -24,7 +33,7 @@ trace3 = {
   name: '2020',
   type: 'lines',
   line: {
-    dash: 'dashdot',
+    dash: 'dot',
     width: 3
   }
   
@@ -35,31 +44,32 @@ trace2 = {
   marker: {color: 'rgb(255, 102, 102)'},
   name: '2021',
   type: 'lines',
+  line: {
+    dash: 'dot',
+    width: 3
+  }
   
 };
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
   marker: {color: 'rgb(0, 102, 102)'},
-  name: '2019',
-  type: 'lines',
-  line: {
-    dash: 'dot',
-    width: 1
-  }
+  name: '2019 pre<br>pandemic baseline',
+  type: 'lines'
+  
   
 };
 
-data = [trace2,trace3,trace1];
+data = [trace4,trace2,trace3,trace1];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
   showlegend: true,
 
- 		legend: {'orientation': 'h',
+ 		legend: {'orientation': 'r',
      y:1.2,
-     x:0.01},
+     x:1},
   autosize: false,
   width: 400,
   height: 350,
@@ -72,10 +82,12 @@ layout = {
   title: '',
   xaxis: {
     title: '',
-    tickangle: 320
+    tickangle: 320,
+    autorange: false,
+    range: ['01/01/2021','30/01/2021']
   },
   yaxis: {
-    range: [0,22000],
+    range: [0,500],
     title: 'Number of reports'
   },
   
@@ -88,3 +100,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
