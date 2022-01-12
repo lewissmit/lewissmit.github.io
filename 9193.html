@@ -24,7 +24,7 @@ var trace1 = {
   name: '2021',
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2021'),
-  line: {color: 'a50aff',
+  line: {color: '#a50aff',
   dash: 'dot',
     width: 1}
 }
@@ -61,7 +61,7 @@ var trace4 = {
 var trace8 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2022'),
-  marker: {color: 'rgb(165, 10, 255)'},
+  marker: {color: '#a89e32'},
   name: '2022 full year',
   type: 'lines',
   showlegend: false,
@@ -73,7 +73,7 @@ var trace8 = {
 var trace7 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2020 full year'),
-  marker: {color: 'rgb(0, 2, 3)'},
+  marker: {color: '#ff910a'},
   name: '2020 full year',
   type: 'lines',
    line: {
@@ -88,7 +88,7 @@ var trace7 = {
 var trace6 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2021 full year'),
-  marker: {color: 'rgb(255, 102, 102)'},
+  marker: {color: 'a50aff'},
   name: '2021 full year',
   type: 'lines',
    line: {
@@ -103,7 +103,7 @@ var trace6 = {
 var trace5 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
-  marker: {color: 'rgb(0, 102, 102)'},
+  marker: {color: '#7F7G7G'},
   name: '2019 full year',
   type: 'lines',
   showlegend: false,
@@ -147,3 +147,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
