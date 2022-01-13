@@ -88,7 +88,7 @@ var trace7 = {
 var trace6 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2021 full year'),
-  marker: {color: 'a50aff'},
+  marker: {color: '#a50aff'},
   name: '2021 full year',
   type: 'lines',
    line: {
@@ -103,9 +103,9 @@ var trace6 = {
 var trace5 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
-  marker: {color: '#7F7G7G'},
+  marker: {color: 'red'},
+  type: 'lines+markers',
   name: '2019 full year',
-  type: 'lines',
   showlegend: false,
   xaxis: 'x2',
   yaxis: 'y2',
@@ -128,11 +128,16 @@ var layout = {
   },
   yaxis2: {
     domain: [0.78, 0.95],
-    anchor: 'x2'
+    anchor: 'x2',
   },
   xaxis2: {
     domain: [0.4, 1.2],
     title: '',
+          tickfont: {
+        size: 8,
+        color: '#7f7f7f'
+      },
+
     tickangle: 320,
     anchor: 'y2'
   }
@@ -147,4 +152,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
