@@ -19,8 +19,8 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 
 
 var trace1 = {
-  type: "scatter",
-  mode: "lines+markers",
+
+  type: "lines+markers",
   name: '2021',
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2021'),
@@ -30,8 +30,8 @@ var trace1 = {
 }
 
 var trace2 = {
-  type: "scatter",
-  mode: "lines+markers",
+  
+  type: "lines+markers",
   name: '2020',
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2020'),
@@ -41,8 +41,8 @@ var trace2 = {
 }
 
 var trace3 = {
-  type: "scatter",
-  mode: "lines",
+ 
+  type: "lines",
   name: '2019 pre<br>pandemic baseline',
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
@@ -50,8 +50,8 @@ var trace3 = {
 }
 
 var trace4 = {
-  type: "scatter",
-  mode: "lines",
+
+  type: "lines",
   name: '2022',
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2022'),
@@ -61,10 +61,9 @@ var trace4 = {
 var trace8 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2022'),
+  type: 'lines',
   marker: {color: '#a89e32'},
   name: '2022',
-  type: 'scatter',
-  mode: 'lines',
   showlegend: false,
   xaxis: 'x2',
   yaxis: 'y2',
@@ -72,43 +71,46 @@ var trace8 = {
   };
 
 var trace7 = {
+  
+
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2020 full year'),
-  marker: {color: '#453638'},
-  name: '2020 full year',
-  type: 'scatter',
-  mode: 'lines',
-   
-  showlegend: false,
+  y: unpack(rows, '2020fy'),
+  type: "lines",
+  line: {color: '#453638',
+  dash: 'dot',
+    width: 1},
+      name: '2020 full year',
+     showlegend: false,
   xaxis: 'x2',
   yaxis: 'y2',
-  
-};
+}
+
 var trace6 = {
+  
+
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2021 full year'),
-  marker: {color: '#a50aff'},
-  name: '2021 full year',
-  type: 'scatter',
-  mode: 'lines',  
-  showlegend: false,
+  y: unpack(rows, '2021fy'),
+  type: "lines",
+  line: {color: '#a50aff',
+  dash: 'dot',
+    width: 1},
+      name: '2021 full year',
+     showlegend: false,
   xaxis: 'x2',
   yaxis: 'y2',
-  
+
 };
 
-var trace5 = {
-  type: "scatter",
-  mode: "lines",
-  name: '2019 full year',
+var trace5 = {  
+  
   x: unpack(rows, 'Date'),
   y: unpack(rows, '2019'),
-  line: {color: '#7F7G7G'},
+  name: '2019 full year',
+  type: 'lines',
+  line: {color: 'orange'},
   showlegend: false,
   xaxis: 'x2',
   yaxis: 'y2'
-
-
 };
 var data = [trace4,trace3,trace2,trace1,trace8,trace7,trace6,trace5];
 
@@ -120,7 +122,7 @@ var layout = {
     },
   yaxis: {
     autorange: false,
-    range: [0,1000],
+    range: [0,500],
     type: 'linear',
   },
   yaxis2: {
@@ -144,4 +146,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
