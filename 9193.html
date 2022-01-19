@@ -102,7 +102,7 @@ var trace6 = {
 };
 var trace5 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2019'),
+  y: unpack(rows, '2019 full year'),
   marker: {color: 'red'},
   type: 'lines+markers',
   name: '2019 full year',
@@ -119,11 +119,11 @@ var layout = {
   xaxis: {
     tickangle:320,
     autorange: false,
-    range: ['01/01/2021','30/01/2021']
+    range: ['2021-01-01','2021-01-18']
     },
   yaxis: {
     autorange: false,
-    range: [0,1000],
+    range: [0,2000],
     type: 'linear',
   },
   yaxis2: {
@@ -132,6 +132,8 @@ var layout = {
   },
   xaxis2: {
     domain: [0.4, 1.2],
+    autorange: false,
+    range: ['2021-01-01','2021-12-31'],
     title: '',
           tickfont: {
         size: 8,
