@@ -34,20 +34,30 @@ trace2 = {
   mode: 'lines+markers'
   
 };
-
-
+	
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
-  marker: {color: 'rgba(128,0,0,01)'},
-  name: '2021 footfall',
+  marker: {color: 'rgba(180, 26, 2,1)'},
+  name: '2021',
+  mode: 'lines+markers'
+  
+};
+	
+
+
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgba(17,5,50,01)'},
+  name: '2022 footfall',
   fill: 'tozeroy',
-  fillcolor: 'rgba(122,0,0,0.1)',
+  fillcolor: 'rgba(17,5,50,0.1)',
 mode: 'lines+markers'
   
 };
 
-data = [trace1, trace2,trace3];
+data = [trace1, trace2,trace3,trace4];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
@@ -78,7 +88,7 @@ layout = {
     },
   },
   yaxis: {
-    range: [0, 350000],
+    range: [0, 500000],
     title: 'Total footfall'
   },
  
