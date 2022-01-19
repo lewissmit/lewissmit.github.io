@@ -22,7 +22,7 @@ var trace1 = {
 
   type: "lines+markers",
   name: '2021',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2021'),
   line: {color: '#a50aff',
   dash: 'dot',
@@ -33,7 +33,7 @@ var trace2 = {
   
   type: "lines+markers",
   name: '2020',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2020'),
   line: {color: '#453638',
   dash: 'dot',
@@ -44,7 +44,7 @@ var trace3 = {
  
   type: "lines",
   name: '2019 pre<br>pandemic baseline',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2019'),
   line: {color: '#7F7G7G'}
 }
@@ -53,7 +53,7 @@ var trace4 = {
 
   type: "lines",
   name: '2022',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2022'),
   line: {color: '#a89e32'}
 }
@@ -104,7 +104,7 @@ var trace6 = {
 var trace5 = {  
   
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2019'),
+  y: unpack(rows, '2019fy'),
   name: '2019 full year',
   type: 'lines',
   line: {color: 'orange'},
@@ -117,12 +117,11 @@ var data = [trace4,trace3,trace2,trace1,trace8,trace7,trace6,trace5];
 var layout = {
   xaxis: {
     tickangle:320,
-    autorange: false,
-    range: ['01/01/2021','30/01/2021']
+   
     },
   yaxis: {
     autorange: false,
-    range: [0,500],
+    range: [0,1200],
     type: 'linear',
   },
   yaxis2: {
