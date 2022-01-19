@@ -22,7 +22,7 @@ var trace1 = {
   type: "scatter",
   mode: "lines+markers",
   name: '2021',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2021'),
   line: {color: '#a50aff',
   dash: 'dot',
@@ -33,7 +33,7 @@ var trace2 = {
   type: "scatter",
   mode: "lines+markers",
   name: '2020',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2020'),
   line: {color: '#ff910a',
   dash: 'dot',
@@ -44,7 +44,7 @@ var trace3 = {
   type: "scatter",
   mode: "lines",
   name: '2019 pre<br>pandemic baseline',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2019'),
   line: {color: '#7F7G7G'}
 }
@@ -53,7 +53,7 @@ var trace4 = {
   type: "scatter",
   mode: "lines",
   name: '2022',
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Date2'),
   y: unpack(rows, '2022'),
   line: {color: '#a89e32'}
 }
@@ -118,8 +118,6 @@ var data = [trace4,trace1,trace2,trace3,trace5,trace6,trace7,trace8];
 var layout = {
   xaxis: {
     tickangle:320,
-    autorange: false,
-    range: ['2021-01-01','2021-01-18']
     },
   yaxis: {
     autorange: false,
@@ -132,8 +130,6 @@ var layout = {
   },
   xaxis2: {
     domain: [0.4, 1.2],
-    autorange: false,
-    range: ['2021-01-01','2021-12-31'],
     title: '',
           tickfont: {
         size: 8,
