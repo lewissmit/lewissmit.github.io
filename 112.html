@@ -106,8 +106,13 @@ layout = {
   title: '',
   xaxis: {
     title: '',
-    tickangle: 320
-  },
+    tickangle: 320,
+    autorange: false,  
+    range: ['2021-01-01','2022-01-31'],
+    rangeslider: {
+    type: 'date',
+    bgcolor: '#dff0e3'
+  }},
   yaxis: {
     range: [-100, 150],
     title: '% variation',
@@ -115,7 +120,7 @@ layout = {
   },
   hovermode: "x",
   hoverlabel: {namelength :-1,
-         bgcolor: "#FFF" },
+         bgcolor: "#fafcfb" },
          config: { responsive: true }
 };
 
