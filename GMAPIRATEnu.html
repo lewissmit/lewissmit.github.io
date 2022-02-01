@@ -22,6 +22,8 @@
      Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000002&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData6) {
      Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData7) {
      Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData8) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData9) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData10) {
               
                           var x1 = [],
                             y1 = [];
@@ -130,7 +132,7 @@
                           for (var i = 0; i < csvData6.length; i++) {
                             row1 = csvData5[i];
                             x6.push(row1['date']);
-                            y6.push(row1['cumFirstEpisodesBySpecimenDateRate']);
+                            y6.push(row1['cumReinfectionsBySpecimenDateRate']);
                           }
                           var trace6 = {
                             x: x6,
@@ -140,7 +142,8 @@
                             visible: 'legendonly',
                             line: {
                               color: 'rgb(35, 110, 19)',
-                              size: 2
+                              size: 2,
+                              dash: 'dot'
                             }
                           };
                            var x7 = [],
@@ -168,20 +171,64 @@
                           for (var i = 0; i < csvData8.length; i++) {
                             row1 = csvData8[i];
                             x8.push(row1['date']);
-                            y8.push(row1['cumFirstEpisodesBySpecimenDateRate']);
+                            y8.push(row1['cumReinfectionsBySpecimenDateRate']);
                           }
                           var trace8 = {
                             x: x8,
                             y: y8,
                             name: 'Oldham - reinfections',
                             mode: 'lines',
+                           
                             visible: 'legendonly',
                             line: {
                               color: 'rgb(108, 19, 110)',
-                              size: 2
+                              size: 2,
+                              dash: 'dot'
                             }
                           };
-                          data = [trace1, trace2, trace3, trace4,trace5,trace6,trace7,trace8];
+                          var x9 = [],
+                    y9 = [];
+
+                          for (var i = 0; i < csvData9.length; i++) {
+                            row1 = csvData9[i];
+                            x9.push(row1['date']);
+                            y9.push(row1['cumReinfectionsBySpecimenDateRate']);
+                          }
+                          var trace9 = {
+                            x: x9,
+                            y: y9,
+                            name: 'Other - first episodes',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        
+                            }
+                          };
+                          var x10 = [],
+                    y10 = [];
+
+                          for (var i = 0; i < csvData10.length; i++) {
+                            row1 = csvData10[i];
+                            x10.push(row1['date']);
+                            y10.push(row1['cumReinfectionsBySpecimenDateRate']);
+                          }
+                          var trace10 = {
+                            x: x10,
+                            y: y10,
+                            name: 'Other - reinfections',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        
+                            }
+                          };
+                          data = [trace1, trace2, trace3, trace4,trace5,trace6,trace7,trace8,trace9,trace10];
 
                           layout = {
                             paper_bgcolor: 'rgb(255, 255, 255)',
@@ -259,9 +306,10 @@
                   });
                   });
                   });
+                  });
+                  });
 
     </script>
   </body>
 
 </html>
-
