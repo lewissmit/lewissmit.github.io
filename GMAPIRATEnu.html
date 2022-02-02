@@ -22,8 +22,18 @@
      Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000002&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData6) {
      Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData7) {
      Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData8) {
-     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData9) {
-     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000004&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData10) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000005&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData9) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000005&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData10) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000006&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData11) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000006&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData12) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000007&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData13) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000007&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData14) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000008&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData15) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000008&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData16) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000009&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData17) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000009&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData18) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000010&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData19) {
+     Plotly.d3.csv("https://api.coronavirus.data.gov.uk/v2/data?areaType=utla&areaCode=E08000010&metric=cumFirstEpisodesBySpecimenDateRate&metric=cumReinfectionsBySpecimenDateRate&format=csv", function(err, csvData20) {
               
                           var x1 = [],
                             y1 = [];
@@ -192,12 +202,12 @@
                           for (var i = 0; i < csvData9.length; i++) {
                             row1 = csvData9[i];
                             x9.push(row1['date']);
-                            y9.push(row1['cumReinfectionsBySpecimenDateRate']);
+                            y9.push(row1['cumFirstEpisodesBySpecimenDateRate']);
                           }
                           var trace9 = {
                             x: x9,
                             y: y9,
-                            name: 'Other - first episodes',
+                            name: 'Rochdale - first episodes',
                             mode: 'lines',
                            
                             visible: 'legendonly',
@@ -218,7 +228,29 @@
                           var trace10 = {
                             x: x10,
                             y: y10,
-                            name: 'Other - reinfections',
+                            name: 'Rochdale - reinfections',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                              dash: 'dot'
+                        
+                            }
+                          };
+                           var x11 = [],
+                    y11 = [];
+
+                          for (var i = 0; i < csvData11.length; i++) {
+                            row1 = csvData11[i];
+                            x11.push(row1['date']);
+                            y11.push(row1['cumFirstEpisodesBySpecimenDateRate']);
+                          }
+                          var trace11 = {
+                            x: x11,
+                            y: y11,
+                            name: 'Salford - first episodes',
                             mode: 'lines',
                            
                             visible: 'legendonly',
@@ -228,7 +260,196 @@
                         
                             }
                           };
-                          data = [trace1, trace2, trace3, trace4,trace5,trace6,trace7,trace8,trace9,trace10];
+                          var x12 = [],
+                    y12 = [];
+
+                          for (var i = 0; i < csvData12.length; i++) {
+                            row1 = csvData12[i];
+                            x12.push(row1['date']);
+                            y12.push(row1['cumReinfectionsBySpecimenDateRate']);
+                          }
+                          var trace12 = {
+                            x: x12,
+                            y: y12,
+                            name: 'Salford - reinfections',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        dash: 'dot'
+                            }
+                          };
+                          var x13 = [],
+                    y13 = [];
+
+                          for (var i = 0; i < csvData13.length; i++) {
+                            row1 = csvData13[i];
+                            x13.push(row1['date']);
+                            y13.push(row1['cumFirstEpisodesBySpecimenDateRate']);
+                          }
+                          var trace13 = {
+                            x: x13,
+                            y: y13,
+                            name: 'Stockport - first episodes',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        
+                            }
+                          };
+                          var x14 = [],
+                    y14 = [];
+
+                          for (var i = 0; i < csvData14.length; i++) {
+                            row1 = csvData14[i];
+                            x14.push(row1['date']);
+                            y14.push(row1['cumReinfectionsBySpecimenDateRate']);
+                          }
+                          var trace14 = {
+                            x: x14,
+                            y: y14,
+                            name: 'Stockport - reinfections',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        dash: 'dot'
+                            }
+                          };
+                          var x15 = [],
+                    y15 = [];
+
+                          for (var i = 0; i < csvData15.length; i++) {
+                            row1 = csvData15[i];
+                            x15.push(row1['date']);
+                            y15.push(row1['cumFirstEpisodesBySpecimenDateRate']);
+                          }
+                          var trace15 = {
+                            x: x15,
+                            y: y15,
+                            name: 'Tameside - first episodes',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        
+                            }
+                          };
+                          var x16 = [],
+                    y16 = [];
+
+                          for (var i = 0; i < csvData16.length; i++) {
+                            row1 = csvData16[i];
+                            x16.push(row1['date']);
+                            y16.push(row1['cumReinfectionsBySpecimenDateRate']);
+                          }
+                          var trace16 = {
+                            x: x16,
+                            y: y16,
+                            name: 'Tameside - reinfections',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        dash: 'dot'
+                            }
+                          };
+                          var x17 = [],
+                    y17 = [];
+
+                          for (var i = 0; i < csvData17.length; i++) {
+                            row1 = csvData17[i];
+                            x17.push(row1['date']);
+                            y17.push(row1['cumFirstEpisodesBySpecimenDateRate']);
+                          }
+                          var trace17 = {
+                            x: x17,
+                            y: y17,
+                            name: 'Trafford - first episodes',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        
+                            }
+                          };
+                          var x18 = [],
+                    y18 = [];
+
+                          for (var i = 0; i < csvData16.length; i++) {
+                            row1 = csvData18[i];
+                            x18.push(row1['date']);
+                            y18.push(row1['cumReinfectionsBySpecimenDateRate']);
+                          }
+                          var trace18 = {
+                            x: x18,
+                            y: y18,
+                            name: 'Trafford - reinfections',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        dash: 'dot'
+                            }
+                          };
+                          var x19 = [],
+                    y19 = [];
+
+                          for (var i = 0; i < csvData19.length; i++) {
+                            row1 = csvData19[i];
+                            x19.push(row1['date']);
+                            y19.push(row1['cumFirstEpisodesBySpecimenDateRate']);
+                          }
+                          var trace19 = {
+                            x: x19,
+                            y: y19,
+                            name: 'Wigan - first episodes',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        
+                            }
+                          };
+                          var x20 = [],
+                    y20 = [];
+
+                          for (var i = 0; i < csvData20.length; i++) {
+                            row1 = csvData20[i];
+                            x20.push(row1['date']);
+                            y20.push(row1['cumReinfectionsBySpecimenDateRate']);
+                          }
+                          var trace20 = {
+                            x: x20,
+                            y: y20,
+                            name: 'Wigan - reinfections',
+                            mode: 'lines',
+                           
+                            visible: 'legendonly',
+                            line: {
+                              color: 'rgb(64, 60, 69)',
+                              size: 2,
+                        dash: 'dot'
+                            }
+                          };
+                          data = [trace1, trace2, trace3, trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11,trace12,trace13,trace14,trace15,trace16,trace17,trace18,trace19,trace20];
 
                           layout = {
                             paper_bgcolor: 'rgb(255, 255, 255)',
@@ -308,7 +529,16 @@
                   });
                   });
                   });
-
+                  });
+                  });
+                   });
+                  });
+                  });
+                  });
+                  });
+                  });
+ });
+                  });
     </script>
   </body>
 
