@@ -101,8 +101,13 @@ layout = {
   title: '',
   xaxis: {
     title: '',
-    tickangle:320
-  },
+    tickangle:320,
+    autorange: false,  
+    range: ['2021-02-01','2022-02-28'],
+    rangeslider: {
+    type: 'date',
+    bgcolor: '#fafcfb'
+  }},
   yaxis: {
     range: [-100, 120],
     title: '% variation',
