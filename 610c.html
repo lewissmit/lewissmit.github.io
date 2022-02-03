@@ -12,13 +12,13 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1723529398&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSP0TWqmcghCjYLU_byKUgph-Y-J099QPrbyokCEonlQ5trCxGzDLqIqDcScDfik3fCm06HwZt8bvlj/pub?gid=1911849310&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Month'),
   y: unpack(rows, 'Value5'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Age 16-24',
@@ -27,7 +27,7 @@ trace1 = {
 };
 
 trace2 = {
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Month'),
   y: unpack(rows, 'Value6'),
   marker: {color: 'rgb(168, 200, 68)'},
   name: 'Age 25-49',
@@ -36,7 +36,7 @@ trace2 = {
 };
   
 trace3 = {
-  x: unpack(rows, 'Date'),
+  x: unpack(rows, 'Month'),
   y: unpack(rows, 'Value7'),
   marker: {color: 'rgb(180, 200, 224)'},
   name: 'Age 50+',
@@ -62,7 +62,9 @@ layout = {
   title: '',
   xaxis: {
     title: '',
-    tickangle:320
+    tickangle:320,
+    autorange: false,
+    range: ['Jan/20','Mar/22']
   },
   yaxis: {
     range: [100,250],
