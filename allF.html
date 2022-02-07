@@ -91,20 +91,17 @@ layout = {
     title: '',
     tickangle:320,
     autorange: false,
-    range: ['01-01-2022','16-02-2022'],
-    rangeslider: {
-    type: 'date',
+    rangeslider: {range: ['01-Jan','09-Feb'],
     bgcolor: '#fafcfb'
-  }},
+    },
   yaxis: {
-    range: [0, 150000],
     title: 'Combined district centre footfall'
   },
 hovermode: "x",
   hoverlabel: {namelength :-1,
          bgcolor: "#FFF" },
          config: { responsive: true }
-    
+    }
 };
 
 Plotly.newPlot('myDiv', data, layout);
