@@ -10,103 +10,102 @@
 -->
 <body>
 
-<div id="myDiv" style="width:90%;height:100%;"></div>
+<div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQIohFNHPZ5prr-YZL78Ou5e-Ccty4xX1gfAmLRLv_Alaq-93QpuAXYd6q4C7aFJSiBRgs_lxLjprWr/pub?gid=793981773&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQIohFNHPZ5prr-YZL78Ou5e-Ccty4xX1gfAmLRLv_Alaq-93QpuAXYd6q4C7aFJSiBRgs_lxLjprWr/pub?gid=690845521&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
-
-
-var trace1 = {
- 
-  type: "lines",
-  name: 'Full 2019 onward<br>time series',
+trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value1'),
-  line: {color: '#7F7G7G'}
-}
-
-
-var trace2= {
-  x: unpack(rows, 'Date2'),
-  y: unpack(rows, 'Value2'),
-  type: 'lines',
-  marker: {color: '#a89e32'},
-  name: '2022',
-  xaxis: 'x2',
-  yaxis: 'y2',
-  
-  };
-
-var trace3 = {
-  
-
-  x: unpack(rows, 'Date2'),
-  y: unpack(rows, 'Value3'),
-  type: "lines",
-  line: {color: '#453638',
-  dash: 'dot',
-    width: 1},
-      name: '2021',
-  xaxis: 'x2',
-  yaxis: 'y2',
-}
-
-var trace4 = {
-  
-
-  x: unpack(rows, 'Date2'),
-  y: unpack(rows, 'Value4'),
-  type: "lines",
-  line: {color: '#a50aff',
-  dash: 'dot',
-    width: 1},
-      name: '2020',
-  xaxis: 'x2',
-  yaxis: 'y2',
-
-};
-
-var trace5 = {  
-  
-  x: unpack(rows, 'Date2'),
-  y: unpack(rows, 'Value5'),
+  y: unpack(rows, '2019'),
+  marker: {color: 'rgb(102, 205, 170)'},
   name: '2019',
   type: 'lines',
-  line: {color: 'orange'},
-  xaxis: 'x2',
-  yaxis: 'y2'
+  line: {
+    dash: 'dot',
+    width: 1
+  }
+  
 };
-var data = [trace1,trace2,trace3,trace4,trace5];
-
-var layout = {
-  xaxis: {
-  domain: [0.5,0.5],
-    tickangle:320,
-    autorange: true,
-    },
-  yaxis: {
-  domain: [0.5,0.5],
-    autorange: false,
-    range: [0,100000],
-    type: 'linear',
-  },
-  yaxis2: {
-    domain: [0.78, 0.95],
-    anchor: 'x2'
-  },
-  xaxis2: {
-    domain: [0.45, 1.4],
-    title: '',
-    tickangle: 320,
-    tickfont: {size: 8},
-    anchor: 'y2'
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020'),
+  marker: {color: 'rgb(0, 0, 0)'},
+  name: '2020',
+ 
+  type: 'lines',
+  line: {
+    dash: 'dot',
+    width: 1
+  }
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2021'),
+  marker: {color: 'rgb(255, 165, 0)'},
+  name: '2021',
+  
+  type: 'lines',
+  line: {
+    dash: 'dot',
+    width: 1
   }
   
 };
 
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2022'),
+  marker: {color: 'rgb(176, 46, 96)'},
+  name: '2022',
+  type: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
+  
+};
+
+
+
+data = [trace1,trace2,trace3,trace4];
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 90,
+    r: 90,
+    b: 90,
+    t: 10,
+    pad: 4},
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320,
+    autorange: false,
+    range: ['01-01-2022','16-02-2022'],
+    rangeslider: {
+    type: 'date',
+    bgcolor: '#fafcfb'
+  }},
+  yaxis: {
+    range: [0, 150000],
+    title: 'Combined district centre footfall'
+  },
+hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+    
+};
 
 Plotly.newPlot('myDiv', data, layout);
 
