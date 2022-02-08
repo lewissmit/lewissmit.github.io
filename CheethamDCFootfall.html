@@ -1,0 +1,123 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:100%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQIohFNHPZ5prr-YZL78Ou5e-Ccty4xX1gfAmLRLv_Alaq-93QpuAXYd6q4C7aFJSiBRgs_lxLjprWr/pub?gid=1613041891&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2019'),
+  marker: {color: 'rgb(7, 252, 3)'},
+  name: '2019 pre pandemic',
+  type: 'lines',
+  line: {
+    dash: 'solid',
+    width: 2
+  }
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020pre'),
+  marker: {color: 'rgb(255, 165, 0)'},
+  name: '2020 pre lock down',
+ 
+  type: 'lines',
+  line: {
+    dash: 'dot',
+    width: 1
+  }
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020'),
+  marker: {color: 'rgb(255, 165, 0)'},
+  name: '2020 post lock down',
+  
+  type: 'lines',
+  line: {
+    dash: 'dot',
+    width: 1
+  }
+  
+};
+
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2021'),
+  marker: {color: 'rgb(3, 252, 148)'},
+  name: '2021',
+  type: 'lines',
+  line: {
+    dash: 'dash',
+    width: 1
+  }
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2022'),
+  marker: {color: 'rgb(252, 61, 3)'},
+  name: '2022',
+  type: 'lines+markers',
+  
+  
+};
+
+
+data = [trace1,trace2,trace3,trace4,trace5];
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 90,
+    r: 90,
+    b: 90,
+    t: 10,
+    pad: 4},
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320,
+    autorange: false,
+    range: ["1/Jan","15/Feb"],
+    rangeslider: {range: ["1/Jan","15/Feb"],
+    type: 'date',
+    bgcolor: '#fafcfb'
+    },
+  yaxis: {
+    title: ''
+  },
+hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+    }
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
