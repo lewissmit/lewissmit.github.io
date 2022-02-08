@@ -19,38 +19,38 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQIohFNHPZ5prr-YZ
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2019'),
+  y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(102, 205, 170)'},
   name: '2019',
   type: 'lines',
   line: {
-    dash: 'dot',
+    dash: 'solid',
     width: 1
   }
   
 };
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2020'),
+  y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(0, 0, 0)'},
   name: '2020',
  
   type: 'lines',
   line: {
-    dash: 'dot',
+    dash: 'solid',
     width: 1
   }
   
 };
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2021'),
+  y: unpack(rows, 'Value3'),
   marker: {color: 'rgb(255, 165, 0)'},
   name: '2021',
   
   type: 'lines',
   line: {
-    dash: 'dot',
+    dash: 'solid',
     width: 1
   }
   
@@ -58,7 +58,7 @@ trace3 = {
 
 trace4 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '2022'),
+  y: unpack(rows, 'Value4'),
   marker: {color: 'rgb(176, 46, 96)'},
   name: '2022',
   type: 'lines',
@@ -91,7 +91,8 @@ layout = {
     title: '',
     tickangle:320,
     autorange: false,
-    rangeslider: {range: ['01-Jan','09-Feb'],
+    range: ["2022-01-01","2022-02-10"],
+    rangeslider: {range: ["2022-01-01","2022-02-10"],
     bgcolor: '#fafcfb'
     },
   yaxis: {
