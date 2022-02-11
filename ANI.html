@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Highlight features within a bounding box</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+ 
+<style>
+.map-overlay .legend .bar {
+height: 10px;
+width: 100%;
+background: linear-gradient(to right, #FCA107, #7F3121);
+}
+ 
+.map-overlay input {
+background-color: transparent;
+display: inline-block;
+width: 100%;
+position: relative;
+margin: 0;
+cursor: ew-resize;
+}
+
+.legend {
+background-color: #fff;
+border-radius: 3px;
+bottom: 30px;
+box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+padding: 10px;
+position: absolute;
+right: 10px;
+z-index: 1;
+}
+ 
+.legend h4 {
+margin: 0 0 10px;
+}
+ 
+.legend div span {
+border-radius: 50%;
+display: inline-block;
+height: 10px;
+margin-right: 5px;
+width: 10px;
+};
+</style>
+ <nav id="menu"></nav>
+<div id="map"></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/smithl1/ckzi8kjd7002416lczypjlc5c',
+center: [-2.223704,53.481738],
+minZoom: 0,
+zoom:14.2
+
+});
+map.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
+  map.addSource('2022', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/31063362993063698de3c60f65f0bd1c/raw/1500d071aa6a7b6ffe46e56f4a8508382f558b62/2022.geojson'
+  });
+
+map.addLayer({
+id: "points2",
+type: "circle",
+source: "2022",
+paint: {'circle-radius': {
+'base': 1,
+'stops': [
+[12, 3],
+[22, 5]
+]
+}}
+
+});
+
+
+
+
+
+ map.addSource('outline', {
+'type': 'geojson',
+'data': 
+{
+   "type": "Feature",
+    "geometry": {
+       "type": "Polygon",
+       "coordinates":  [ 
+          [
+             [-2.2213866,53.4863516],
+[-2.2200348,53.4855856],
+[-2.2219016,53.4840279],
+[-2.2200562,53.4827765],
+[-2.2184898,53.4835937],
+[-2.2166445,53.4821892],
+[-2.2174169,53.481589],
+[-2.2183611,53.4810783],
+[-2.2213008,53.4798141],
+[-2.2226955,53.4793161],
+[-2.2237469,53.479929],
+[-2.2245838,53.4806058],
+[-2.2266652,53.481372],
+[-2.2293045,53.4827382],
+[-2.2330596,53.4847939],
+[-2.2330596,53.4847939],
+[-2.2324588,53.4852408],
+[-2.2319867,53.485394],
+[-2.2238971,53.4884455],
+[-2.2228028,53.4875901],
+[-2.2223951,53.4874879],
+[-2.2213866,53.4863516]
+
+            ]
+          ]
+    }
+  }
+      });
+map.addLayer({
+id: "outline",
+type: "line",
+source: "outline",
+paint: {'line-color': 'blue',
+'line-width': 3}
+
+});      
+     
+map.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+map.addLayer({
+id: "wards",
+type: "line",
+source: "wards"
+
+});
+
+
+map.on('click', function (e) {
+var features = map.queryRenderedFeatures(e.point, {
+layers: ['points2'] // replace this with the name of the layer
+});
+ 
+if (!features.length) {
+return;
+}
+ 
+var feature = features[0];
+ 
+var popup = new mapboxgl.Popup({ offset: [0, -15] })
+.setLngLat(feature.geometry.coordinates)
+.setHTML(
+'<h3>' +
+feature.properties.Year +
+'</h3><p>' +
+feature.properties.WardID +
+'</h3><p>' +
+feature.properties.Address +
+'</h3><p>' +
+feature.properties.Inarea2 +
+'</h3><p>'
+)
+.setLngLat(feature.geometry.coordinates)
+.addTo(map);
+
+});
+});
+
+</script>
+ 
+</body>
+</html>
