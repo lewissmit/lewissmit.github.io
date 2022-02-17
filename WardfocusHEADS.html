@@ -21,18 +21,28 @@ trace1 = {
   x: unpack(rows, 'Label'),
   y: unpack(rows, 'Value'),
   marker: {color: 'rgb(0, 102, 102)'},
-  name: 'No',
+  name: '2021',
+  type: 'bar',
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Label'),
+  y: unpack(rows, 'Value2'),
+  marker: {color: 'rgb(59, 62, 202)'},
+  name: '2022',
   type: 'bar',
   
 };
 
 
-data = [trace1];
+
+data = [trace1,trace2];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
-  showlegend: false,
+  showlegend: true,
   autosize: false,
   width: 900,
   height: 450,
@@ -63,3 +73,4 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
+
