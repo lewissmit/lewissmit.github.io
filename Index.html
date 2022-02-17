@@ -48,7 +48,7 @@ mapA.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapA.addSource('earthquakes', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/402ba3bdfcc8491af631852563f6ed45/raw/6f2fd2e8ef5ec1bcbfe483c881c9ee3f87f3b754/All2020.csv',
+    'data': 'https://gist.githubusercontent.com/lewissmit/2dcb946f71f8aa5a125a83301d8c2981/raw/',
     'cluster': true,
     'clusterRadius': 40,
 'clusterMaxZoom': 17
@@ -98,6 +98,21 @@ layout: {
 "text-size": 12
 }
 });
+mapA.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+mapA.addLayer({
+id: "wards",
+type: "line",
+source: "wards",
+'paint': {
+'line-width': 0.5,
+'line-opacity': 0.7,
+}
+
+}
+);
  
 mapA.addLayer({
 id: "unclustered-point",
@@ -138,7 +153,7 @@ mapB.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapB.addSource('earthquakes', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/2dcb946f71f8aa5a125a83301d8c2981/raw/',
+    'data': 'https://gist.githubusercontent.com/lewissmit/53dafcde28e52a1b8f716b6b84a8a476/raw/',
     'cluster': true,
     'clusterRadius': 40,
 'clusterMaxZoom': 17
@@ -176,6 +191,23 @@ paint: {
 ]
 }
 });
+mapB.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+mapB.addLayer({
+id: "wards",
+type: "line",
+source: "wards",
+'paint': {
+'line-width': 0.5,
+'line-opacity': 0.7,
+}
+
+
+
+}
+);
  
 mapB.addLayer({
 id: "cluster-count",
