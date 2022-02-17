@@ -81,7 +81,7 @@ var mapA = new mapboxgl.Map({
 
 var mapB = new mapboxgl.Map({
   container: createContainer({ height: 400 }),
-  style: 'mapbox://styles/smithl1/ckdednb7x1s271iob3byfu9t9',
+  style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
   center: [-2.22815,53.47762],
   zoom: 11.3
 });
@@ -174,7 +174,7 @@ mapB.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapB.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/2dcb946f71f8aa5a125a83301d8c2981/raw/'
+    'data': 'https://gist.githubusercontent.com/lewissmit/53dafcde28e52a1b8f716b6b84a8a476/raw/'
   });
 mapB.addLayer({
 id: "points",
@@ -218,7 +218,7 @@ mapA.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapA.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/402ba3bdfcc8491af631852563f6ed45/raw/6f2fd2e8ef5ec1bcbfe483c881c9ee3f87f3b754/All2020.csv'
+    'data': 'https://gist.githubusercontent.com/lewissmit/2dcb946f71f8aa5a125a83301d8c2981/raw/'
   });
   
 mapA.addLayer({
