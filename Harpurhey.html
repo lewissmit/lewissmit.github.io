@@ -73,7 +73,7 @@ document.head.appendChild(css);
 mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
 
 var mapA = new mapboxgl.Map({
-  container: createContainer(),
+  container: createContainer({ height: 400}),
   style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
   center: [-2.203588,53.514052],
   zoom: 14
@@ -81,7 +81,7 @@ var mapA = new mapboxgl.Map({
 
 var mapB = new mapboxgl.Map({
   container: createContainer({ height: 400 }),
-  style: 'mapbox://styles/smithl1/ckdednb7x1s271iob3byfu9t9',
+  style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d',
   center: [-2.203588,53.514052],
   zoom: 14
 });
@@ -174,7 +174,7 @@ mapB.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapB.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/2dcb946f71f8aa5a125a83301d8c2981/raw/'
+    'data': 'https://gist.githubusercontent.com/lewissmit/53dafcde28e52a1b8f716b6b84a8a476/raw/'
   });
 mapB.addLayer({
 id: "points",
@@ -202,13 +202,25 @@ paint: {'circle-radius': {
 ]
 }
 });
+mapB.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+mapB.addLayer({
+id: "wards",
+type: "line",
+source: "wards"
+
+}
+);
 });
 mapA.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   mapA.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/402ba3bdfcc8491af631852563f6ed45/raw/6f2fd2e8ef5ec1bcbfe483c881c9ee3f87f3b754/All2020.csv'
+    'data': 'https://gist.githubusercontent.com/lewissmit/2dcb946f71f8aa5a125a83301d8c2981/raw/'
   });
+  
 mapA.addLayer({
 id: "points",
 type: "circle",
@@ -235,7 +247,20 @@ paint: {'circle-radius': {
 ]
 }
 });
+mapA.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+mapA.addLayer({
+id: "wards",
+type: "line",
+source: "wards"
+
+}
+);
+
 });
 </script>
+</div>
 </body>
 </html>
