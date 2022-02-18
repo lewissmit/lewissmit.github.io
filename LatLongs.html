@@ -20,32 +20,14 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
   var map = L.mapbox.map('map')
-      .setView([53.4792, 2.2442], 16)
+      .setView([53.514052,-2.203588], 16)
       .addLayer(L.mapbox.styleLayer('mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d'))
 .addControl(L.mapbox.geocoderControl('mapbox.places'));
 
-  var featureGroup = L.featureGroup().addTo(map);
-
-  // Define circle options
-  // http://leafletjs.com/reference.html#circle
-  var circle_options = {
-      color: '#fff',      // Stroke color
-      opacity: 1,         // Stroke opacity
-      weight: 10,         // Stroke weight
-      fillColor: '#000',  // Fill color
-      fillOpacity: 0.6    // Fill opacity
-  };
+var drawnItems = new L.FeatureGroup()
+map.addLayer(drawnItems)
 
 
-
-
-  // Create array of lat,lon points
- 
-
-  // Defining a polygon here instead of a polyline will connect the
-  // endpoints and fill the path.
-  // http://leafletjs.com/reference.html#polygon
- 
   var drawControl = new L.Control.Draw({
    draw : {
         position : 'topleft',
@@ -57,26 +39,29 @@ L.mapbox.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4c
 
     },
     edit: {
-      featureGroup: featureGroup
+      featureGroup: drawnItems
     }
   }).addTo(map);
  
- var drawnItems = new L.FeatureGroup();
+
+ 
+ 
+map.on(L.Draw.Event.CREATED, function (e) {
+    var type = e.layerType,
+    layer = e.layer;
+     if (type === 'polyline','rectangle','circle') {
+        layer.on('click', function() {
+            alert(layer.getLatLngs()); 
+            });
+}   
+    drawnItems.addLayer(layer);
+}); 
+ 
+ 
+ 
 map.addLayer(drawnItems);
 
-map.on('draw:created', function (e) {
 
-    var type = e.layerType,
-        layer = e.layer;
-
-    if (type === 'polyline','rectangle','circle') {
-        layer.on('mouseover', function() {
-            alert(layer.getLatLngs());    
-       
-    });
-}
-    drawnItems.addLayer(layer);
-});
 
 </script>
 </body>
