@@ -10,7 +10,7 @@
 -->
 <body>
 
-<div id="myDiv" style="width:90%;height:100%;"></div>
+<div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
 Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1808657836&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
@@ -20,120 +20,78 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
-  marker: {color: 'rgb(68, 68, 68)'},
+  marker: {color: 'rgb(102, 205, 170)'},
   name: '6.7 Enquiries relating to<br>benefits / Universal Credit',
-  type: 'lines',
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
   
 };
-
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
-  marker: {color: 'rgb(0, 102, 102)'},
+  marker: {color: 'rgb(255, 165, 0)'},
   name: '6.8 Enquiries relating<br>to employment',
-  type: 'lines',
+  mode: 'lines',
+ mode: 'lines',
+  line: {
+    dash: 'dot',
+    width: 1
+  }
   
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value3'),
+  marker: {color: 'rgb(55, 55, 0)'},
+  name: '6.8b Enquiries relating<br>to debt',
+  mode: 'lines',
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
 };
 
 
-data = [trace1,trace2];
+
+data = [trace1,trace2,trace3];
 
 layout = {
+
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
-  autosize: false,
+   autosize: false,
   width: 900,
   height: 450,
   margin: {
-    l: 80,
-    r: 150,
+    l: 90,
+    r:90,
     b: 80,
-    t: 10,
-    pad: 4},
+    t: 40,
+    pad: 4
+  },
   title: '',
   xaxis: {
     title: '',
-    tickangle:320
-  },
+    tickangle: 320,
+    autorange: false,  
+    range: ['2021-01-01','2022-02-28'],
+    rangeslider: {
+    type: 'date',
+    bgcolor: '#fafcfb'
+  }},
   yaxis: {
     range: [0, 300],
-    title: '',
-    type: 'lines'
+    title: '% variation',
+    type: 'bar'
   },
   hovermode: "x",
   hoverlabel: {namelength :-1,
-         bgcolor: "#FFF" },
-         config: { responsive: true },
-  annotations: [
-    {
-      x: '2020-03-24',
-      y: 200,
-      xref: 'x',
-      yref: 'y',
-      text: 'Start UK lockdown 23/03/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    },
-    {
-      x: '2020-06-22',
-      y:250,
-      xref: 'x',
-      yref: 'y',
-      text: 'Non essential shops<br>reopen 15/06/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    },
-    {
-      x: '2020-07-08',
-      y: 165,
-      xref: 'x',
-      yref: 'y',
-      text: 'Pubs & restaurants<br>reopen 04/07/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    },
-    {
-      x: '2020-11-10',
-      y: 160,
-      xref: 'x',
-      yref: 'y',
-      text: 'Start 2nd national<br>lockdown 05/11/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    },
-  {
-      x: '2020-11-30',
-      y: 240,
-      xref: 'x',
-      yref: 'y',
-      text: 'End 2nd national<br>lockdown 02/12/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    },
-    {
-      x: '2021-01-05',
-      y: 185,
-      xref: 'x',
-      yref: 'y',
-      text: 'Start 3rd national<br>lockdown 05/01/21',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    }
-  ]
-  
-
+         bgcolor: "#fafcfb" },
+         config: { responsive: true }
 };
 
 Plotly.newPlot('myDiv', data, layout);
