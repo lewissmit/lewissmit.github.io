@@ -90,7 +90,7 @@ function iso8601StringToEpoch(dateString) {
 
     // conversion from string without a defined format is deprecated
     //var momentFromString = moment(dateString);
-    var formatString = "YYYY-MM-DD HH:mm:ss";
+    var formatString = "YYYY-MM-DD HH:mm:ss.SSSZ";
     var momentFromString = moment(dateString, formatString);
     if (momentFromString.isValid()) {
         return momentFromString.valueOf();
@@ -105,7 +105,7 @@ function convertUserInputFormat(that, val) {
         var mom = moment(val);
         if (mom.isValid()) {
             var iso = mom.toISOString();
-            return moment(iso, "YYYY-MM-DD HH:mm:ss").valueOf();
+            return moment(iso, "YYYY-MM-DD HH:mm:ss.SSSZ").valueOf();
         }
     } else if (that.options.propertyType === 'float') {
         return parseFloat(val);
@@ -637,7 +637,7 @@ RangeSlider.prototype.init = function() {
     mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
     var map = new mapboxgl.Map({
         container: 'map', // container id
-        style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d', // stylesheet location
+        style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
         center: [-2.2336527,53.485678], // starting position [lng, lat]
         zoom: 14.5 // starting zoom
     });
@@ -650,26 +650,36 @@ RangeSlider.prototype.init = function() {
         controlWidth: '400px',
         minProperty: 'Start',
         maxProperty: 'End',
-        sliderMin:  '2019/03/03',
-        sliderMax: '2022/02/19',
-        filterMin: '2020/01/01',
-        filterMax: '2021/12/31',
+        sliderMin: '2019-01-02T08:00:00.000Z',
+        sliderMax: '2022-02-20T00:00:00.000Z',
+        filterMin: '2019-01-03T08:00:00.000Z',
+        filterMax: '2022-02-19T00:00:00.000Z',
         propertyType: 'iso8601',
         rangeDescriptionFormat: 'shortDate',
-        rangteType: 'contained'
+        descriptionPrefix: 'Date:'
      
     }
 
     map.addControl(new RangeSlider(sliderOptions, 'top-right'));
 
     map.on('load', function() {
-        map.addSource('demo', { type: 'geojson', data: 'https://gist.githubusercontent.com/lewissmit/d9ee55436bba34586d93d8e4332e9ce7/raw' })
-        map.addLayer({
-            id: "points",
+        map.addSource('demo', { type: 'geojson', data: 'https://gist.githubusercontent.com/lewissmit/ff6e2a6c3db7a3cd2e246f049a8f537d/raw/71e3ddbeb968b302708078e83a6ba7e1c22ab3fd/DateSlide.geojson' })
+        
+    map.addLayer({   
+         id: "demo",        
 type: "circle",
 source: "demo",
-})
-    });
+paint: {'circle-radius': {
+'base': 2,
+'stops': [
+[12, 4],
+[22, 6]
+]
+},
+},
+});
+});
+
 
     </script>
 </body>
