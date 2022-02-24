@@ -644,7 +644,7 @@ RangeSlider.prototype.init = function() {
     mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
     var map = new mapboxgl.Map({
         container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+        style: 'mapbox://styles/smithl1/ckd8s9cg310ro1iqbs34dlzaz', // stylesheet location
         center: [-2.2344645,53.491712], // starting position [lng, lat]
         zoom: 15.5 // starting zoom
     });
@@ -674,19 +674,21 @@ mapboxgl: mapboxgl,
 );
 
 map.on('load', function() {
-        map.addSource('points', { type: 'geojson', data: 'https://gist.githubusercontent.com/lewissmit/e6d45ae1f35b6ea2f64ca2ee944013e4/raw/8db4f6ba634bd783730488739f4fdb26f771fa6b/abc.geojson' })
+        map.addSource('points', { type: 'geojson', data: 'https://gist.githubusercontent.com/lewissmit/e6d45ae1f35b6ea2f64ca2ee944013e4/raw' })
         map.addLayer({   
-         id: "pointsabc",        
-type: "circle",
+         id: "points",        
+
 source: "points",
+id: "points of interest",
+type: "circle",
 paint: {'circle-radius': {
-'base': 2,
+'base': 6,
 'stops': [
-[12, 4],
-[22, 6]
+[12, 8],
+[22, 10]
 ]
 },
-color: 'red'
+'circle-color': 'red'
 },
 });
 });
