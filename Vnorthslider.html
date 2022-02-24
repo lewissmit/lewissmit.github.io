@@ -15,6 +15,13 @@
 
     <!-- Moment.js -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+type="text/css"
+/>
+
     <style>
     body {
         margin: 0;
@@ -638,7 +645,7 @@ RangeSlider.prototype.init = function() {
     var map = new mapboxgl.Map({
         container: 'map', // container id
         style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-        center: [-2.2336527,53.485678], // starting position [lng, lat]
+        center: [-2.2344645,53.491712], // starting position [lng, lat]
         zoom: 14.5 // starting zoom
     });
 
@@ -659,6 +666,31 @@ RangeSlider.prototype.init = function() {
         descriptionPrefix: 'Date:'
      
     }
+map.addControl(
+new MapboxGeocoder({
+accessToken: mapboxgl.accessToken,
+mapboxgl: mapboxgl,
+}),'top-left'
+);
+
+map.on('load', function() {
+        map.addSource('points', { type: 'geojson', data: 'https://gist.githubusercontent.com/lewissmit/e6d45ae1f35b6ea2f64ca2ee944013e4/raw/8db4f6ba634bd783730488739f4fdb26f771fa6b/abc.geojson' })
+        map.addLayer({   
+         id: "pointsabc",        
+type: "circle",
+source: "points",
+paint: {'circle-radius': {
+'base': 2,
+'stops': [
+[12, 4],
+[22, 6]
+]
+},
+color: 'red'
+},
+});
+});
+
 
     map.addControl(new RangeSlider(sliderOptions, 'top-right'));
 
@@ -679,8 +711,10 @@ paint: {'circle-radius': {
 },
 });
 });
-
-
+      
+        
+        
+        
     </script>
 </body>
 
