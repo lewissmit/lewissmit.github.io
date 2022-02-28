@@ -35,6 +35,8 @@ type="text/css"
         width: 100%;
     }
 
+    
+
     .slider-control-container {
         padding: 5px;
     }
@@ -48,13 +50,15 @@ type="text/css"
     .noUi-connect {
         background: #c0392b;
     }
-    
+   
     </style>
 </head>
 
 <body>
     <div id='map'></div>
     <script src="rangeSlider.js"></script>
+   
+
     <script>
 'use strict';
 
@@ -685,7 +689,7 @@ paint: {'circle-radius': {
 [22, 10]
 ]
 },
-'circle-color': 'red'
+'circle-color': 'orange'
 },
 });
 });
@@ -694,7 +698,7 @@ paint: {'circle-radius': {
     map.addControl(new RangeSlider(sliderOptions, 'top-right'));
 
     map.on('load', function() {
-        map.addSource('demo', { type: 'geojson', data: 'https://gist.githubusercontent.com/lewissmit/ff6e2a6c3db7a3cd2e246f049a8f537d/raw/71e3ddbeb968b302708078e83a6ba7e1c22ab3fd/DateSlide.geojson' })
+        map.addSource('demo', { type: 'geojson', data: 'https://gist.githubusercontent.com/lewissmit/ff6e2a6c3db7a3cd2e246f049a8f537d/raw/b886251b6d64c63cf010350fd44eadf6e0ff174d/DateSlide.geojson' })
         
     map.addLayer({   
          id: "demo",        
@@ -707,7 +711,20 @@ paint: {'circle-radius': {
 [22, 6]
 ]
 },
-},
+'circle-color': [
+'match',
+['get', 'Outcome'],
+'Completed',
+'#32a852',
+'Completed partially - additional fly tip required',
+'#223b53',
+'Completed - compliance investigation required',
+'#e55e5e',
+'Completed - customer issue resolved',
+'#3bb2d0',
+/* other */ '#32a852'
+]
+}
 });
 });
       
