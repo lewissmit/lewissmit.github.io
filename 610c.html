@@ -19,7 +19,7 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSP0TWqmcghCjYLU_
 
 trace1 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Value5'),
+  y: unpack(rows, 'Aged 16-24'),
   marker: {color: 'rgb(68, 68, 68)'},
   name: 'Age 16-24',
   type: 'lines',
@@ -28,7 +28,7 @@ trace1 = {
 
 trace2 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Value6'),
+  y: unpack(rows, 'Aged 25-49'),
   marker: {color: 'rgb(168, 200, 68)'},
   name: 'Age 25-49',
   type: 'lines',
@@ -37,7 +37,7 @@ trace2 = {
   
 trace3 = {
   x: unpack(rows, 'Month'),
-  y: unpack(rows, 'Value7'),
+  y: unpack(rows, 'Aged 50+'),
   marker: {color: 'rgb(180, 200, 224)'},
   name: 'Age 50+',
   type: 'lines',
@@ -79,4 +79,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
