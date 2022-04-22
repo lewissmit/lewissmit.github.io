@@ -12,100 +12,37 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQAktzoo39vlaPRiDJW2W7zlky4H7X5jJ2siWMRevHJY6OCk6VcCDFE8ObzzDTvDmSLS_wFVeuHXijy/pub?gid=993259863&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQAktzoo39vlaPRiDJW2W7zlky4H7X5jJ2siWMRevHJY6OCk6VcCDFE8ObzzDTvDmSLS_wFVeuHXijy/pub?gid=683954434&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '16-19'),
+  y: unpack(rows, '16-24'),
   marker: {color: 'rgb(68, 68, 68)'},
-  name: '16-19t',
+  name: '16-24',
   type: 'bar',
   
 };
 trace2 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '20-24'),
+  y: unpack(rows, '25-49'),
   marker: {color: 'rgb(0, 102, 102)'},
-  name: '20-24',
+  name: '25-49',
   type: 'bar',
   
 };
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, '25-29'),
+  y: unpack(rows, '50+'),
   marker: {color: 'rgb(168, 168, 50)'},
-  name: '25-29',
+  name: '50+',
   type: 'bar',
   
 };
-trace4 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, '30-34'),
-  marker: {color: 'rgb(168, 8, 50)'},
-  name: '30-34',
-  type: 'bar',
-  
-};
-trace5 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, '35-39'),
-  marker: {color: 'rgb(18, 18, 50)'},
-  name: '35-39',
-  type: 'bar',
-  
-};
-trace6 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, '40-44'),
-  marker: {color: 'rgb(50, 50, 50)'},
-  name: '40-44',
-  type: 'bar',
-  
-};
-trace7 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, '45-49'),
-  marker: {color: 'rgb(123, 23, 2)'},
-  name: '45-49',
-  type: 'bar',
-  
-};
-trace8 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, '50-54'),
-  marker: {color: 'rgb(168, 68, 6)'},
-  name: '50-54',
-  type: 'bar',
-  
-};
-trace9 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, '55-59'),
-  marker: {color: 'rgb(8, 9, 50)'},
-  name: '55-59',
-  type: 'bar',
-  
-};
-trace10 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, '60-65'),
-  marker: {color: 'rgb(16, 17, 129)'},
-  name: '60-65',
-  type: 'bar',
-  
-};
-trace11 = {
-  x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Over 65'),
-  marker: {color: 'rgb(8, 80, 188)'},
-  name: 'Over 65',
-  type: 'bar',
-  
-};
-data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11];
+
+data = [trace1,trace2,trace3];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
@@ -140,7 +77,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
-
-
-
