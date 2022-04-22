@@ -1,0 +1,86 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSwa73vPueceZ4cy50ScswFKnfB6VmFQaU1ow3SuWJPeQmPTb-odXBSmivnS3pFV-mGfBBJO7LTg8o1/pub?gid=751636001&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Claimant count'),
+  marker: {color: 'rgb(200, 215, 223)'},
+  name: 'Claimant count',
+  type: 'bar',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Rate'),
+  mode: 'lines+markers',
+  marker: {color: 'rgb(120, 144, 156)',
+  size:8},
+  name: 'Claimants as a<br>proportion of residents aged 16-64',
+  type: 'lines+markers',
+  yaxis: 'y2'
+};
+
+
+data = [trace1,trace2];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 80,
+    r: 140,
+    b: 100,
+    t: 10,
+    pad: 4},
+     showlegend: true,
+  legend: {
+    x: 1.2,
+    y: 0.5
+  },
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 40000],
+    title: 'Number of claimants',
+    type: 'bar'
+  },
+  yaxis2: {
+  side: 'right',
+  overlaying: 'y',
+  range: [0, 10],
+  title: 'Rate',
+  type: 'lines+markers'
+  
+  }
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
