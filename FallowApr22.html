@@ -170,6 +170,37 @@ paint: {'circle-radius': {
 });
 map.on('load', () => {
   // add a clustered GeoJSON source for powerplant
+  map.addSource('188', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/d879e6e802995098e88112de49c408a2/raw/ae6b06471d8f44eedb553fb1e548b0791f678637/188.geojson'
+  });
+
+map.addLayer({
+id: "188",
+type: "circle",
+source: "188",
+paint: {'circle-radius': {
+'base': 5,
+'stops': [
+[12, 8],
+[22, 10]
+]
+}, 
+'circle-color': [
+'match',
+['get', 'Final source'],
+'Anonymous',
+'green',
+'green'
+
+]
+}
+});
+});
+
+
+map.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
   map.addSource('2020', {
     'type': 'geojson',
     'data': 'https://gist.githubusercontent.com/lewissmit/cf7a17e2ae48bc171f789c80d975ba4d/raw/b7b07c44674bcddf19a6998cc536b7672d595e81/Fallow.geojson'
