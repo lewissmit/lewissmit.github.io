@@ -32,9 +32,15 @@ trace2 = {
   name: 'Claimants in employment',
  type: 'bar'
 };
+trace3 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Manchester Total'),
+  marker: {color: 'rgb(151, 188, 233)'},
+  name: 'Latest total<br><i>no employment split available</i>',
+ type: 'bar'
+};
 
-
-data = [trace1,trace2];
+data = [trace1,trace2,trace3];
 
 layout = {
 
