@@ -21,16 +21,24 @@ trace1 = {
   x: unpack(rows, 'Month'),
   y: unpack(rows, 'Manchester Not in employment'),
   marker: {color: 'rgb(8, 22, 39)'},
-  name: 'Not in employment',
-  type: 'bar'
+  name: 'Claimants not in employment',
+  mode: 'lines+markers',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
   
 };
 trace2 = {
   x: unpack(rows, 'Month'),
   y: unpack(rows, 'Manchester In employment'),
   marker: {color: 'rgb(46, 120, 210)'},
-  name: 'In employment',
- type: 'bar'
+  name: 'Claimants in employment',
+ mode: 'lines+markers',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
   
 };
 
@@ -38,7 +46,7 @@ trace2 = {
 data = [trace1,trace2];
 
 layout = {
-  barmode: 'stack',
+
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
    autosize: false,
@@ -55,28 +63,22 @@ layout = {
   xaxis: {
     title: '',
     tickangle: 320,
-    autorange: true,  
-    
+    autorange: false,  
+    range: ['2020-01-01','2022-04-30'],
     rangeslider: {
-    type: 'text',
+    type: 'date',
     bgcolor: '#fafcfb'
   }},
   yaxis: {
-    range: [0,100000],
+    range: [0, 60000],
     title: 'Number of claimants',
-
+    type: 'bar'
   },
   hovermode: "x",
   hoverlabel: {namelength :-1,
          bgcolor: "#fafcfb" },
-         config: { responsive: true },
-
-
-
-    
-    
+         config: { responsive: true }
 };
-
 
 Plotly.newPlot('myDiv', data, layout);
 
