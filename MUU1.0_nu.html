@@ -22,11 +22,7 @@ trace1 = {
   y: unpack(rows, 'Manchester Not in employment'),
   marker: {color: 'rgb(8, 22, 39)'},
   name: 'Claimants not in employment',
-  mode: 'lines+markers',
-  line: {
-    dash: 'solid',
-    width: 1
-  }
+  type: 'bar'
   
 };
 trace2 = {
@@ -34,12 +30,7 @@ trace2 = {
   y: unpack(rows, 'Manchester In employment'),
   marker: {color: 'rgb(46, 120, 210)'},
   name: 'Claimants in employment',
- mode: 'lines+markers',
-  line: {
-    dash: 'solid',
-    width: 1
-  }
-  
+ type: 'bar'
 };
 
 
@@ -60,6 +51,7 @@ layout = {
     pad: 4
   },
   title: '',
+  barmode: 'stack',
   xaxis: {
     title: '',
     tickangle: 320,
@@ -70,7 +62,7 @@ layout = {
     bgcolor: '#fafcfb'
   }},
   yaxis: {
-    range: [0, 60000],
+    range: [0, 100000],
     title: 'Number of claimants',
     type: 'bar'
   },
