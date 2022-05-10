@@ -1,0 +1,100 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQAktzoo39vlaPRiDJW2W7zlky4H7X5jJ2siWMRevHJY6OCk6VcCDFE8ObzzDTvDmSLS_wFVeuHXijy/pub?gid=1257235183&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(0,102,102)'},
+  name: 'Open market sale',
+  type: 'bar',
+  
+};
+trace2 = {
+  
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Value5'),
+  marker: {color: 'rgb(34, 44, 49)'},
+  name: 'Build to rent',
+  type: 'bar',
+  
+};
+
+trace3 = {
+
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Value6'),
+  marker: {color: 'rgb(167,99,99)'},
+  name: 'Affordable',
+  type: 'bar',
+  
+};
+
+
+
+
+var data =[trace1, trace2, trace3],
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: true,
+  width: 650,
+  height: 500,
+  margin: {
+    l: 100,
+    r: 100,
+    b: 100,
+    t: 50,
+    pad: 4},
+  showlegend: false,
+  legend: {"orientation": "h"},
+  barmode: 'stack',
+  xaxis: {
+    title: '', 
+    tickson: "boundaries",
+    ticklen: 10,
+    showdividers: true,
+    dividercolor: 'grey',
+    dividerwidth: 1
+  
+  },
+   
+  yaxis: {
+    range: [0, 4000],
+    title: '',
+    type: 'bar'
+  },
+
+  hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
+ 
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
