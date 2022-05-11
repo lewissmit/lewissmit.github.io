@@ -1,0 +1,155 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQAktzoo39vlaPRiDJW2W7zlky4H7X5jJ2siWMRevHJY6OCk6VcCDFE8ObzzDTvDmSLS_wFVeuHXijy/pub?gid=1444153876&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'A: Retail'),
+  marker: {color: 'rgb(0,102,102)'},
+  name: 'A: Retail',
+  type: 'bar',
+  
+};
+trace2 = {
+  
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'B1: Office'),
+  marker: {color: 'rgb(34, 44, 49)'},
+  name: 'B1: Office',
+  type: 'bar',
+  
+};
+
+trace3 = {
+
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'B2-8: Industrial'),
+  marker: {color: 'rgb(167,99,99)'},
+  name: 'B2-8: Industrial',
+  type: 'bar',
+  
+};
+trace4 = {
+
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'C1: Hotel'),
+  marker: {color: 'rgb(9,12,200)'},
+  name: 'C1: Hotel',
+  type: 'bar',
+  
+};
+trace5 = {
+
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'C2: Residential Care'),
+  marker: {color: 'rgb(9,0,20)'},
+  name: 'C2: Residential Care',
+  type: 'bar',
+  
+};
+trace6 = {
+
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'D1: Public Services'),
+  marker: {color: 'rgb(68, 115, 82)'},
+  name: 'D1: Public Services',
+  type: 'bar',
+  
+};
+
+
+trace7 = {
+
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'D2: Leisure'),
+  marker: {color: 'rgb(120, 37, 118)'},
+  name: 'D2: Leisure',
+  type: 'bar',
+  
+};
+trace8 = {
+
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'Sui Generis'),
+  marker: {color: 'rgb(173, 133, 47)'},
+  name: 'Sui Generis',
+  type: 'bar',
+  
+};
+trace9 = {
+
+  x: unpack(rows, 'Location'),
+  y: unpack(rows, 'Car Park'),
+  marker: {color: 'rgb(116, 194, 183)'},
+  name: 'Car Park',
+  type: 'bar',
+  
+};
+
+
+var data =[trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8, trace9],
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 550,
+  margin: {
+    l: 100,
+    r: 100,
+    b: 100,
+    t: 50,
+    pad: 4},
+  showlegend: true,
+  legend: {"orientation": "v"},
+  barmode: 'stack',
+  xaxis: {
+    title: '', 
+   
+    tickson: "boundaries",
+    ticklen: 10,
+    showdividers: true,
+    dividercolor: 'grey',
+    dividerwidth: 1
+  
+  },
+   
+  yaxis: {
+    range: [0, 400000],
+    title: '',
+    type: 'bar'
+  },
+
+  hovermode: "x",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: true }  
+ 
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
