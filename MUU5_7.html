@@ -1,0 +1,113 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQAktzoo39vlaPRiDJW2W7zlky4H7X5jJ2siWMRevHJY6OCk6VcCDFE8ObzzDTvDmSLS_wFVeuHXijy/pub?gid=1444153876&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  
+  y: unpack(rows, 'CONC'),
+  x: unpack(rows, 'Office'),
+  marker: {color: 'rgb(0,102,102)'},
+  name: 'B1: Office',
+  orientation: 'h',
+  type: 'bar',
+  
+};
+trace2 = {
+  
+  y: unpack(rows, 'CONC'),
+  x: unpack(rows, 'Industrial'),
+  marker: {color: 'rgb(34, 44, 49)'},
+  name: 'B2-8: Industrial',
+  orientation: 'h',
+  type: 'bar',
+  
+};
+
+trace3 = {
+
+  y: unpack(rows, 'CONC'),
+  x: unpack(rows, 'Public Services'),
+  marker: {color: 'rgb(167,99,99)'},
+  name: 'D1 Public Services',
+  orientation: 'h',
+  type: 'bar',
+  
+};
+trace4 = {
+
+  y: unpack(rows, 'CONC'),
+  x: unpack(rows, 'Other'),
+  marker: {color: 'rgb(9,12,200)'},
+  name: 'Other',
+  orientation: 'h',
+  type: 'bar',
+  
+};
+
+
+var data =[trace1, trace2, trace3, trace4],
+
+layout = {
+
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 550,
+  margin: {
+    l: 250,
+    r: 100,
+    b: 100,
+    t: 50,
+    pad: 4},
+  showlegend: true,
+  legend: {"orientation": "h"},
+  barmode: 'stack',
+  yaxis: {
+    title:'', 
+    orientation: 'v',
+    tickson: "boundaries",
+    ticklen: 10,
+    showdividers: true,
+    dividercolor: 'grey',
+    dividerwidth: 1
+  
+  },
+   
+  xaxis: {
+    range: [0, 250000],
+    title: '',
+    type: 'bar'
+  },
+
+  hovermode: "y",
+   hoverlabel: {namelength :-1,
+          bgcolor: "#FFF" },
+          config: { responsive: false },
+          orientation: 'h'
+ 
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
