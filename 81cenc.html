@@ -20,18 +20,18 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRkH7owUuYAaoty0f
 trace1 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value3'),
-  marker: {color: 'rgba(10, 200, 64,1)'},
+  marker: {color: '#97d4ea'},
   name: '2019',
-mode: 'lines+markers'
+mode: 'lines'
   
 };
 
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
-  marker: {color: 'rgba(180, 206, 224,1)'},
+  marker: {color: '#f2938c'},
   name: '2020',
-  mode: 'lines+markers'
+  mode: 'lines'
   
 };
 
@@ -39,19 +39,21 @@ trace2 = {
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value1'),
-  marker: {color: 'rgba(17,5,50,01)'},
-  name: '2021 footfall',
-mode: 'lines+markers'
+  marker: {color: '#c05600'},
+  name: '2021',
+mode: 'lines'
   
 };
 
 trace4 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value4'),
-  marker: {color: 'rgba(17,5,50,01)'},
+  marker: {color: '#ffbc78',
+  symbol: 'diamond',
+  size: 5},
   name: '2022 footfall',
   fill: 'tozeroy',
-  fillcolor: 'rgba(66,299,50,0.1)',
+  fillcolor:'rgba(255,188,120,0.2)',
 mode: 'lines+markers'
   
 };
