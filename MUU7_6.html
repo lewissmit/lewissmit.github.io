@@ -1,0 +1,117 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:100%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQdDNrIx7j2xHRxim9-IoGo0hSXj3NEuw3TVKwjzQqUuyn7-1GqjD68J8JMmMEqzHX34gsehvRnJC2S/pub?gid=2101956322&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Heathrow'),
+  marker: {color: '#97d4ea'},
+  name: 'Heathrow',
+mode: 'lines'
+  
+};
+
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Gatwick'),
+  marker: {color: '#f2938c'},
+  name: 'Gatwick',
+  mode: 'lines'
+  
+};
+
+
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Stansted'),
+  marker: {color: '#c05600'},
+  name: 'Stansted',
+mode: 'lines'
+  
+};
+
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Manchester'),
+  marker: {color: '#ffbc78',
+  symbol: 'diamond',
+  size: 5},
+  name: 'Manchester',
+  fill: 'tozeroy',
+  fillcolor:'rgba(255,188,120,0.2)',
+mode: 'lines+markers'
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Birmingham'),
+  marker: {color: '#c05600'},
+  name: 'Birmingham',
+mode: 'lines'
+  
+};
+
+data = [trace1, trace2,trace3,trace4,trace5];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+	autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 50,
+    r: 50,
+    b: 80,
+    t: 40,
+    pad: 4
+  },
+		showlegend: true,
+		legend: {orientation: 'h',
+    x:0.1,
+    y:1.23},
+  xaxis: {
+    title: '',
+    type: 'category',
+    showticklabels: true,
+    tickangle: 320,
+    tickfont: {
+      family: 'Arial, sans-serif',
+      size: 12,
+      color: 'black'
+    },
+  },
+  yaxis: {
+    range: [0, 8000000],
+    title: 'Total footfall'
+  },
+ 
+  hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true }
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
