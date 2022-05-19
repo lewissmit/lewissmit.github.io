@@ -20,23 +20,23 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 
 var trace1 = {
   type: "scatter",
-  mode: "lines+markers",
+  
   name: '2021',
   x: unpack(rows, 'Date2'),
   y: unpack(rows, '2021'),
   line: {color: '#a50aff',
-  dash: 'dot',
+  dash: 'dash',
     width: 1}
 }
 
 var trace2 = {
   type: "scatter",
-  mode: "lines+markers",
+ 
   name: '2020',
   x: unpack(rows, 'Date2'),
   y: unpack(rows, '2020'),
   line: {color: '#ff910a',
-  dash: 'dot',
+  dash: 'dash',
     width: 1}
 }
 
@@ -78,7 +78,7 @@ var trace7 = {
   type: 'lines',
    line: {
     dash: 'dot',
-    width: 3
+    width: 1
   },
   showlegend: false,
   xaxis: 'x2',
@@ -93,7 +93,7 @@ var trace6 = {
   type: 'lines',
    line: {
     dash: 'dot',
-    width: 3
+    width: 1
   },
   showlegend: false,
   xaxis: 'x2',
@@ -121,15 +121,15 @@ var layout = {
     },
   yaxis: {
     autorange: false,
-    range: [0,16000],
+    range: [0,20000],
     type: 'linear',
   },
   yaxis2: {
-    domain: [0.78, 0.95],
+    domain: [0.48, 0.95],
     anchor: 'x2',
   },
   xaxis2: {
-    domain: [0.4, 1.2],
+    domain: [0.05, 0.6],
     title: '',
           tickfont: {
         size: 8,
