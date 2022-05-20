@@ -10,187 +10,126 @@
 -->
 <body>
 
-<div id="myDiv" style="width:90%;height:100%;"></div>
+<div id="myDiv" style="width:100%;height:100%;"></div>
 <script>
 Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQIohFNHPZ5prr-YZL78Ou5e-Ccty4xX1gfAmLRLv_Alaq-93QpuAXYd6q4C7aFJSiBRgs_lxLjprWr/pub?gid=1812024660&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
 
-
-const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
-
-var button_layer_2_height = 1.1
-var high = unpack(rows, '2020pre').map(x => parseFloat(x))
-var low = unpack(rows, '2020').map(x => parseFloat(x))
-var mid = unpack(rows, '2021').map(x => parseFloat(x))
-var nine = unpack(rows, '2019').map(x => parseFloat(x))
-var date = unpack(rows, 'Date')
-
-
-var data = [{
-    x: date,
-    y: high,
-    mode: 'lines',
-    name: '2020 pre lockdown',
-    marker: {color: '#33CFA5'}
-  },
-  {
-    x: date,
-    y: mid,
-    mode: 'lines',
-    name: '2021',
-    line: {color: '#000000'},
-    visible: false
-  },
-  {
-    x: date,
-    y: low,
-    name: '2020 post lockdown',
-    mode: 'lines',
-    marker: {color: '#F06A6A'}
-  },
-  {
-    x: date,
-    y: nine,
-    mode: 'lines',
-    name: '2019',
-    visible: false,
-    line: {color: '#3480eb'}
-  },
-
-]
-var high_annotations = [
-    {
-      x: '6-Mar',
-      y: 5500,
-      xref: 'x',
-      yref: 'y',
-      text: 'Easing of<br>restrictions 07/03/21',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    }]
-
-var low_annotations = [
-    {
-      x: '23-Mar',
-      y: 5500,
-      xref: 'x',
-      yref: 'y',
-      text: 'Start UK lockdown 23/03/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    },
-    {
-      x: '5-Nov',
-      y: 6200,
-      xref: 'x',
-      yref: 'y',
-      text: 'Start 2nd national<br>lockdown 05/11/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    },
-  {
-      x: '2-Dec',
-      y: 4000,
-      xref: 'x',
-      yref: 'y',
-      text: 'End 2nd national<br>lockdown 02/12/20',
-      showarrow: true,
-      arrowhead: 7,
-      ax: 0,
-      ay: -40
-    }
-  ]
-
-var updatemenus=[
-    {
-        buttons: [    
-            {
-                args: [{'visible': [false, true, false, false,]},
-                       {'title': '',
-                       'annotations': high_annotations}],
-                label: '2021',
-                method: 'update'
-            },
-            
-            {
-                args: [{'visible': [true, false, true, false,]},
-                       {'title': '',
-                       'annotations': low_annotations
-                        }],
-                label: '2020',
-                method: 'update'
-            },
-            {
-                args: [{'visible': [false, false, false, true,]},
-                       {'title': '',
-                       'annotations':[] }],        
-                label: '2019',
-                method: 'update'
-            },
-            {
-                args: [{'visible': [true, true, true, false,]},
-                       {'title': '',
-                       'annotations': [...low_annotations, ...high_annotations]}],
-                      
-                label: '2020 and 2021',
-                method: 'update'
-            },
-{
-                args: [{'visible': [false, true, false, true,]},
-                       {'title': '',
-                      'annotations': high_annotations
-                        }],
-                label: '2019 and 2021',
-                method: 'update'
-            },
-{
-                args: [{'visible': [true,true,true,true]},
-                       {'title': ''
-                        }],
-                label: 'All',
-                method: 'update'
-            },
-        ],
-        direction: 'left',
-        pad: {'r': 10, 't': 5},
-        showactive: true,
-        type: 'buttons',
-        x: 0.1,
-        xanchor: 'left',
-        y: button_layer_2_height,
-        yanchor: 'top'
-    },
-
-];
-var layout = {
-    title: '',
-    updatemenus: updatemenus,
-    showlegend: true,
-    legend: {'orientation': 'h',
-    y:1.3},
-    xaxis: {
-    tickangle:320,
-  },
-  yaxis: {range: [0,12000]},
- hovermode: "x",
-  hoverlabel: {namelength :-1,
-         bgcolor: "#FFF" },
-         config: { responsive: true }
+trace1 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2019'),
+  marker: {color: '#97d4ea'},
+  name: '2019 pre pandemic',
+  type: 'lines',
+  
+  
+};
+trace2 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020pre'),
+  marker: {color: '#f2938c'},
+  name: '2020 pre lock down',
+ 
+  type: 'lines',
+  
+  
+};
+trace3 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2020'),
+  marker: {color: 'rgb(255, 165, 0)'},
+  name: '2020 post lock down',
+  
+  type: 'lines',
+  
+  
 };
 
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2021'),
+  marker: {color: '#c05600'},
+  name: '2021',
+  type: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2022'),
+  marker: {color: 'rgb(17, 5, 50)'},
+  name: '2022',
+  type: 'lines',
+  type: 'lines',
+  
+  
+};
+trace6 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, '2022'),
+  marker: {color: 'rgb(255,255,255)'},
+  showlegend: false,
+  name: '2022',
+  type: 'lines+markers',
+  type: 'lines',
+  
+  xaxis: 'x2'
+  
+};
 
+data = [trace1,trace2,trace3,trace4,trace5];
 
+layout = {
 
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: true,
+  width: 900,
+  height: 450,
+  margin: {
+    l: 90,
+    r: 90,
+    b: 90,
+    t: 100,
+    pad: 4},
+  title: '',
+  xaxis: {
+    title: '',
+    showticklabels: true,
+    tickangle:320,
+autorange: false, 
+range: ['2022-01-01','2022-05-31'],
+    rangeslider: {range: ['2022-01-02','2022-12-31'],
+    type: '',
+    bgcolor: '#fafcfb'
+    }
+    },
+ 
+    
+    yaxis: {
+    title: 'Footfall'
+  },
+hovermode: "x",
+  hoverlabel: {namelength :-1,
+         bgcolor: "#FFF" },
+         config: { responsive: true },
+          xaxis2: {
+            title: '', 
+            tickangle:320,
+            titlefont: {color: 'rgb(148, 103, 189)'}, 
+            tickfont: {color: 'rgb(148, 103, 189)'}, 
+            overlaying: 'x', 
+            side: 'top'
+      }
+    
+};
 
-Plotly.newPlot("myDiv", data, layout);
+Plotly.newPlot('myDiv', data, layout);
 
 });
 
