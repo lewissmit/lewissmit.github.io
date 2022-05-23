@@ -1,0 +1,146 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRI9-PKMmdO2V7d3q9qh2kIpM-_dnqCiH06aPMw7G3DybBsDNUS76JIdnJbFMv7963LJgArq1kGaOAb/pub?gid=2128262244&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 16-19'),
+  marker: {color: 'rgb(34, 44, 49)'},
+  name: '16-19',
+  type: 'bar',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 20-24'),
+  marker: {color: 'rgb(222, 217, 142)'},
+  name: '20-24',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 25-29'),
+  marker: {color: 'rgb(200, 0, 49)'},
+  name: '25-29',
+  type: 'bar',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 30-34'),
+  marker: {color: 'rgb(100, 100, 100)'},
+  name: '30-34',
+  type: 'bar',
+  
+};
+
+trace5 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 35-39'),
+  marker: {color: 'rgb(232, 189, 174)'},
+  name: '35-39',
+  type: 'bar',
+  
+};
+trace6 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 40-44'),
+  marker: {color: 'rgb(186, 178, 162)'},
+  name: '40-44',
+  type: 'bar',
+  
+};
+trace7 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 45-49'),
+  marker: {color: 'rgb(23,23,23)'},
+  name: '45-49',
+  type: 'bar',
+  
+};
+trace8 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 50-54'),
+  marker: {color: 'rgb(117, 104, 116)'},
+  name: '50-54',
+  type: 'bar',
+  
+};
+trace9 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 55-59'),
+  marker: {color: 'rgb(214, 200, 230)'},
+  name: '55-59',
+  type: 'bar',
+  
+};
+trace10 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 60-64'),
+  marker: {color: 'rgb(147, 189, 201)'},
+  name: '60-64',
+  type: 'bar',
+  
+};
+trace11 = {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'Aged 65+'),
+  marker: {color: 'rgb(88, 133, 115)'},
+  name: '65+',
+  type: 'bar',
+  
+};
+
+
+
+
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7,trace8,trace9,trace10,trace11];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 80,
+    r: 80,
+    b: 100,
+    t: 10,
+    pad: 4},
+  barmode: 'stack',
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 85000],
+    title: 'Number of claimants',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
