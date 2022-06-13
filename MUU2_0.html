@@ -29,15 +29,24 @@ trace2 = {
   x: unpack(rows, 'Period'),
   y: unpack(rows, 'NEET 21/22'),
   mode: 'lines+markers',
-  marker: {color: 'rgb(34, 44, 49)',
+  marker: {color: 'rgb(224, 230, 223)',
   size:8},
   name: '2021/22',
-  type: 'lines+markers',
+  type: 'bar',
+  
+};
+trace3= {
+  x: unpack(rows, 'Period'),
+  y: unpack(rows, 'NEET 22/23'),
+  mode: 'lines+markers',
+  marker: {color: 'rgb(168, 82, 50)',
+  size:8},
+  name: '2022/23',
+  type: 'bar',
   
 };
 
-
-data = [trace1,trace2];
+data = [trace1,trace2,trace3];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
