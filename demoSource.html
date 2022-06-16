@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Demo: Create interactive hover effects with Mapbox GL JS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+<link
+href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css"
+rel="stylesheet"
+/>
+<style> 
+ 
+#map {
+position: absolute;
+top: 0;
+bottom: 0;
+width: 100%;
+}
+ 
+.quake-info {
+position: absolute;
+font-family: sans-serif;
+margin-top: 5px;
+margin-left: 5px;
+padding: 5px;
+width: 30%;
+border: 2px solid black;
+font-size: 14px;
+color: #222;
+background-color: #fff;
+border-radius: 3px;
+}
+
+#menu {
+background: #fff;
+position: absolute;
+z-index: 1;
+top: 10px;
+right: 10px;
+border-radius: 3px;
+width: 120px;
+border: 1px solid rgba(0,0,0,0.4);
+font-family: 'Open Sans', sans-serif;
+}
+ 
+#menu a {
+font-size: 13px;
+color: #404040;
+display: block;
+margin: 0;
+padding: 0;
+padding: 10px;
+text-decoration: none;
+border-bottom: 1px solid rgba(0,0,0,0.25);
+text-align: center;
+}
+ 
+#menu a:last-child {
+border: none;
+}
+ 
+#menu a:hover {
+background-color: #f8f8f8;
+color: #404040;
+}
+ 
+#menu a.active {
+background-color: #bea338;
+color: #ffffff;
+}
+ 
+#menu a.active:hover {
+background: #bfbdb6;
+}
+
+.map-overlay {
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+position: absolute;
+width: 25%;
+top: 0;
+left: 0;
+padding: 10px;
+}
+ 
+.map-overlay .map-overlay-inner {
+background-color: #fff;
+box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+border-radius: 3px;
+padding: 10px;
+margin-bottom: 10px;
+}
+ 
+.map-overlay h2 {
+line-height: 24px;
+display: block;
+margin: 0 0 10px;
+}
+ 
+.map-overlay .legend .bar {
+height: 10px;
+width: 100%;
+background: linear-gradient(to right, #FCA107, #7F3121);
+}
+ 
+.map-overlay input {
+background-color: transparent;
+display: inline-block;
+width: 100%;
+position: relative;
+margin: 0;
+cursor: ew-resize;
+}
+
+.legend {
+background-color: #fff;
+border-radius: 3px;
+bottom: 30px;
+box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+padding: 10px;
+position: absolute;
+right: 10px;
+z-index: 1;
+}
+ 
+.legend h4 {
+margin: 0 0 10px;
+}
+ 
+.legend div span {
+border-radius: 50%;
+display: inline-block;
+height: 10px;
+margin-right: 5px;
+width: 10px;
+};
+
+
+
+</style>
+</head>
+ <nav id="menu"></nav>
+<div id="map"></div>
+<div id='state-legend' class='legend'>
+<h4>Source of CRM report</h4>
+<div><span style='background-color: #f52e2e'></span>Assumed resident</div>
+<div><span style='background-color: #ecab83'></span>Anonymous</div>
+<div><span style='background-color: #0a33eb'></span>MCC email / Active Lifestyles</div>
+<div><span style='background-color: #7eda52'></span>MCC councillor</div>
+<div><span style='background-color: #f5f247'></span>Commercial organisation</div>
+<div><span style='background-color: #23fbe1'></span>GMP / NHS</div>
+<div><span style='background-color: #df47fa'></span>Registered provider</div>
+</div> 
+<body>
+<div id="map"></div>
+<div class="quake-info">
+<div><strong>Waste size:</strong>&nbsp;<span id="Mag"></span></div>
+<div><strong>Source of report:</strong>&nbsp;<span id="Source"></span></div>
+<div><strong>Month:</strong>&nbsp;<span id="Month"></span></div>
+</div>
+ 
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+var map = new mapboxgl.Map({
+container: 'map', // Specify the container ID
+style: 'mapbox://styles/smithl1/ckd8tl0xd05hb1iqbwb8m3t0d', // Specify which map style to use
+center: [-2.242631, 53.480759], // Specify the starting position [lng, lat]
+zoom: 13 // Specify the starting zoom
+});
+ 
+
+ 
+// Target the span elements used in the sidebar
+const MagDisplay = document.getElementById('Mag');
+const locDisplay = document.getElementById('Source');
+const dateDisplay = document.getElementById('Month');
+ 
+map.on('load', () => {
+map.addSource('CRM', {
+'type': 'geojson',
+'data': 'https://gist.githubusercontent.com/lewissmit/dbd531539add902b3cabd84410b9021e/raw' // 
+});
+
+map.addLayer ({
+id: 'MCC',
+type: 'circle',
+source: 'CRM',
+paint: 
+{'circle-radius': {
+'base': 2,
+'stops': [
+[12, 4],
+[22, 6]
+]
+},
+'circle-color': [
+'match',
+['get', 'Source'],
+'Assumed Resident',
+'#f52e2e',
+'Anonymous',
+'#ecab83',
+'Assumed Resident',
+'#f52e2e',
+'Anonymous',
+'#ecab83',
+'Active Lifestyles',
+'#0a33eb',
+'Councillor',
+'#7eda52',
+'Commercial organisation',
+'#f5f247',
+'GMP',
+'#23fbe1',
+'Registered provider',
+'#df47fa',
+/* other */ '#0a33eb'
+]
+}
+});
+});
+
+let quakeID = null;
+ 
+map.on('mousemove', 'MCC', (event) => {
+map.getCanvas().style.cursor = 'pointer';
+// Set variables equal to the current feature's magnitude, location, and time
+const quakeMagnitude = event.features[0].properties.Mag;
+const quakeLocation = event.features[0].properties.Source;
+const quakeDate = event.features[0].properties.Month;
+ 
+if (event.features.length === 0) return;
+// Display the magnitude, location, and time in the sidebar
+MagDisplay.textContent = quakeMagnitude;
+locDisplay.textContent = quakeLocation;
+dateDisplay.textContent = quakeDate;
+ 
+// When the mouse moves over the earthquakes-viz layer, update the
+// feature state for the feature under the mouse
+if (quakeID) {
+map.removeFeatureState({
+source: 'CRM',
+id: quakeID
+});
+}
+ 
+quakeID = event.features[0].id;
+ 
+map.setFeatureState(
+{
+source: 'CRM',
+id: quakeID
+},
+{
+hover: true
+}
+);
+});
+ 
+// When the mouse leaves the earthquakes-viz layer, update the
+// feature state of the previously hovered feature
+map.on('mouseleave', 'MCC', () => {
+if (quakeID) {
+map.setFeatureState(
+{
+source: 'CRM',
+id: quakeID
+},
+{
+hover: false
+}
+);
+}
+quakeID = null;
+// Remove the information from the previously hovered feature from the sidebar
+MagDisplay.textContent = '';
+locDisplay.textContent = '';
+dateDisplay.textContent = '';
+// Reset the cursor style
+map.getCanvas().style.cursor = '';
+});
+
+</script>
+</body>
