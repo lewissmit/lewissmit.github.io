@@ -1,0 +1,88 @@
+<html>
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<!-- Plots go in blank <div> elements. 
+    You can size them in the plot layout,
+    or give the div a size as shown here.
+-->
+<body>
+
+<div id="myDiv" style="width:90%;height:100%;"></div>
+<script>
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vQdDNrIx7j2xHRxim9-IoGo0hSXj3NEuw3TVKwjzQqUuyn7-1GqjD68J8JMmMEqzHX34gsehvRnJC2S/pub?gid=1812941278&single=true&output=csv", function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+trace1 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Male in employment'),
+  marker: {color: 'rgb(34, 44, 49)'},
+  name: 'Male in employment',
+  type: 'bar',
+  
+};
+trace2 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Male not in employment'),
+  marker: {color: 'rgb(168, 166, 138'},
+  name: 'Male not in employment',
+  type: 'bar',
+  
+};
+trace3 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Female in employment'),
+  marker: {color: 'rgb(130, 161, 171)'},
+  name: 'Female in employment',
+  type: 'bar',
+  
+};
+trace4 = {
+  x: unpack(rows, 'Month'),
+  y: unpack(rows, 'Female not in employment'),
+  marker: {color: 'rgb(88, 21, 223)'},
+  name: 'Female not in employment',
+  type: 'bar',
+  
+};
+
+
+data = [trace1,trace2,trace3,trace4];
+
+layout = {
+  paper_bgcolor: 'rgb(255, 255, 255)',
+  plot_bgcolor: 'rgb(255, 255, 255)',
+  autosize: false,
+  width: 900,
+  height: 350,
+  margin: {
+    l: 80,
+    r: 80,
+    b: 100,
+    t: 10,
+    pad: 4},
+  barmode: 'stack',
+  title: '',
+  xaxis: {
+    title: '',
+    tickangle:320
+  },
+  yaxis: {
+    range: [0, 80000],
+    title: 'Number of claimants',
+    type: 'bar'
+  },
+  
+};
+
+Plotly.newPlot('myDiv', data, layout);
+
+});
+
+</script>
+</body>
+</html>
