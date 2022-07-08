@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Highlight features within a bounding box</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css' rel='stylesheet' />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+type="text/css"
+/>
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
+</style>
+</head>
+<body>
+<div id='map'></div>
+<script>
+// Add the CSS
+var css = document.createElement('link');
+css.rel = 'stylesheet';
+css.href = 'https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css'
+document.head.appendChild(css);
+</script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+
+var mapA = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/smithl1/ckc5z1j140si71ipinyxfixqj',
+  center: [-2.222900, 53.533735],
+  zoom: 14
+});
+
+
+mapA.on('load', () => {
+  // add a clustered GeoJSON source for powerplant
+  mapA.addSource('earthquakes', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/53dafcde28e52a1b8f716b6b84a8a476/raw/',
+    'cluster': true,
+    'clusterRadius': 40,
+'clusterMaxZoom': 17
+  });
+mapA.addLayer({
+id: "clusters",
+type: "circle",
+source: "earthquakes",
+filter: ["has", "point_count"],
+paint: {
+// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+// with three steps to implement three types of circles:
+//   * Blue, 20px circles when point count is less than 100
+//   * Yellow, 30px circles when point count is between 100 and 750
+//   * Pink, 40px circles when point count is greater than or equal to 750
+"circle-color": [
+"step",
+["get", "point_count"],
+"#66ccff",
+5,
+"#c0d6e4",
+25,
+"#6897bb",
+50,
+"#ff952c"
+],
+"circle-radius": [
+"step",
+["get", "point_count"],
+5,
+25,
+8,
+50,
+12
+]
+}
+});
+ 
+mapA.addLayer({
+id: "cluster-count",
+type: "symbol",
+source: "earthquakes",
+filter: ["has", "point_count"],
+layout: {
+"text-field": "{point_count_abbreviated}",
+"text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+"text-size": 12
+}
+});
+mapA.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+mapA.addLayer({
+id: "wards",
+type: "line",
+source: "wards",
+'paint': {
+'line-width': 0.5,
+'line-opacity': 0.7,
+}
+
+}
+);
+ 
+mapA.addLayer({
+id: "unclustered-point",
+type: "circle",
+source: "earthquakes",
+filter: ["!", ["has", "point_count"]],
+paint: {
+"circle-color": "#11b4da",
+"circle-radius": 4,
+"circle-stroke-width": 1,
+"circle-stroke-color": "#fff"
+}
+});
+ 
+// inspect a cluster on click
+mapA.on('click', 'clusters', function (e) {
+var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+var clusterId = features[0].properties.cluster_id;
+map.getSource('earthquakes').getClusterExpansionZoom(clusterId, function (err, zoom) {
+if (err)
+return;
+ 
+mapA.easeTo({
+center: features[0].geometry.coordinates,
+zoom: zoom
+});
+});
+});
+ 
+mapA.on('mouseenter', 'clusters', function () {
+map.getCanvas().style.cursor = 'pointer';
+});
+mapA.on('mouseleave', 'clusters', function () {
+map.getCanvas().style.cursor = '';
+});
+});
+
+
+mapA.addControl(new mapboxgl.NavigationControl());
+
+mapA.addControl(
+new MapboxGeocoder({
+accessToken: mapboxgl.accessToken,
+mapboxgl: mapboxgl,
+}),'top-left'
+);
+</script>
+</body>
+</html>
