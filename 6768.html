@@ -54,10 +54,22 @@ trace3 = {
     width: 1
   }
 };
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(60,48,186)'},
+  name: 'Enquiries relating<br>to charitable support',
+  mode: 'lines',
+  mode: 'lines',
+  line: {
+    dash: 'solid',
+    width: 1
+  }
+};
 
 
 
-data = [trace1,trace2,trace3];
+data = [trace1,trace2,trace3,trace4];
 
 layout = {
 
