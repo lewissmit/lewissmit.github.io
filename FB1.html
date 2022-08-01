@@ -22,11 +22,8 @@ trace1 = {
   y: unpack(rows, 'Value'),
   marker: {color: 'rgb(102, 205, 170)'},
   name: 'Enquiries relating to<br>food banks',
-  mode: 'lines+markers',
-  line: {
-    dash: 'solid',
-    width: 2
-  }
+  type: 'bar',
+  
   
 };
 
@@ -40,24 +37,28 @@ layout = {
   plot_bgcolor: 'rgb(255, 255, 255)',
    autosize: false,
   width: 900,
-  height: 450,
+  height: 350,
   margin: {
     l: 90,
-    r:90,
-    b: 140,
+    r: 90,
+    b: 120,
     t: 40,
-    pad: 4
+    pad: 2
   },
-  title: '',
   xaxis: {
-    title: '',
+  title: {
+    font: {
+        family: 'Courier New, monospace',
+        size: 5,
+        color: '#7f7f7f'},
+         xref: 'paper',
+    x: 0.0},
     tickangle: 320,
     autorange: true}, 
-    
   yaxis: {
-    range: [0, 20],
-    title: 'Number of referrals',
-    mode: 'lines'
+    range: [0, 15],
+    title: 'Number of enquiries',
+    mode: 'bar'
   },
   hovermode: "x",
   hoverlabel: {namelength :-1,
