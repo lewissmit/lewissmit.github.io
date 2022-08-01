@@ -22,10 +22,10 @@ trace1 = {
   y: unpack(rows, 'Value'),
   marker: {color: 'rgb(102, 205, 170)'},
   name: 'Enquiries relating to<br>food banks',
-  mode: 'lines',
+  mode: 'lines+markers',
   line: {
     dash: 'solid',
-    width: 1
+    width: 2
   }
   
 };
@@ -52,11 +52,8 @@ layout = {
   xaxis: {
     title: '',
     tickangle: 320,
-    autorange: true,  
-    rangeslider: {
-    type: 'date',
-    bgcolor: '#fafcfb'
-  }},
+    autorange: true}, 
+    
   yaxis: {
     range: [0, 20],
     title: 'Number of enquiries',
