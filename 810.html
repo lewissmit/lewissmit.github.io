@@ -44,8 +44,16 @@ trace3 = {
   
 };  
 
+trace4 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(72, 84, 27)'},
+  name: '2022-23',
+  type: 'bar',
+  
+};
 
-data = [trace1,trace2,trace3];
+data = [trace1,trace2,trace3,trace4];
 
 layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
@@ -79,4 +87,3 @@ Plotly.newPlot('myDiv', data, layout);
 </script>
 </body>
 </html>
-
