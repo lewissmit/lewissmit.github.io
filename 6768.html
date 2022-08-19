@@ -22,11 +22,8 @@ trace1 = {
   y: unpack(rows, 'Value1'),
   marker: {color: 'rgb(102, 205, 170)'},
   name: 'Enquiries relating to<br>benefits / Universal Credit',
-  mode: 'lines',
-  line: {
-    dash: 'solid',
-    width: 1
-  }
+  type: 'bar',
+  
   
 };
 trace2 = {
@@ -34,35 +31,24 @@ trace2 = {
   y: unpack(rows, 'Value2'),
   marker: {color: 'rgb(255, 165, 0)'},
   name: 'Enquiries relating<br>to employment',
-  mode: 'lines',
-  line: {
-    dash: 'solid',
-    width: 1
-  }
+  type: 'bar',
   
 };
 trace3 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value3'),
-  marker: {color: 'rgb(55, 55, 0)'},
+  marker: {color: 'rgb(168, 50, 50)'},
   name: 'Enquiries relating<br>to debt',
-  mode: 'lines',
-  line: {
-    dash: 'solid',
-    width: 1
-  }
+  type: 'bar',
+ 
 };
 trace4 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value4'),
-  marker: {color: 'rgb(60,48,186)'},
+  marker: {color: 'rgb(221, 224, 119)'},
   name: 'Enquiries relating<br>to charitable support',
-  mode: 'lines',
+  type: 'bar',
 
-  line: {
-    dash: 'solid',
-    width: 1
-  }
 };
 
 
@@ -83,16 +69,17 @@ layout = {
     t: 40,
     pad: 4
   },
+  barmode: 'stack',
   title: '',
   xaxis: {
     title: '',
     tickangle: 320,
-    autorange: false,  
+    autorange: true,  
   },
   yaxis: {
-    range: [0, 350],
+    range: [0, 400],
     title: 'Number of enquiries',
-    mode: 'lines'
+  
   },
   hovermode: "x",
   hoverlabel: {namelength :-1,
