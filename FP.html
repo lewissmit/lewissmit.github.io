@@ -121,11 +121,11 @@ var popup = new mapboxgl.Popup({ offset: [0, -15] })
 '<h3>' + 'LSOA: ' +
 feature.properties.LSOA11NM +
 '<h3>' + 'Number of households: ' +
-feature.properties.Households +
+feature.properties.Households2020 +
 '</h3><p>' + 'Number in fuel poverty: '+
-feature.properties.HouseholdsFP +
+feature.properties.HouseholdsFP2020 +
 '</h3><p>' + '% in fuel poverty: ' +
-feature.properties.Percentage + '%' +
+feature.properties.Percentage2020 + '%' +
 '</h3><p>' 
 )
 .setLngLat(feature.geometry.coordinates)
