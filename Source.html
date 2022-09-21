@@ -153,7 +153,7 @@ map.on('load', () => {
   // add a clustered GeoJSON source for powerplant
   map.addSource('biffa', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/7d083da7e47a7d63012c07883cdada13/raw'
+    'data': 'https://gist.githubusercontent.com/lewissmit/bce1aff5452172e25996931ee9eefe9d/raw'
   });
   
 map.addLayer({
@@ -169,7 +169,7 @@ paint: {'circle-radius': {
 }, 
 'circle-color': [
 'match',
-['get', 'Final Source'],
+['get', 'Final source (1)'],
 'Assumed Resident',
 '#f52e2e',
 'Anonymous',
@@ -182,7 +182,7 @@ paint: {'circle-radius': {
 map.on('load', () => {
   map.addSource('mcc', {
     'type': 'geojson',
-    'data': 'https://gist.githubusercontent.com/lewissmit/15890840059dfd03203d49359c09a8b5/raw'
+    'data': 'https://gist.githubusercontent.com/lewissmit/642a1d61e69254902a58538357da3a90/raw'
   });
 map.addLayer({
 id: "MCC and partners",
@@ -197,7 +197,7 @@ paint: {'circle-radius': {
 }, 
 'circle-color': [
 'match',
-['get', 'Final Source'],
+['get', 'Final source (1)'],
 'Assumed Resident',
 '#f52e2e',
 'Anonymous',
