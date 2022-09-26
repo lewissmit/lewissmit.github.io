@@ -10,7 +10,7 @@
 -->
 <body>
 
-<div id="myDiv" style="width:100%;height:100%;"></div>
+<div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
 Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1808657836&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
@@ -19,72 +19,90 @@ Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if
 
 trace1 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value1'),
-  marker: {color: 'rgb(102, 205, 170)'},
-  name: 'Enquiries relating to<br>benefits / Universal Credit',
-  type: 'bar',
-  
+  y: unpack(rows, 'Value3'),
+  xaxis: 'x2',
+  yaxis: 'y2',
+  marker: {color: 'rgb(04, 183, 108)'},
+  name: 'Total visits 2021',
+  type: 'lines',
   
 };
 trace2 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value2'),
-  marker: {color: 'rgb(255, 165, 0)'},
-  name: 'Enquiries relating<br>to employment',
-  type: 'bar',
+  xaxis: 'x3',
+  yaxis: 'y3',
+  marker: {color: 'rgb(102, 102,102)'},
+  name: 'Total visits 2020',
+  type: 'lines',
   
 };
 trace3 = {
   x: unpack(rows, 'Date'),
-  y: unpack(rows, 'Value3'),
-  marker: {color: 'rgb(168, 50, 50)'},
-  name: 'Enquiries relating<br>to debt',
-  type: 'bar',
- 
+  y: unpack(rows, 'Value1'),
+  xaxis: 'x4',
+  yaxis: 'y4',
+  marker: {color: 'rgb(204, 183, 108)'},
+  name: 'Total visits 2019',
+  type: 'lines',
+  
 };
 trace4 = {
   x: unpack(rows, 'Date'),
   y: unpack(rows, 'Value4'),
-  marker: {color: 'rgb(221, 224, 119)'},
-  name: 'Enquiries relating<br>to charitable support',
-  type: 'bar',
-
+  xaxis: 'x1',
+  yaxis: 'y1',
+  marker: {color: 'rgb(235, 177, 52)'},
+  name: 'Total visits 2022',
+  type: 'lines',
+  
 };
-
 
 
 data = [trace1,trace2,trace3,trace4];
 
-layout = {
+var axis = {
+    showline: true,
+    zeroline: false,
+    showgrid: true,
+    mirror:true,
+    ticklen: 1,
+    gridcolor: '#ffffff',
+    tickfont: {size: 10},
+  }
+var axis1 = {domain: [0.01, 1], anchor: 'y1', showticklabels: false}
+var axis2 = {domain: [0.01, 1], anchor: 'y2', showticklabels: false}
+var axis3 = {domain: [0.01, 1], anchor: 'y3', showticklabels: false}
+var axis4 = {domain: [0.01, 1], tickangle:320, anchor: 'y4'}
+var axis5 = {domain: [0.76, 1], title: 'Charitable support', range: [0,100], anchor: 'x1', hoverformat: '.2f'}
+var axis6 = {domain: [0.51, 0.75], title: 'Debt', range: [0,200], anchor: 'x2', hoverformat: '.2f'}
+var axis7 = {domain: [0.26, 0.50], title: 'Employment', range: [0,200], anchor: 'x3', tickprefix: '', hoverformat: '.2f'}
+var axis8 = {domain: [0.0, 0.25], title: 'Benefits / Universal Credit', range: [0,300], anchor: 'x4', tickprefix: '',showlegend: false, hoverformat: '.2f'}
+   
 
+layout = {
   paper_bgcolor: 'rgb(255, 255, 255)',
   plot_bgcolor: 'rgb(255, 255, 255)',
    autosize: false,
   width: 900,
-  height: 450,
+  height: 750,
   margin: {
-    l: 90,
-    r:90,
-    b: 80,
+    l: 60,
+    r: 90,
+    b: 100,
     t: 40,
-    pad: 4
-  },
-  barmode: 'stack',
-  title: '',
-  xaxis: {
-    title: '',
-    tickangle: 320,
-    autorange: true,  
-  },
-  yaxis: {
-    range: [0, 400],
-    title: 'Number of enquiries',
-  
-  },
-  hovermode: "x",
-  hoverlabel: {namelength :-1,
-         bgcolor: "#fafcfb" },
-         config: { responsive: true }
+    pad: 1},
+  showlegend: false,
+    xaxis1: Object.assign(axis1,axis),
+    xaxis2: Object.assign(axis2,axis),
+    xaxis3: Object.assign(axis3,axis),
+    xaxis4: Object.assign(axis4,axis),
+    yaxis1: Object.assign(axis5,axis),
+    yaxis2: Object.assign(axis6,axis),
+    yaxis3: Object.assign(axis7,axis),
+    yaxis4: Object.assign(axis8,axis),
+    hovermode: "x",
+ 
 };
 
 Plotly.newPlot('myDiv', data, layout);
@@ -92,5 +110,5 @@ Plotly.newPlot('myDiv', data, layout);
 });
 
 </script>
-</body>
+  </body>
 </html>
