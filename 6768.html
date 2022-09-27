@@ -12,7 +12,7 @@
 
 <div id="myDiv" style="width:90%;height:100%;"></div>
 <script>
-Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=1808657836&single=true&output=csv", function(err, rows){
+Plotly.d3.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSSxqYkZXXfa3E2if3nMmp0xIv1A5YkSFZnR7RUPQxh9bD_FE47STqnwTIC0RFLPa4zlx7xKzsVxbOv/pub?gid=575680122&single=true&output=csv", function(err, rows){
       function unpack(rows, key) {
           return rows.map(function(row) { return row[key]; });
       }
@@ -75,9 +75,9 @@ var axis2 = {domain: [0.01, 1], anchor: 'y2', showticklabels: false}
 var axis3 = {domain: [0.01, 1], anchor: 'y3', showticklabels: false}
 var axis4 = {domain: [0.01, 1], tickangle:320, anchor: 'y4'}
 var axis5 = {domain: [0.76, 1], title: 'Charitable support', range: [0,100], anchor: 'x1', hoverformat: '.2f'}
-var axis6 = {domain: [0.51, 0.75], title: 'Debt', range: [0,200], anchor: 'x2', hoverformat: '.2f'}
-var axis7 = {domain: [0.26, 0.50], title: 'Employment', range: [0,200], anchor: 'x3', tickprefix: '', hoverformat: '.2f'}
-var axis8 = {domain: [0.0, 0.25], title: 'Benefits / Universal Credit', range: [0,300], anchor: 'x4', tickprefix: '',showlegend: false, hoverformat: '.2f'}
+var axis6 = {domain: [0.51, 0.75], title: 'Debt', range: [0,1000], anchor: 'x2', hoverformat: '.2f'}
+var axis7 = {domain: [0.26, 0.50], title: 'Employment', range: [0,1500], anchor: 'x3', tickprefix: '', hoverformat: '.2f'}
+var axis8 = {domain: [0.0, 0.25], title: 'Benefits / Universal Credit', range: [0,1500], anchor: 'x4', tickprefix: '',showlegend: false, hoverformat: '.2f'}
    
 
 layout = {
