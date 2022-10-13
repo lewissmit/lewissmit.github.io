@@ -1,0 +1,323 @@
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>Highlight features within a bounding box</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+
+    </style>
+  </head>
+
+  <body>
+  
+      <script>
+        // Add the CSS
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css'
+        document.head.appendChild(css);
+
+      </script>
+      <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+      <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
+      
+      <style>
+.map-overlay .legend .bar {
+height: 10px;
+width: 100%;
+background: linear-gradient(to right, #FCA107, #7F3121);
+}
+ 
+.map-overlay input {
+background-color: transparent;
+display: inline-block;
+width: 100%;
+position: relative;
+margin: 0;
+cursor: ew-resize;
+}
+
+.legend {
+background-color: #fff;
+border-radius: 3px;
+bottom: 30px;
+box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+padding: 10px;
+position: absolute;
+right: 10px;
+z-index: 1;
+}
+ 
+.legend h4 {
+margin: 0 0 10px;
+}
+ 
+.legend div span {
+border-radius: 50%;
+display: inline-block;
+height: 10px;
+margin-right: 5px;
+width: 10px;
+};
+</style>
+
+<script>
+      
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+
+        var mapA = new mapboxgl.Map({
+          container: createContainer({
+            height: 400
+          }),
+          style: 'mapbox://styles/smithl1/ckz6ueknp000g14r3g1j8zkns',
+          center: [-2.24544, 53.49192],
+          minZoom: 10.7,
+maxZoom: 17,
+zoom: 10.7
+        });
+
+        var mapB = new mapboxgl.Map({
+          container: createContainer({
+            height: 400
+          }),
+          style: 'mapbox://styles/smithl1/ckz6ueknp000g14r3g1j8zkns',
+          center: [-2.24544, 53.49192],
+          minZoom: 10.7,
+maxZoom: 17,
+zoom: 10.7
+        });
+
+
+        mapA.addControl(new mapboxgl.NavigationControl());
+        mapB.addControl(new mapboxgl.NavigationControl());
+
+        syncMaps(mapA, mapB);
+
+        function createContainer(options) {
+          var container = document.createElement('div');
+          if (!options || options.mapStyle !== false) {
+            container.style.float = 'left';
+            container.style.width = '50%';
+            container.style.height = '800px';
+
+          }
+          document.body.appendChild(container);
+          return container;
+        }
+
+        function moveToMapPosition(master, slaves) {
+          var center = master.getCenter();
+          var zoom = master.getZoom();
+          var bearing = master.getBearing();
+          var pitch = master.getPitch();
+
+          slaves.forEach(slave => {
+            slave.jumpTo({
+              center,
+              zoom,
+              bearing,
+              pitch
+            });
+          });
+        }
+
+        // Sync movements of two maps.
+        //
+        // All interactions that result in movement end up firing
+        // a "move" event. The trick here, though, is to
+        // ensure that movements don't cycle from one map
+        // to the other and back again, because such a cycle
+        // - could cause an infinite loop
+        // - prematurely halts prolonged movements like
+        //   double-click zooming, box-zooming, and flying
+        function syncMaps() {
+          var maps;
+          var argLen = arguments.length;
+          if (argLen === 1) {
+            maps = arguments[0];
+          } else {
+            maps = Array(argLen);
+            for (i = 0; i < argLen; i++) {
+              maps[i] = arguments[i];
+            }
+          }
+
+          // Create all the movement functions, because if they're created every time
+          // they wouldn't be the same and couldn't be removed.
+          var fns = [];
+          maps.forEach((map, index) => {
+            fns[index] = sync.bind(null, map, maps.filter((o, i) => i !== index));
+          });
+
+          function on() {
+            maps.forEach((map, index) => {
+              map.on('move', fns[index]);
+            });
+          }
+
+          function off() {
+            maps.forEach((map, index) => {
+              map.off('move', fns[index]);
+            });
+          }
+
+          // When one map moves, we turn off the movement listeners
+          // on all the maps, move it, then turn the listeners on again
+          function sync(master, slaves) {
+            off();
+            moveToMapPosition(master, slaves);
+            on();
+          }
+
+          on();
+        };
+        mapB.on('load', () => {
+          // add a clustered GeoJSON source for powerplant
+          mapB.addSource('2020', {
+            'type': 'geojson',
+            'data': 'https://gist.githubusercontent.com/lewissmit/22d306af77b4ea8c462e56c0483e38c2/raw'
+          });
+          mapB.addLayer({
+            id: "points",
+            type: "circle",
+            radius: 8,
+            source: "2020",
+            "paint": {
+              "circle-radius": 20,
+              "circle-opacity": 0,
+              "circle-stroke-width": 0.1,
+              "circle-stroke-color": "black",
+              "circle-stroke-opacity": 1,
+            },
+          });
+
+
+          mapB.addSource('wards', {
+            'type': 'geojson',
+            'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+          });
+          mapB.addLayer({
+            id: "wards",
+            type: "line",
+            source: "wards"
+
+          });
+        });
+        
+        mapA.on('load', () => {
+        // add a clustered GeoJSON source for powerplant
+        mapA.addSource('2019', {
+          'type': 'geojson',
+          'data': 'https://gist.githubusercontent.com/lewissmit/621bec0cc6ab674a88238f94bbc336df/raw'
+        });
+
+        mapA.addLayer({
+          id: "points1",
+          type: "circle",
+          radius: 8,
+          source: "2019",
+          "paint": {
+            "circle-radius": 20,
+            "circle-opacity": 0,
+            "circle-stroke-width": 0.1,
+            "circle-stroke-color": "#00bf7c",
+            "circle-stroke-opacity": 1,
+          },
+        });
+
+
+        mapA.addSource('wards', {
+          'type': 'geojson',
+          'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+        });
+        mapA.addLayer({
+          id: "wards",
+          type: "line",
+          source: "wards"
+
+        });
+        
+mapA.on('click', function (e) {
+var featuresA = mapA.queryRenderedFeatures(e.point, {
+layers: ['points1'] // replace this with the name of the layer
+});
+ 
+if (!featuresA.length) {
+return;
+}
+ 
+var featureA = featuresA[0];
+ 
+var popup = new mapboxgl.Popup({ offset: [0, -15] })
+.setLngLat(featureA.geometry.coordinates)
+.setHTML(
+'<h3>' + 'LSOA: ' +
+featureA.properties.LSOA11NM +
+'<h3>' + 'Number of households: ' +
+featureA.properties.Households2020 +
+'</h3><p>' + 'Number in fuel poverty: '+
+featureA.properties.HouseholdsFP2020 +
+'</h3><p>' + '% in fuel poverty: ' +
+featureA.properties.Percentage2020 + '%' +
+'</h3><p>' 
+)
+.setLngLat(featureA.geometry.coordinates)
+.addTo(mapA);
+
+});
+
+mapB.on('click', function (e) {
+var featuresB = mapB.queryRenderedFeatures(e.point, {
+layers: ['points'] // replace this with the name of the layer
+});
+ 
+if (!featuresB.length) {
+return;
+}
+ 
+var featureB = featuresB[0];
+ 
+var popup = new mapboxgl.Popup({ offset: [0, -15] })
+.setLngLat(featureB.geometry.coordinates)
+.setHTML(
+'<h3>' + 'LSOA: ' +
+featureB.properties.LSOA11NM +
+'<h3>' + 'Number of households: ' +
+featureB.properties.Households2020 +
+'</h3><p>' + 'Number in fuel poverty: '+
+featureB.properties.HouseholdsFP2020 +
+'</h3><p>' + '% in fuel poverty: ' +
+featureB.properties.Percentage2020 + '%' +
+'</h3><p>' 
+)
+.setLngLat(featureB.geometry.coordinates)
+.addTo(mapB);
+
+});
+
+
+
+});
+     
+
+      </script>
+    
+  </body>
+
+</html>
