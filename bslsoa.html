@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Highlight features within a bounding box</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css' rel='stylesheet' />
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+type="text/css"
+/>
+<style>
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
+</style>
+</head>
+<body>
+<div id='map'></div>
+<script>
+// Add the CSS
+var css = document.createElement('link');
+css.rel = 'stylesheet';
+css.href = 'https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css'
+document.head.appendChild(css);
+</script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+
+var mapA = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/smithl1/ckzi8kjd7002416lczypjlc5c',
+  center: [-2.222900, 53.533735],
+  zoom: 14
+});
+
+
+
+mapA.addSource('wards', {
+    'type': 'geojson',
+    'data': 'https://gist.githubusercontent.com/lewissmit/ff2b5836cb3f96fcce8c30c3b200de21/raw/98cbb43dba9b77b4e94a25f2dfb1b366fb5cf88b/FlyAug.geojson'
+  });
+mapA.addLayer({
+id: "wards",
+type: "line",
+source: "wards",
+'paint': {
+'line-width': 0.5,
+'line-opacity': 0.7,
+
+}
+
+}
+);
+ 
+
+
+
+
+mapA.addControl(new mapboxgl.NavigationControl());
+
+mapA.addControl(
+new MapboxGeocoder({
+accessToken: mapboxgl.accessToken,
+mapboxgl: mapboxgl,
+}),'top-left'
+);
+</script>
+</body>
+</html>
