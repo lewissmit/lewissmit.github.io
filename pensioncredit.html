@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display and style rich text labels</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic21pdGhsMSIsImEiOiJja2M1ejB6MWMwbW80Mnp0aWF4cG8ycHR0In0.NOdFNQY0lNZjmYYLXy26gA';
+mapboxgl.setRTLTextPlugin(
+'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js'
+);
+ 
+const map = new mapboxgl.Map({
+container: 'map', // container ID
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+style: 'mapbox://styles/smithl1/ckzi8kjd7002416lczypjlc5c', // style URL
+center: [-2.237584,53.476974], // starting position [lng, lat]
+zoom: 13 // starting zoom
+});
+
+
+map.on('load', function() {
+  map.addSource('clusters', {
+    type: "geojson",
+    data: {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-2.237584,53.476974]
+          },
+          "properties": {
+              "claimant_count": 118,
+              "sw": [27.9802015625,-98.5048],
+              "ne": [38.6083984375,-76.5048]
+            }},
+            {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-2.232796,53.476854]
+          },
+          "properties": {
+              "claimant_count": 5,
+              "sw": [27.9802015625,-98.5048],
+              "ne": [38.6083984375,-76.5048]
+            }},
+            {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-2.224273,53.474547]
+          },
+          "properties": {
+              "claimant_count": 67,
+              "sw": [27.9802015625,-98.5048],
+              "ne": [38.6083984375,-76.5048]
+            }},
+            {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-2.22458,53.4871]
+          },
+          "properties": {
+              "claimant_count": 58,
+              "sw": [27.9802015625,-98.5048],
+              "ne": [38.6083984375,-76.5048]
+            }},
+            {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-2.22911,53.48722]
+          },
+          "properties": {
+              "claimant_count": 6,
+              "sw": [27.9802015625,-98.5048],
+              "ne": [38.6083984375,-76.5048]
+            }},
+             {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-2.23083,53.48281]
+          },
+          "properties": {
+              "claimant_count": 6,
+              "sw": [27.9802015625,-98.5048],
+              "ne": [38.6083984375,-76.5048]
+            }},
+            {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-2.23551,53.48392]
+          },
+          "properties": {
+              "claimant_count": 10,
+              "sw": [27.9802015625,-98.5048],
+              "ne": [38.6083984375,-76.5048]
+            }},
+          
+            
+        ]
+      }
+    }
+  );
+
+  map.addLayer({
+      "id": "clusters",
+      "type": "circle",
+      "source": "clusters",
+      "paint": {
+          "circle-radius": 14,
+          "circle-color": "#3887be"
+      }
+  });
+
+  map.addLayer({
+    "id": "clusters-label",
+    "type": "symbol",
+    "source": "clusters",
+    "layout": {
+      "text-field": "{claimant_count}",
+      "text-font": [
+        "DIN Offc Pro Medium",
+        "Arial Unicode MS Bold"
+      ],
+      "text-size": 11
+    }
+  });
+});
+
+</script>
+ 
+</body>
+</html>
