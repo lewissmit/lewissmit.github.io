@@ -49,10 +49,17 @@ trace4 = {
   y: unpack(rows, 'Value4'),
   marker: {color: 'rgb(72, 84, 27)'},
   name: '2022-23',
+  type: 'lines',
+  
+};
+trace5 = {
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'Value4'),
+  marker: {color: 'rgb(224, 224, 224)'},
+  name: '2023-24',
   type: 'bar',
   
 };
-
 data = [trace1,trace2,trace3,trace4];
 
 layout = {
